@@ -2,8 +2,12 @@ package tech.phlocs.histleap;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,6 +33,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         this.slider = new Slider();
+        GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
+        GridView sliderLabels = (GridView) findViewById(R.id.slider_labels);
+        sliderPoints.setAdapter(new SliderPointAdapter(this, slider.getDivisions().size()));
     }
 
     /**
@@ -62,6 +69,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             inputArea.setVisibility(View.VISIBLE);
         }
     }
-
-
 }
