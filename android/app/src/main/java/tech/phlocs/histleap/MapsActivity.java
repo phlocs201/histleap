@@ -1,7 +1,9 @@
 package tech.phlocs.histleap;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -10,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import tech.phlocs.histleap.model.Slider;
@@ -48,10 +51,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
 
         mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(35.6096764, 139.7439769))
-            .title("品川寺")
+                .position(new LatLng(35.6096764, 139.7439769))
+                .title("品川寺")
+        );
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(35.608834, 139.730238))
+                .title("品川区役所")
         );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Log.d("@@@", "hoge");
+                _startSpotDetailActivity();
+                return false;
+            }
+        });
+    }
+
+    private void _startSpotDetailActivity() {
+        Intent i = new Intent(this, SpotDetailActivity.class);
+        startActivityForResult(i, 1);
     }
 
     public void onClickToggleSlider(View view) {
