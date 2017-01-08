@@ -2,6 +2,8 @@ package tech.phlocs.histleap;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -9,9 +11,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
+import model.tech.phlocs.histleap.Slider.Slider;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Slider slider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +26,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-    }
 
+        this.slider = new Slider();
+    }
 
     /**
      * Manipulates the map once available.
@@ -41,4 +47,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
     }
+
+    public void onClickToggleSlider(View view) {
+        RelativeLayout inputArea = (RelativeLayout)findViewById(R.id.slider_area);
+        if (inputArea.getVisibility() == View.VISIBLE) {
+            inputArea.setVisibility(View.INVISIBLE);
+        } else {
+            inputArea.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 }
