@@ -5,6 +5,7 @@ package tech.phlocs.histleap.model;
  */
 
 public class Event {
+    private long id;
     private int startYear;
     private String overview;
 
@@ -12,6 +13,9 @@ public class Event {
         this.startYear = startYear;
         this.overview = overview;
     }
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
 
     public int getStartYear() {
         return startYear;
