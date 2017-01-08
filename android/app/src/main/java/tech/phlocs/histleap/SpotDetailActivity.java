@@ -15,7 +15,6 @@ import tech.phlocs.histleap.adapter.EventListAdapter;
 import tech.phlocs.histleap.adapter.SpotInfoListAdapter;
 import tech.phlocs.histleap.async_task.GetImageAsyncTask;
 import tech.phlocs.histleap.model.Event;
-import tech.phlocs.histleap.model.EventInfo;
 import tech.phlocs.histleap.model.SpotInfo;
 
 
@@ -70,13 +69,13 @@ public class SpotDetailActivity extends Activity {
 
     private void _setDataToEventList() {
         // EventListにデータを登録
-        String years[] = {"1193", "1300", "1735"};
-        ArrayList<EventInfo> data = new ArrayList<>();
+        int years[] = {1193, 1300, 1735};
+        ArrayList<Event> data = new ArrayList<>();
         for (int i = 0; i < years.length; i++) {
-            EventInfo event = new EventInfo();
+            Event event = new Event();
             event.setId((new Random()).nextLong());
-            event.setYear(years[i]);
-            event.setDescription("ダミーテキストです。この文字は全角８０文字ですよ。" +
+            event.setStartYear(years[i]);
+            event.setOverview("ダミーテキストです。この文字は全角８０文字ですよ。" +
                     "ダミーテキストです。この文字は全角８０文字ですよ。" +
                     "ダミーテキストです。この文字は全角８０文字ですよ。");
             data.add(event);

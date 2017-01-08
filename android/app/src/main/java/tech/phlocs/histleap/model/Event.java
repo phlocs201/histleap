@@ -13,6 +13,9 @@ public class Event {
         this.startYear = startYear;
         this.overview = overview;
     }
+    public Event() {
+
+    }
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
