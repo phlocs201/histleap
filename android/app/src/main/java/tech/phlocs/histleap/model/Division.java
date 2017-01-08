@@ -1,4 +1,4 @@
-package model.tech.phlocs.histleap.Slider;
+package tech.phlocs.histleap.model;
 
 /**
  * Created by matsumura_kazuki on 2017/01/07.

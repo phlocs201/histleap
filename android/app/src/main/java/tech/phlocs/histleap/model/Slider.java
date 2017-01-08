@@ -1,4 +1,4 @@
-package model.tech.phlocs.histleap.Slider;
+package tech.phlocs.histleap.model;
 
 import java.util.ArrayList;
 
