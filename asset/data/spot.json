@@ -1,102 +1,102 @@
 {
-  "localGovernmentCode": "13109",
-  "spots": [
-    {
-      "spotName": "品川寺",
-      "spotLatitude": "35.6096764",
-      "spotLongitude": "139.7439769",
-      "spotAddress": "東京都品川区南品川3-5-17",
-      "spotOverview": "真言宗醍醐派の寺院。山号は海照山。本尊は水月観音と聖観音で、江戸三十三箇所観音霊場の第31番。",
-      "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E5%AF%BA",
-      "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/03_01_hyakkei.jpg",
-      "events": [
+    "localGovernmentCode": "13109",
+    "spots": [
         {
-          "eventStartYear": 806,
-          "eventEndYear": 810,
-          "eventOverview": "弘法大師空海を開山とし、創建されたとされる。"
+            "spotName": "品川寺",
+            "spotLatitude": "35.6096764",
+            "spotLongitude": "139.7439769",
+            "spotAddress": "東京都品川区南品川3-5-17",
+            "spotOverview": "真言宗醍醐派の寺院。山号は海照山。本尊は水月観音と聖観音で、江戸三十三箇所観音霊場の第31番。",
+            "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E5%AF%BA",
+            "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/03_01_hyakkei.jpg",
+            "events": [
+                {
+                    "eventStartYear": 806,
+                    "eventEndYear": 810,
+                    "eventOverview": "弘法大師空海を開山とし、創建されたとされる。"
+                },
+                {
+                    "eventStartYear": 1457,
+                    "eventOverview": "江戸城を築いた太田道灌により伽藍が建立され、寺号を大円寺と称した。"
+                },
+                {
+                    "eventStartYear": 1652,
+                    "eventOverview": "戦乱により荒廃していたが、弘尊上人により再興され、現在の寺号となった。"
+                },
+                {
+                    "eventStartYear": 1657,
+                    "eventOverview": "徳川幕府第四代将軍徳川家綱が梵鐘を寄進した。"
+                },
+                {
+                    "eventStartYear": 1930,
+                    "eventOverview": "アリアナ美術館に所蔵されていた梵鐘が、ジュネーヴ市から返還された。"
+                }
+            ]
         },
         {
-          "eventStartYear": 1457,
-          "eventOverview": "江戸城を築いた太田道灌により伽藍が建立され、寺号を大円寺と称した。"
+            "spotName": "品川神社",
+            "spotLatitude": "35.6184352",
+            "spotLongitude": "139.739616",
+            "spotAddress": "東京都品川区北品川3-7-15",
+            "spotOverview": "東海七福神の一社として、大黒天を祀る神社。元准勅祭社として東京十社のひとつでもある。",
+            "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E7%A5%9E%E7%A4%BE",
+            "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/01_08_hyakkei.jpg",
+            "events": [
+                {
+                    "eventStartYear": 1187,
+                    "eventOverview": "源頼朝が安房国の洲崎神社から洲崎明神である天比理乃咩命を勧請して祀り、品川大明神と称した。"
+                },
+                {
+                    "eventStartYear": 1319,
+                    "eventOverview": "北条高時の臣、二階堂道蘊が「宇賀之売命（稲荷神)」を祀った。"
+                },
+                {
+                    "eventStartYear": 1478,
+                    "eventOverview": "太田道灌が「素戔嗚尊(天王神）」を祀った。"
+                },
+                {
+                    "eventStartYear": 1600,
+                    "eventOverview": "徳川家康が関ヶ原の戦いへ出陣の祭に品川神社を参拝して戦勝祈願した。",
+                    "eventURL": "https://ja.wikipedia.org/wiki/%E9%96%A2%E3%83%B6%E5%8E%9F%E3%81%AE%E6%88%A6%E3%81%84"
+                },
+                {
+                    "eventStartYear": 1868,
+                    "eventOverview": "明治天皇が品川神社を准勅祭社と定め、東京の鎮護と万民の安泰を祈る神社の一つとした。"
+                }
+            ]
         },
         {
-          "eventStartYear": 1652,
-          "eventOverview": "戦乱により荒廃していたが、弘尊上人により再興され、現在の寺号となった。"
+            "spotName": "戸越八幡神社",
+            "spotLatitude": "35.613789",
+            "spotLongitude": "139.720360",
+            "spotAddress": "",
+            "spotOverview": "旧戸越村の鎮守であった東京都品川区戸越にある神社。",
+            "spotURL": "https://ja.wikipedia.org/wiki/%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE_(%E5%93%81%E5%B7%9D%E5%8C%BA)",
+            "spotImageURL": "https://ja.wikipedia.org/wiki/%E6%88%B8%E8%B6%8A%E5%85%AB%E5%B9%A1%E7%A5%9E%E7%A4%BE#/media/File:Togoshi_hachiman.JPG",
+            "events": [
+                {
+                    "eventStartYear": 1526,
+                    "eventOverview": "行永法師という僧が誉田別命の神体と石清水八幡宮（京都）の分霊を祀って草庵を作り、成就庵と称した。"
+                },
+                {
+                    "eventStartYear": 1593,
+                    "eventOverview": "行慶寺の開山・念誉によって草庵の場所に八幡神社を建立した。"
+                },
+                {
+                    "eventStartYear": 1688,
+                    "eventOverview": "現在の場所である村内の高台に移転される。"
+                },
+                {
+                    "eventStartYear": 1855,
+                    "eventOverview": "改築を行い、現在の本殿・拝殿が建造される。"
+                },
+                {
+                    "eventStartYear": 1929,
+                    "eventOverview": "神楽殿が建造される。"
+                }
+            ]
         },
         {
-          "eventStartYear": 1657,
-          "eventOverview": "徳川幕府第四代将軍徳川家綱が梵鐘を寄進した。"
-        },
-        {
-          "eventStartYear": 1930,
-          "eventOverview": "アリアナ美術館に所蔵されていた梵鐘が、ジュネーヴ市から返還された。"
-        }
-      ]
-    },
-    {
-      "spotName": "品川神社",
-      "spotLatitude": "35.6184352",
-      "spotLongitude": "139.739616",
-      "spotAddress": "東京都品川区北品川3-7-15",
-      "spotOverview": "東海七福神の一社として、大黒天を祀る神社。元准勅祭社として東京十社のひとつでもある。",
-      "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E7%A5%9E%E7%A4%BE",
-      "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/01_08_hyakkei.jpg",
-      "events": [
-        {
-          "eventStartYear": 1187,
-          "eventOverview": "源頼朝が安房国の洲崎神社から洲崎明神である天比理乃咩命を勧請して祀り、品川大明神と称した。"
-        },
-        {
-          "eventStartYear": 1319,
-          "eventOverview": "北条高時の臣、二階堂道蘊が「宇賀之売命（稲荷神)」を祀った。"
-        },
-        {
-          "eventStartYear": 1478,
-          "eventOverview": "太田道灌が「素戔嗚尊(天王神）」を祀った。"
-        },
-        {
-          "eventStartYear": 1600,
-          "eventOverview": "徳川家康が関ヶ原の戦いへ出陣の祭に品川神社を参拝して戦勝祈願した。",
-          "eventURL": "https://ja.wikipedia.org/wiki/%E9%96%A2%E3%83%B6%E5%8E%9F%E3%81%AE%E6%88%A6%E3%81%84"
-        },
-        {
-          "eventStartYear": 1868,
-          "eventOverview": "明治天皇が品川神社を准勅祭社と定め、東京の鎮護と万民の安泰を祈る神社の一つとした。"
-        }
-      ]
-    },
-    {
-      "spotName": "戸越八幡神社",
-      "spotLatitude": "35.613789",
-      "spotLongitude": "139.720360",
-      "spotAddress": "",
-      "spotOverview": "旧戸越村の鎮守であった東京都品川区戸越にある神社。",
-      "spotURL": "https://ja.wikipedia.org/wiki/%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE_(%E5%93%81%E5%B7%9D%E5%8C%BA)",
-      "spotImageURL": "https://ja.wikipedia.org/wiki/%E6%88%B8%E8%B6%8A%E5%85%AB%E5%B9%A1%E7%A5%9E%E7%A4%BE#/media/File:Togoshi_hachiman.JPG",
-      "events": [
-        {
-          "eventStartYear": 1526,
-          "eventOverview": "行永法師という僧が誉田別命の神体と石清水八幡宮（京都）の分霊を祀って草庵を作り、成就庵と称した。"
-        },
-        {
-          "eventStartYear": 1593,
-          "eventOverview": "行慶寺の開山・念誉によって草庵の場所に八幡神社を建立した。"
-        },
-        {
-          "eventStartYear": 1688,
-          "eventOverview": "現在の場所である村内の高台に移転される。"
-        },
-        {
-          "eventStartYear": 1855,
-          "eventOverview": "改築を行い、現在の本殿・拝殿が建造される。"
-        },
-        {
-          "eventStartYear": 1929,
-          "eventOverview": "神楽殿が建造される。"
-        }
-      ]
-    },
-            {
             "spotName": "寄木神社",
             "spotLatitude": "35.618233",
             "spotLongitude": "139.745655",
@@ -105,19 +105,19 @@
             "spotURL": "http://www.sinakan.jp/entry-info.html?id=34906",
             "spotImageURL": "",
             "events": [
-                       {
-                       "eventStartYear": 1598,
-                       "eventEndYear": 1614,
-                       "eventOverview": "現在の場所に移されたとされる。建造時期は不明。"
-                       },
-                       {
-                       "eventStartYear": 1815,
-                       "eventEndYear": 1889,
-                       "eventOverview": "区の指定有形文化財、鏝絵天鈿女命功績図が描かれる。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1598,
+                    "eventEndYear": 1614,
+                    "eventOverview": "現在の場所に移されたとされる。建造時期は不明。"
+                },
+                {
+                    "eventStartYear": 1815,
+                    "eventEndYear": 1889,
+                    "eventOverview": "区の指定有形文化財、鏝絵天鈿女命功績図が描かれる。"
+                }
+            ]
+        },
+        {
             "spotName": "稲荷堂",
             "spotLatitude": "35.6248135",
             "spotLongitude": "139.7431679",
@@ -126,13 +126,13 @@
             "spotURL": "",
             "spotImageURL": "https://plus.google.com/photos/photo/101839574071407325447/6229139233665863522",
             "events": [
-                       {
-                       "eventStartYear": 1932,
-                       "eventOverview": "八ツ山埋め立て地に品川区の鬼門除けとして創建される。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1932,
+                    "eventOverview": "八ツ山埋め立て地に品川区の鬼門除けとして創建される。"
+                }
+            ]
+        },
+        {
             "spotName": "養願時",
             "spotLatitude": "35.6191503",
             "spotLongitude": "139.7424293",
@@ -141,22 +141,22 @@
             "spotURL": "https://ja.localwiki.org/shinagawa/%E9%A4%8A%E9%A1%98%E5%AF%BA%EF%BC%88%E3%82%88%E3%81%86%E3%81%8C%E3%82%93%E3%81%98%EF%BC%89",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E5%A4%A9%E5%8F%B0%E5%AE%97%E9%A4%8A%E9%A1%98%E5%AF%BA/@35.6193947,139.7421376,3a,75y,90t/data=!3m8!1e2!3m6!1s-GGw6SOge5rc%2FWCfDTpycUfI%2FAAAAAAAAmqo%2FT7CrqectLTsxUE9M01x0QqOw9wgYqYCbACLIB!2e4!3e12!6s%2F%2Flh6.googleusercontent.com%2F-GGw6SOge5rc%2FWCfDTpycUfI%2FAAAAAAAAmqo%2FT7CrqectLTsxUE9M01x0QqOw9wgYqYCbACLIB%2Fs114-k-no%2F!7i4160!8i3120!4m5!3m4!1s0x0:0x80138e838d9de36c!8m2!3d35.6189916!4d139.7424205!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1299,
-                       "eventOverview": "草建と伝わる。"
-                       },
-                       {
-                       "eventStartYear": 1658,
-                       "eventOverview": "法印大僧都玄雄が三尊像を発願造立。"
-                       },
-                       {
-                       "eventStartYear": 1661,
-                       "eventEndYear": 1672,
-                       "eventOverview": "什慶が中興開山する。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1299,
+                    "eventOverview": "草建と伝わる。"
+                },
+                {
+                    "eventStartYear": 1658,
+                    "eventOverview": "法印大僧都玄雄が三尊像を発願造立。"
+                },
+                {
+                    "eventStartYear": 1661,
+                    "eventEndYear": 1672,
+                    "eventOverview": "什慶が中興開山する。"
+                }
+            ]
+        },
+        {
             "spotName": "荏原神社",
             "spotLatitude": "35.6171117",
             "spotLongitude": "139.7438265",
@@ -165,33 +165,33 @@
             "spotURL": "https://ja.wikipedia.org/wiki/%E8%8D%8F%E5%8E%9F%E7%A5%9E%E7%A4%BE",
             "spotImageURL": "https://ja.wikipedia.org/wiki/%E8%8D%8F%E5%8E%9F%E7%A5%9E%E7%A4%BE#/media/File:Ebara_jinja.JPG",
             "events": [
-                       {
-                       "eventStartYear": 709,
-                       "eventOverview": "大和国丹生川上神社より高龗神（水神）の勧請を受けて創建される。"
-                       },
-                       {
-                       "eventStartYear": 1029,
-                       "eventOverview": "伊勢神宮より豊受大神・天照大神を勧請。"
-                       },
-                       {
-                       "eventStartYear": 1274,
-                       "eventOverview": "京都祇園社（八坂神社）より牛頭天王を勧請。"
-                       },
-                       {
-                       "eventStartYear": 1844,
-                       "eventOverview": "現在の社殿が創建される。"
-                       },
-                       {
-                       "eventStartYear": 1868,
-                       "eventOverview": "準勅祭社として定められる。"
-                       },
-                       {
-                       "eventStartYear": 1875,
-                       "eventOverview": "品川貴船社の名を改めて、荏原郡の名をつけて「荏原神社」に改称。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 709,
+                    "eventOverview": "大和国丹生川上神社より高龗神（水神）の勧請を受けて創建される。"
+                },
+                {
+                    "eventStartYear": 1029,
+                    "eventOverview": "伊勢神宮より豊受大神・天照大神を勧請。"
+                },
+                {
+                    "eventStartYear": 1274,
+                    "eventOverview": "京都祇園社（八坂神社）より牛頭天王を勧請。"
+                },
+                {
+                    "eventStartYear": 1844,
+                    "eventOverview": "現在の社殿が創建される。"
+                },
+                {
+                    "eventStartYear": 1868,
+                    "eventOverview": "準勅祭社として定められる。"
+                },
+                {
+                    "eventStartYear": 1875,
+                    "eventOverview": "品川貴船社の名を改めて、荏原郡の名をつけて「荏原神社」に改称。"
+                }
+            ]
+        },
+        {
             "spotName": "一心寺",
             "spotLatitude": "35.619529",
             "spotLongitude": "139.743215",
@@ -200,17 +200,17 @@
             "spotURL": "https://ja.localwiki.org/shinagawa/%E4%B8%80%E5%BF%83%E5%AF%BA",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E5%BB%B6%E5%91%BD%E9%99%A2%E4%B8%80%E5%BF%83%E5%AF%BA/@35.6193719,139.7431459,3a,75y,90t/data=!3m8!1e2!3m6!1s-kR3hRVhtTj8%2FV8ez8w7oq4I%2FAAAAAAAACpQ%2FWEGF6_BcBNIksiSRTXugji-O_lc1IH57gCJkC!2e4!3e12!6s%2F%2Flh3.googleusercontent.com%2F-kR3hRVhtTj8%2FV8ez8w7oq4I%2FAAAAAAAACpQ%2FWEGF6_BcBNIksiSRTXugji-O_lc1IH57gCJkC%2Fs114-k-no%2F!7i5177!8i3883!4m5!3m4!1s0x0:0x8aaeaf568892b683!8m2!3d35.6193721!4d139.743146!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1855,
-                       "eventOverview": "大老井伊直弼により開山したと伝わる。"
-                       },
-                       {
-                       "eventStartYear": 1884,
-                       "eventOverview": "火災で焼失していたが再興される。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1855,
+                    "eventOverview": "大老井伊直弼により開山したと伝わる。"
+                },
+                {
+                    "eventStartYear": 1884,
+                    "eventOverview": "火災で焼失していたが再興される。"
+                }
+            ]
+        },
+        {
             "spotName": "利田神社",
             "spotLatitude": "35.621405",
             "spotLongitude": "139.742375",
@@ -219,21 +219,21 @@
             "spotURL": "",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E3%80%92140-0002+%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E6%9D%B1%E5%93%81%E5%B7%9D%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%97+%E5%88%A9%E7%94%B0%E7%A5%9E%E7%A4%BE/@35.6212769,139.7423404,3a,75y,90t/data=!3m8!1e2!3m6!1shttp:%2F%2Fimg-01.pawasupo.net%2Ffiles%2F2016%2F09%2F05%2F1473066180-01bfebe1e4a9f5c145f1438b7aba6cfa.jpg!2e7!3e27!6s%2F%2Flh4.googleusercontent.com%2Fproxy%2FxsqXlB0hiIFd6qez4iOzX83eUiF4rQYtkiSeB-uXXvXwzS7lg79qI9XD5L0dBIxAikKPfMegibfo17QvdOaZtYDQT9475DskDA4_8VPEDBCuXhZk7gATJzpV-T6lr5qLNGR19zPmjJQYO6pSBK_g64wByW4TGw%3Dw153-h86!7i3840!8i2160!4m5!3m4!1s0x60188a6800487c11:0x79ee0813814c2112!8m2!3d35.6212769!4d139.7423404!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1626,
-                       "eventOverview": "東海寺の沢庵が弁財天を勧請。"
-                       },
-                       {
-                       "eventStartYear": 1798,
-                       "eventOverview": "暴風雨によって品川沖に迷い込んだ鯨の供養碑が建てられる。"
-                       },
-                       {
-                       "eventStartYear": 1869,
-                       "eventOverview": "神仏分離により移転、社号を利田神社と称する。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1626,
+                    "eventOverview": "東海寺の沢庵が弁財天を勧請。"
+                },
+                {
+                    "eventStartYear": 1798,
+                    "eventOverview": "暴風雨によって品川沖に迷い込んだ鯨の供養碑が建てられる。"
+                },
+                {
+                    "eventStartYear": 1869,
+                    "eventOverview": "神仏分離により移転、社号を利田神社と称する。"
+                }
+            ]
+        },
+        {
             "spotName": "天祖諏訪神社",
             "spotLatitude": "35.597163",
             "spotLongitude": "139.738834",
@@ -242,25 +242,26 @@
             "spotURL": "http://tensosuwa-jinja.jp/",
             "spotImageURL": "https://ja.wikipedia.org/wiki/%E5%A4%A9%E7%A5%96%E3%83%BB%E8%AB%8F%E8%A8%AA%E7%A5%9E%E7%A4%BE#/media/File:Tenso_suwa_jinja_haiden.JPG",
             "events": [
-                       {
-                       "eventStartYear": 1100,
-                       "eventEndYear": 1190,
-                       "eventOverview": "天祖神社が創建される。"
-                       },
-                       {
-                       "eventStartYear": 1631,
-                       "eventOverview": "この時には既に諏訪神社があったと考えられる。"
-                       },
-                       {
-                       "eventStartYear": 1867,
-                       "eventOverview": "拝殿前の狛犬が奉納される。"
-                       {
-                       "eventStartYear": 1965,
-                       "eventOverview": "天祖神社と諏訪神社が天祖神社のあるところに合祀され、同時に浜川神社から福禄寿が移される。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1100,
+                    "eventEndYear": 1190,
+                    "eventOverview": "天祖神社が創建される。"
+                },
+                {
+                    "eventStartYear": 1631,
+                    "eventOverview": "この時には既に諏訪神社があったと考えられる。"
+                },
+                {
+                    "eventStartYear": 1867,
+                    "eventOverview": "拝殿前の狛犬が奉納される。"
+                },
+                {
+                    "eventStartYear": 1965,
+                    "eventOverview": "天祖神社と諏訪神社が天祖神社のあるところに合祀され、同時に浜川神社から福禄寿が移される。"
+                }
+            ]
+        },
+        {
             "spotName": "磐井神社",
             "spotLatitude": "35.585408",
             "spotLongitude": "139.735593",
@@ -269,49 +270,49 @@
             "spotURL": "https://ja.wikipedia.org/wiki/%E7%A3%90%E4%BA%95%E7%A5%9E%E7%A4%BE",
             "spotImageURL": "https://ja.wikipedia.org/wiki/%E7%A3%90%E4%BA%95%E7%A5%9E%E7%A4%BE#/media/File:Iwai_jinja.JPG",
             "events": [
-                       {
-                       "eventStartYear": 572,
-                       "eventEndYear": 585,
-                       "eventOverview": "敏達天皇の代に創建したと伝わる。"
-                       },
-                       {
-                       "eventStartYear": 859,
-                       "eventOverview": "武蔵国従五位磐井神社官社に列し、武州八幡社の惣社に定められる。"
-                       },
-                       {
-                       "eventStartYear": 1504,
-                       "eventEndYear": 1520,
-                       "eventOverview": "兵火により社殿が焼失する。"
-                       },
-                       {
-                       "eventStartYear": 1532,
-                       "eventEndYear": 1555,
-                       "eventOverview": "火災により再び社殿が焼失する。"
-                       },
-                       {
-                       "eventStartYear": 1661,
-                       "eventEndYear": 1672,
-                       "eventOverview": "再建される。"
-                       },
-                       {
-                       "eventStartYear": 1725,
-                       "eventOverview": "徳川吉宗の命により社殿及び末社等の最造営が行われる。"
-                       },
-                       {
-                       "eventStartYear": 1934,
-                       "eventOverview": "旧社格制度での郷社指定を受ける。"
-                       },
-                       {
-                       "eventStartYear": 1945,
-                       "eventOverview": "空襲により三度社殿が焼失する。"
-                       },
-                       {
-                       "eventStartYear": 1954,
-                       "eventOverview": "再建され、現在の社殿となる。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 572,
+                    "eventEndYear": 585,
+                    "eventOverview": "敏達天皇の代に創建したと伝わる。"
+                },
+                {
+                    "eventStartYear": 859,
+                    "eventOverview": "武蔵国従五位磐井神社官社に列し、武州八幡社の惣社に定められる。"
+                },
+                {
+                    "eventStartYear": 1504,
+                    "eventEndYear": 1520,
+                    "eventOverview": "兵火により社殿が焼失する。"
+                },
+                {
+                    "eventStartYear": 1532,
+                    "eventEndYear": 1555,
+                    "eventOverview": "火災により再び社殿が焼失する。"
+                },
+                {
+                    "eventStartYear": 1661,
+                    "eventEndYear": 1672,
+                    "eventOverview": "再建される。"
+                },
+                {
+                    "eventStartYear": 1725,
+                    "eventOverview": "徳川吉宗の命により社殿及び末社等の最造営が行われる。"
+                },
+                {
+                    "eventStartYear": 1934,
+                    "eventOverview": "旧社格制度での郷社指定を受ける。"
+                },
+                {
+                    "eventStartYear": 1945,
+                    "eventOverview": "空襲により三度社殿が焼失する。"
+                },
+                {
+                    "eventStartYear": 1954,
+                    "eventOverview": "再建され、現在の社殿となる。"
+                }
+            ]
+        },
+        {
             "spotName": "妙蓮寺",
             "spotLatitude": "35.615346",
             "spotLongitude": "139.741446",
@@ -320,31 +321,31 @@
             "spotURL": "",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E5%A6%99%E8%93%AE%E5%AF%BA/@35.6151187,139.7414436,3a,75y,90t/data=!3m8!1e2!3m6!1s-MkiwEjxQXa4%2FVyXfKqY9FgI%2FAAAAAAAAIxc%2FkYacFfa_Y0wvqtlilOgGOXaTDdiKK-RDwCJkC!2e4!3e12!6s%2F%2Flh3.googleusercontent.com%2F-MkiwEjxQXa4%2FVyXfKqY9FgI%2FAAAAAAAAIxc%2FkYacFfa_Y0wvqtlilOgGOXaTDdiKK-RDwCJkC%2Fs114-k-no%2F!7i3264!8i2448!4m5!3m4!1s0x60188a6592f85a2d:0x2ffe878f05a3eb93!8m2!3d35.615145!4d139.741435!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1487,
-                       "eventOverview": "総本山妙満寺11世寂光院日遵上人が草建したと伝わる。"
-                       },
-                       {
-                       "eventStartYear": 1720,
-                       "eventEndYear": 1885,
-                       "eventOverview": "区の有形文化財である妙蓮寺典籍が写本、稿本される。"
-                       },
-                       {
-                       "eventStartYear": 1789,
-                       "eventEndYear": 1801,
-                       "eventOverview": "現在は本堂の内部にある、旧本堂が建てられる。"
-                       },
-                       {
-                       "eventStartYear": 1960,
-                       "eventOverview": "コンクリート造りの本堂が建てられる。"
-                       },
-                       {
-                       "eventStartYear": 1964,
-                       "eventOverview": "髙木正年の胸像が、その門下生によって建立される。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1487,
+                    "eventOverview": "総本山妙満寺11世寂光院日遵上人が草建したと伝わる。"
+                },
+                {
+                    "eventStartYear": 1720,
+                    "eventEndYear": 1885,
+                    "eventOverview": "区の有形文化財である妙蓮寺典籍が写本、稿本される。"
+                },
+                {
+                    "eventStartYear": 1789,
+                    "eventEndYear": 1801,
+                    "eventOverview": "現在は本堂の内部にある、旧本堂が建てられる。"
+                },
+                {
+                    "eventStartYear": 1960,
+                    "eventOverview": "コンクリート造りの本堂が建てられる。"
+                },
+                {
+                    "eventStartYear": 1964,
+                    "eventOverview": "髙木正年の胸像が、その門下生によって建立される。"
+                }
+            ]
+        },
+        {
             "spotName": "海徳寺",
             "spotLatitude": "35.6162201",
             "spotLongitude": "139.7429572",
@@ -353,17 +354,17 @@
             "spotURL": "",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E6%B5%B7%E5%BE%B3%E5%AF%BA/@35.6162201,139.7429572,3a,75y,90t/data=!3m8!1e2!3m6!1s-fIue7mW4d5U%2FV-Ttjzqej3I%2FAAAAAAAAGZM%2FJ0wH2A_QryMziUZ5s78K7A5ErkuYNqveQCJkC!2e4!3e12!6s%2F%2Flh4.googleusercontent.com%2F-fIue7mW4d5U%2FV-Ttjzqej3I%2FAAAAAAAAGZM%2FJ0wH2A_QryMziUZ5s78K7A5ErkuYNqveQCJkC%2Fs129-k-no%2F!7i6000!8i4000!4m5!3m4!1s0x60188a6f44932e55:0x10fdfb5b57535bbb!8m2!3d35.616223!4d139.742957!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1522,
-                       "eventOverview": "この地に住んでいた鳥海和泉守が京都から日蓮上人を迎え、自宅を寺とする。"
-                       },
-                       {
-                       "eventStartYear": 1751,
-                       "eventOverview": "現在の本堂が建てられる。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1522,
+                    "eventOverview": "この地に住んでいた鳥海和泉守が京都から日蓮上人を迎え、自宅を寺とする。"
+                },
+                {
+                    "eventStartYear": 1751,
+                    "eventOverview": "現在の本堂が建てられる。"
+                }
+            ]
+        },
+        {
             "spotName": "清光院",
             "spotLatitude": "35.6153006",
             "spotLongitude": "139.7387214",
@@ -372,13 +373,13 @@
             "spotURL": "",
             "spotImageURL": "",
             "events": [
-                       {
-                       "eventStartYear": 1650,
-                       "eventOverview": "肥後国字土藩（熊本藩支藩）の藩主、細川行孝が母を開基として創建する。"
-                       }
-                       ]
-            },
-            {
+                {
+                    "eventStartYear": 1650,
+                    "eventOverview": "肥後国字土藩（熊本藩支藩）の藩主、細川行孝が母を開基として創建する。"
+                }
+            ]
+        },
+        {
             "spotName": "清水稲荷神社",
             "spotLatitude": "35.619125",
             "spotLongitude": "139.7341105",
@@ -387,12 +388,11 @@
             "spotURL": "",
             "spotImageURL": "https://www.google.co.jp/maps/place/%E6%B8%85%E6%B0%B4%E7%A8%B2%E8%8D%B7%E7%A5%9E%E7%A4%BE/@35.619125,139.7341105,3a,75y,90t/data=!3m8!1e2!3m6!1s-Myst8YgFjA8%2FV8qanwxddLI%2FAAAAAAAA-to%2F8KQLmwiqNwYghGXqayJcsvf9cbG8BmWZACJkC!2e4!3e12!6s%2F%2Flh4.googleusercontent.com%2F-Myst8YgFjA8%2FV8qanwxddLI%2FAAAAAAAA-to%2F8KQLmwiqNwYghGXqayJcsvf9cbG8BmWZACJkC%2Fs152-k-no%2F!7i3840!8i2160!4m5!3m4!1s0x60188a5fc9b9cd6f:0x28e4f7be0cdd76d9!8m2!3d35.619125!4d139.7341105!6m1!1e1?hl=ja",
             "events": [
-                       {
-                       "eventStartYear": 1804,
-                       "eventStartYear": 1829,
-                       "eventOverview": "この時期に編纂された新編武蔵風土記稿に記載があることから既に創建されていたことが窺える。"
-                       }
-                       ]
-            }
-  ]
+                {
+                    "eventStartYear": 1829,
+                    "eventOverview": "この時期に編纂された新編武蔵風土記稿に記載があることから既に創建されていたことが窺える。"
+                }
+            ]
+        }
+    ]
 }

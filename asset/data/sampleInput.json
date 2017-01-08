@@ -1,69 +1,69 @@
 {
-  "localGovernmentCode": "13109",
-  "spots": [
-    {
-      "spotName": "品川寺",
-      "spotLatitude": "35.6096764",
-      "spotLongitude": "139.7439769",
-      "spotAddress": "東京都品川区南品川3-5-17",
-      "spotOverview": "真言宗醍醐派の寺院。山号は海照山。本尊は水月観音と聖観音で、江戸三十三箇所観音霊場の第31番。",
-      "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E5%AF%BA",
-      "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/03_01_hyakkei.jpg",
-      "events": [
+    "localGovernmentCode": "13109",
+    "spots": [
         {
-          "eventStartYear": "806",
-          "eventEndYear": "810",
-          "eventOverview": "弘法大師空海を開山とし、創建されたとされる。"
+            "spotName": "品川寺",
+            "spotLatitude": "35.6096764",
+            "spotLongitude": "139.7439769",
+            "spotAddress": "東京都品川区南品川3-5-17",
+            "spotOverview": "真言宗醍醐派の寺院。山号は海照山。本尊は水月観音と聖観音で、江戸三十三箇所観音霊場の第31番。",
+            "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E5%AF%BA",
+            "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/03_01_hyakkei.jpg",
+            "events": [
+                {
+                    "eventStartYear": "806",
+                    "eventEndYear": "810",
+                    "eventOverview": "弘法大師空海を開山とし、創建されたとされる。"
+                },
+                {
+                    "eventStartYear": "1457",
+                    "eventOverview": "江戸城を築いた太田道灌により伽藍が建立され、寺号を大円寺と称した。"
+                },
+                {
+                    "eventStartYear": "1652",
+                    "eventOverview": "戦乱により荒廃していたが、弘尊上人により再興され、現在の寺号となった。"
+                },
+                {
+                    "eventStartYear": "1657",
+                    "eventOverview": "徳川幕府第四代将軍徳川家綱が梵鐘を寄進した。"
+                },
+                {
+                    "eventStartYear": "1930",
+                    "eventOverview": "アリアナ美術館に所蔵されていた梵鐘が、ジュネーヴ市から返還された。"
+                }
+            ]
         },
         {
-          "eventStartYear": "1457",
-          "eventOverview": "江戸城を築いた太田道灌により伽藍が建立され、寺号を大円寺と称した。"
-        },
-        {
-          "eventStartYear": "1652",
-          "eventOverview": "戦乱により荒廃していたが、弘尊上人により再興され、現在の寺号となった。"
-        },
-        {
-          "eventStartYear": "1657",
-          "eventOverview": "徳川幕府第四代将軍徳川家綱が梵鐘を寄進した。"
-        },
-        {
-          "eventStartYear": "1930",
-          "eventOverview": "アリアナ美術館に所蔵されていた梵鐘が、ジュネーヴ市から返還された。"
+            "spotName": "品川神社",
+            "spotLatitude": "35.6184352",
+            "spotLongitude": "139.739616",
+            "spotAddress": "東京都品川区北品川3-7-15",
+            "spotOverview": "東海七福神の一社として、大黒天を祀る神社。元准勅祭社として東京十社のひとつでもある。",
+            "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E7%A5%9E%E7%A4%BE",
+            "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/01_08_hyakkei.jpg",
+            "events": [
+                {
+                    "eventStartYear": 1187,
+                    "eventOverview": "源頼朝が安房国の洲崎神社から洲崎明神である天比理乃咩命を勧請して祀り、品川大明神と称した。"
+                },
+                {
+                    "eventStartYear": 1319,
+                    "eventOverview": "北条高時の臣、二階堂道蘊が「宇賀之売命（稲荷神)」を祀った。"
+                },
+                {
+                    "eventStartYear": 1478,
+                    "eventOverview": "太田道灌が「素戔嗚尊(天王神）」を祀った。"
+                },
+                {
+                    "eventStartYear": 1600,
+                    "eventOverview": "徳川家康が関ヶ原の戦いへ出陣の祭に品川神社を参拝して戦勝祈願した。",
+                    "eventURL": "https://ja.wikipedia.org/wiki/%E9%96%A2%E3%83%B6%E5%8E%9F%E3%81%AE%E6%88%A6%E3%81%84"
+                },
+                {
+                    "eventStartYear": 1868,
+                    "eventOverview": "明治天皇が品川神社を准勅祭社と定め、東京の鎮護と万民の安泰を祈る神社の一つとした。"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "spotName": "品川神社",
-      "spotLatitude": "35.6184352",
-      "spotLongitude": "139.739616",
-      "spotAddress": "東京都品川区北品川3-7-15",
-      "spotOverview": "東海七福神の一社として、大黒天を祀る神社。元准勅祭社として東京十社のひとつでもある。",
-      "spotURL": "https://ja.wikipedia.org/wiki/%E5%93%81%E5%B7%9D%E7%A5%9E%E7%A4%BE",
-      "spotImageURL": "http://www.city.shinagawa.tokyo.jp/ct/image000001400/01_08_hyakkei.jpg",
-      "events": [
-        {
-          "eventStartYear": 1187,
-          "eventOverview": "源頼朝が安房国の洲崎神社から洲崎明神である天比理乃咩命を勧請して祀り、品川大明神と称した。"
-        },
-        {
-          "eventStartYear": 1319,
-          "eventOverview": "北条高時の臣、二階堂道蘊が「宇賀之売命（稲荷神)」を祀った。"
-        },
-        {
-          "eventStartYear": 1478,
-          "eventOverview": "太田道灌が「素戔嗚尊(天王神）」を祀った。"
-        },
-        {
-          "eventStartYear": 1600,
-          "eventOverview": "徳川家康が関ヶ原の戦いへ出陣の祭に品川神社を参拝して戦勝祈願した。",
-          "eventURL": "https://ja.wikipedia.org/wiki/%E9%96%A2%E3%83%B6%E5%8E%9F%E3%81%AE%E6%88%A6%E3%81%84"
-        },
-        {
-          "eventStartYear": 1868,
-          "eventOverview": "明治天皇が品川神社を准勅祭社と定め、東京の鎮護と万民の安泰を祈る神社の一つとした。"
-        }
-      ]
-    }
-  ]
+    ]
 }
