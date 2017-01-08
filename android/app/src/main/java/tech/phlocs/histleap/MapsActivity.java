@@ -49,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
 
         mMap.addMarker(new MarkerOptions()
-            .position(new LatLng(35.6096764, 139.7439769))
+            .position(new LatLng(35.608834, 139.730238))
             .title("品川寺")
         );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
