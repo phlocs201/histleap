@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,6 +29,8 @@ public class SpotDetailActivity extends Activity {
         //String spot = intent.getStringExtra("spot");
         //TextView tv_spotName = (TextView)findViewById(R.id.tv_spotName);
         //tv_spotName.setText(spot);
+        // ヘッダー文言を設定
+        _setHeaderText("品川神社");
 
         // 画像を取得
         String urlStr = "https://upload.wikimedia.org/wikipedia/commons/4/40/ShinagawaJinja_Honden.jpg";
@@ -41,6 +44,12 @@ public class SpotDetailActivity extends Activity {
         // イベントリストにデータを登録
         _setDataToEventList();
     }
+
+    public void _setHeaderText(String txt) {
+        TextView txtView = (TextView) findViewById(R.id.tv_spotName);
+        txtView.setText(txt);
+    }
+
 
     private void _getImage(String urlStr, ImageView imageView, RelativeLayout progressView) {
         Uri uri = Uri.parse(urlStr);

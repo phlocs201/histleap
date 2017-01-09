@@ -1,132 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  >
-  <RelativeLayout
-    android:id="@+id/header"
-    android:layout_width="match_parent"
-    android:layout_height="63dp"
-    android:background="#6D4C41"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentLeft="true"
-    >
-    <TextView
-      android:id="@+id/range"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerInParent="true"
-      android:text="鎌倉時代 〜 江戸時代"
-      android:textColor="#ffffff"
-      android:textStyle="bold"
-      android:textSize="18sp"/>
-
-    <ImageView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/logo_white"
-      android:scaleX="0.4"
-      android:scaleY="0.4"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentLeft="true"
-      />
-
-    <ImageButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/settings_white"
-      android:layout_centerVertical="true"
-      android:layout_toEndOf="@id/range"
-      android:layout_toRightOf="@id/range"
-      android:layout_marginStart="30dp"
-      android:layout_marginLeft="30dp"
-      android:background="#6D4C41"
-      android:scaleX="0.35"
-      android:scaleY="0.35" />
-  </RelativeLayout>
-  <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@id/header"
-    >
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      >
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="250dp">
-        <RelativeLayout
-            android:id="@+id/progress"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            >
-          <ProgressBar
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_centerInParent="true"
-              style="?android:attr/progressBarStyle"
-              />
-        </RelativeLayout>
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:padding="0dp"
+        android:layout_height="54dp"
+        android:background="#6D4C41"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/tv_spotName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
         <ImageView
-            android:id="@+id/iv_spotImage"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_white"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:layout_alignParentStart="true"
+            android:onClick="temporaryOnClick"
             />
-      </RelativeLayout>
-      <tech.phlocs.histleap.custom_view.MeasuredListView
-        android:id="@+id/lv_spotInfoList"
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/settings_white"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="#6D4C41"
+            android:elevation="0dp"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:scaleX="0.5"
+            android:scaleY="0.5" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/sv_spotDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-      <LinearLayout
-        android:id="@+id/eventListContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="54dp"
+        android:layout_below="@id/header"
         >
-        <tech.phlocs.histleap.custom_view.MeasuredListView
-          android:id="@+id/lv_eventList"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />
-      </LinearLayout>
-    </LinearLayout>
-  </ScrollView>
-  <RelativeLayout
-    android:id="@+id/footer"
-    android:layout_width="match_parent"
-    android:layout_height="63dp"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true"
-    android:background="#6D4C41">
 
-    <ImageView
-      android:id="@+id/logo_type"
-      android:layout_centerInParent="true"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/logotype_white"
-      android:scaleX="0.55"
-      android:scaleY="0.55"
-      />
-    <ImageButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@drawable/slider_white"
-      android:layout_centerVertical="true"
-      android:layout_toEndOf="@id/logo_type"
-      android:layout_toRightOf="@id/logo_type"
-      android:layout_marginEnd="8dp"
-      android:layout_marginRight="8dp"
-      android:background="#6D4C41"
-      android:scaleX="0.4"
-      android:scaleY="0.4"
-      />
-  </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <RelativeLayout
+                    android:id="@+id/progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_spotImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop" />
+            </RelativeLayout>
+
+            <tech.phlocs.histleap.custom_view.MeasuredListView
+                android:id="@+id/lv_spotInfoList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/eventListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <tech.phlocs.histleap.custom_view.MeasuredListView
+                    android:id="@+id/lv_eventList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="#6D4C41"
+        >
+
+        <ImageView
+            android:id="@+id/logo_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleX="0.55"
+            android:scaleY="0.55"
+            android:src="@drawable/logotype_white" />
+        <!--
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@id/logo_type"
+            android:layout_toRightOf="@id/logo_type"
+            android:background="#6D4C41"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:src="@drawable/slider_white" />
+            -->
+    </RelativeLayout>
 </RelativeLayout>
