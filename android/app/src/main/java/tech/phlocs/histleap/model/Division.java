@@ -1,10 +1,5 @@
 package tech.phlocs.histleap.model;
 
-import android.util.Log;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
  * Created by matsumura_kazuki on 2017/01/07.
  */
