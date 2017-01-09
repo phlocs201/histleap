@@ -1,5 +1,9 @@
 package tech.phlocs.histleap.model;
 
+/**
+ * Created by matsumura_kazuki on 2017/01/07.
+ */
+
 public class Division {
     private String name;
     private int start;
@@ -13,6 +17,15 @@ public class Division {
 
     public String getName() {
         return name;
+    }
+
+    public String getVerticalName() {
+        String[] splitChars = this.getName().split("", 0);
+        String verticalName = "";
+        for (String splitChar: splitChars) {
+            verticalName += splitChar + System.getProperty("line.separator");
+        }
+        return verticalName;
     }
 
     public int getStart() {
