@@ -137,7 +137,4 @@ public class DivisionSettingActivity extends Activity {
 
     }
 
-    public void onClickDivisionRadioButton(View view) {
-        Log.d("@@@", "radioButton clicked");
-    }
 }

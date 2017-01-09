@@ -91,7 +91,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         Activity activity = (Activity)context;
-        DivisionListParentItem item = groupData.get(groupPosition);
+        final DivisionListParentItem item = groupData.get(groupPosition);
 
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(R.layout.list_item_division_parent, null);
@@ -100,13 +100,11 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
         // 名前を設定
         ((TextView) convertView.findViewById(R.id.tv_divisionSetName)).setText(item.getName());
 
-        // その他の部品を取得
-        final RadioButton radioButton = ((RadioButton) convertView.findViewById(R.id.rb_division));
-        final ImageView indicatorView = (ImageView)convertView.findViewById(R.id.iv_Indicator);
 
         final ExpandableListView ex_listView = (ExpandableListView)parent;
 
         // 矢印画像を設定
+        final ImageView indicatorView = (ImageView)convertView.findViewById(R.id.iv_Indicator);
         if (ex_listView.isGroupExpanded(groupPosition)) {
             indicatorView.setImageResource(R.drawable.indicator_up);
         } else {
@@ -126,6 +124,22 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                     ((ImageView)view).setImageResource(R.drawable.indicator_up);
                     Log.d("@@@", "set UP image");
                 }
+            }
+        });
+
+        // ラジオボタンを設定
+        final RadioButton radioButton = ((RadioButton) convertView.findViewById(R.id.rb_division));
+        radioButton.setChecked(item.isSelected());
+
+        // ラジオボタンにクリックイベントを付与
+        radioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i = 0; i < groupData.size(); i++) {
+                    groupData.get(i).setSelected(false);
+                }
+                item.setSelected(true);
+                notifyDataSetChanged();
             }
         });
 
