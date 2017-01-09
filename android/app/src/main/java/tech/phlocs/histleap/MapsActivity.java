@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,11 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import tech.phlocs.histleap.adapter.SliderPointAdapter;
 import tech.phlocs.histleap.model.Slider;
+import tech.phlocs.histleap.model.SliderArea;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Slider slider;
     private GestureDetector gd;
+    private SliderArea sa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         gd = new GestureDetector(this,
             new GestureDetector.SimpleOnGestureListener() {
                 @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    int position = sa.getPosition((int)e.getX(), (int)e.getY());
+                    if (position != -1) {
+                        handleClickToChangeSliderRange(position);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+
+                @Override
                 public boolean onDown(MotionEvent e) {
-                    Log.d("gesture", e.toString());
-                    return true;
+                    int position = sa.getPosition((int)e.getX(), (int)e.getY());
+                    if (position != -1) {
+                        handleClickToChangeSliderRange(position);
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
 
                 @Override
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                    Log.d("gesture", "scroll");
-                    return true;
+                    int position1 = sa.getPosition((int)e1.getX(), (int)e1.getY());
+                    int position2 = sa.getPosition((int)e2.getX(), (int)e2.getY());
+                    if ((position1 != -1 || position2 != -1) && (position1 != position2)) {
+                        handleClickToChangeSliderRange(position2);
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             }
         );
@@ -58,8 +81,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        Log.d("hoge", "hogehoge");
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        int position = sa.getPosition((int)event.getX(), (int)event.getY());
+        if (position == -1) {
+            super.dispatchTouchEvent(event);
+            return true;
+        }
         gd.onTouchEvent(event);
         return true;
     }
@@ -68,17 +95,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        int sliderAreaWidth = findViewById(R.id.slider_points).getWidth();
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
+        int sliderAreaWidth = sliderPoints.getWidth();
         sliderPoints.setColumnWidth(sliderAreaWidth / slider.getDivisions().size());
         sliderPoints.setAdapter(new SliderPointAdapter(this, slider));
-        changeHeaderText();
 
-        sliderPoints.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                handleClickToChangeSliderRange(position);
-            }
-        });
+        final int[] anchorPos = new int[2];
+        sliderPoints.getLocationOnScreen(anchorPos);
+
+        sa = new SliderArea(
+                anchorPos[1],
+                sliderPoints.getHeight(),
+                sliderAreaWidth,
+                slider.getDivisions().size()
+        );
+
+        changeHeaderText();
     }
 
     /**
@@ -135,11 +167,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivityForResult(i, 1);
     }
 
-    public void handleClickToChangeSliderRange(int position) {
+    public boolean handleClickToChangeSliderRange(int position) {
         slider.setRangeByPosition(position);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
+        if (findViewById(R.id.slider_area).getVisibility() == View.INVISIBLE) {
+            return true;
+        }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
         changeHeaderText();
+        return false;
     }
 
     public void changeHeaderText() {
