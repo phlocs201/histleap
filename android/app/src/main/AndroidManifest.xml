@@ -39,6 +39,8 @@
         </activity>
         <activity android:name=".SpotDetailActivity">
         </activity>
+        <activity android:name=".DivisionSettingActivity">
+        </activity>
     </application>
 
 </manifest>
