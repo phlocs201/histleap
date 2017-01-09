@@ -62,7 +62,7 @@ public class SpotDetailActivity extends Activity {
             spotInfoListItem.setContent(contents[i]);
             data.add(spotInfoListItem);
         }
-        SpotInfoListAdapter adapter = new SpotInfoListAdapter(this, data, R.layout.spot_info);
+        SpotInfoListAdapter adapter = new SpotInfoListAdapter(this, data, R.layout.list_item_spot_info);
         ListView spotInfoListView = (ListView) findViewById(R.id.lv_spotInfoList);
         spotInfoListView.setAdapter(adapter);
     }
@@ -80,7 +80,7 @@ public class SpotDetailActivity extends Activity {
                     "ダミーテキストです。この文字は全角８０文字ですよ。");
             data.add(event);
         }
-        EventListAdapter adapter = new EventListAdapter(this, data, R.layout.event);
+        EventListAdapter adapter = new EventListAdapter(this, data, R.layout.list_item_event);
         ListView eventList = (ListView) findViewById(R.id.lv_eventList);
         eventList.setAdapter(adapter);
     }

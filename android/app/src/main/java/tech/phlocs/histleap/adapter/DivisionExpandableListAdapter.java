@@ -9,16 +9,13 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
 
 import tech.phlocs.histleap.R;
 import tech.phlocs.histleap.list_item.DivisionListChildItem;
 import tech.phlocs.histleap.list_item.DivisionListParentItem;
-import tech.phlocs.histleap.list_item.SpotInfoListItem;
 
 public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context = null;
@@ -55,12 +52,25 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
         DivisionListChildItem item = childData.get(groupPosition).get(childPosition);
 
         if (convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.division_list_child_item, null);
+            convertView = activity.getLayoutInflater().inflate(R.layout.list_item_division_child, null);
         }
+        // 時代区分名を設定
         ((TextView) convertView.findViewById(R.id.tv_divisionName)).setText(item.getName());
-        ((TextView) convertView.findViewById(R.id.tv_divisionStart)).setText(String.valueOf(item.getStart()));
-        ((TextView) convertView.findViewById(R.id.tv_divisionEnd)).setText(String.valueOf(item.getEnd()));
+
+        // "N 年"を設定
+        String startStr = _makeTextOfYear(item.getStart());
+        String endStr = _makeTextOfYear(item.getEnd());
+        ((TextView) convertView.findViewById(R.id.tv_divisionStart)).setText(startStr);
+        ((TextView) convertView.findViewById(R.id.tv_divisionEnd)).setText(endStr);
         return convertView;
+    }
+
+    private String _makeTextOfYear(int year) {
+        String str = "";
+        if (year != 0) {
+            str = String.valueOf(year) + " 年";
+        }
+        return str;
     }
 
     @Override
@@ -84,7 +94,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
         DivisionListParentItem item = groupData.get(groupPosition);
 
         if (convertView == null) {
-            convertView = activity.getLayoutInflater().inflate(R.layout.division_list_parent_item, null);
+            convertView = activity.getLayoutInflater().inflate(R.layout.list_item_division_parent, null);
         }
 
         // 名前を設定
@@ -124,7 +134,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 
     @Override
