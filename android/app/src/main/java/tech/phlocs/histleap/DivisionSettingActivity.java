@@ -3,8 +3,10 @@ package tech.phlocs.histleap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.SimpleExpandableListAdapter;
 
 import java.util.ArrayList;
@@ -12,19 +14,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import tech.phlocs.histleap.adapter.DivisionExpandableListAdapter;
+
 
 public class DivisionSettingActivity extends Activity {
+    ExpandableListView ex_listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_division_setting);
         // インテントを取得
         Intent intent = this.getIntent();
-        //String spot = intent.getStringExtra("spot");
-        //TextView tv_spotName = (TextView)findViewById(R.id.tv_spotName);
-        //tv_spotName.setText(spot);
 
-        ExpandableListView divisionList = (ExpandableListView) findViewById(R.id.elv_divisionList);
+        ex_listView = (ExpandableListView) findViewById(R.id.elv_divisionList);
 
         //
         String[] divisionSetTitles = {
@@ -105,21 +108,20 @@ public class DivisionSettingActivity extends Activity {
         }
 
         // Adapterを準備
-        SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
+        DivisionExpandableListAdapter adapter = new DivisionExpandableListAdapter(
                 this,
                 list_parent,
-                android.R.layout.simple_expandable_list_item_1,
+                R.layout.division_list_parent,
                 new String[] {"divisionSet_title"},
-                new int[] {android.R.id.text1},
+                new int[] {R.id.tv_divisionSetName},
                 list_child,
                 R.layout.division_list_sub_item,
                 new String[] {"division_name", "division_start", "division_end"},
                 new int[] {R.id.tv_divisionName, R.id.tv_divisionStart, R.id.tv_divisionEnd}
         );
-        divisionList.setAdapter(adapter);
-
+        ex_listView.setAdapter(adapter);
         // 子項目クリック時のEventListener
-        divisionList.setOnChildClickListener(
+        ex_listView.setOnChildClickListener(
                 new ExpandableListView.OnChildClickListener() {
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View view, int groupPosition, int childPosition, long id) {
@@ -128,5 +130,17 @@ public class DivisionSettingActivity extends Activity {
                 }
         );
 
+    }
+
+    public void onClickDivisionRadioButton(View view) {
+        Log.d("@@@", "radioButton clicked");
+    }
+    public void onClickDivisionIndicator(View view) {
+        Log.d("@@@", "indicator clicked");
+        if (ex_listView.isGroupExpanded(0)) {
+            ex_listView.expandGroup(0);
+        } else {
+            ex_listView.expandGroup(0);
+        }
     }
 }
