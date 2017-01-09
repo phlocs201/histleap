@@ -57,24 +57,28 @@
       android:orientation="vertical"
       >
       <RelativeLayout
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        >
-        <ProgressBar
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_centerInParent="true"
-          style="?android:attr/progressBarStyle"
-          />
+          android:layout_width="match_parent"
+          android:layout_height="250dp">
+        <RelativeLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            >
+          <ProgressBar
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              style="?android:attr/progressBarStyle"
+              />
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_spotImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            />
       </RelativeLayout>
-      <ImageView
-        android:id="@+id/iv_spotImage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
-        />
       <tech.phlocs.histleap.custom_view.MeasuredListView
         android:id="@+id/lv_spotInfoList"
         android:layout_width="match_parent"

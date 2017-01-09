@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -59,13 +60,18 @@ public class GetImageAsyncTask extends AsyncTask<Uri.Builder, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap result) {
+        // スポット画像を設定
         imageView.setImageBitmap(result);
-        ViewGroup.LayoutParams progressParams = progressView.getLayoutParams();
-        int height = progressParams.height;
-        progressParams.height = 0;
-        progressView.setLayoutParams(progressParams);
-        ViewGroup.LayoutParams imageParams = imageView.getLayoutParams();
-        imageParams.height = height;
-        imageView.setLayoutParams(imageParams);
+
+        progressView.setVisibility(View.INVISIBLE);
+        imageView.setVisibility(View.VISIBLE);
+//        public void onClickToggleSlider(View view) {
+//            RelativeLayout inputArea = (RelativeLayout)findViewById(R.id.slider_area);
+//            if (inputArea.getVisibility() == View.VISIBLE) {
+//                inputArea.setVisibility(View.INVISIBLE);
+//            } else {
+//                inputArea.setVisibility(View.VISIBLE);
+//            }
+//        }
     }
 }
