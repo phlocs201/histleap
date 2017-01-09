@@ -34,6 +34,9 @@ public class SpotDetailActivity extends Activity {
 
         // ダミーデータを取得
         Spot currentSpot = _getDummySpot();
+        ArrayList<Integer> range = new ArrayList<>();
+        range.add(1299);
+        range.add(1945);
 
         // ヘッダー文言を設定
         _setHeaderText(currentSpot.getName());
@@ -48,12 +51,12 @@ public class SpotDetailActivity extends Activity {
         _setDataToSpotInfoList(currentSpot);
 
         // イベントリストにデータを登録
-        _setDataToEventList(currentSpot);
+        _setDataToEventList(currentSpot, range);
     }
 
     private Spot _getDummySpot() {
         // EventListを用意
-        int years[] = {1193, 1300, 1735};
+        int[] years = {1193, 1300, 1735, 1946};
         ArrayList<Event> eventList = new ArrayList<>();
         for (int i = 0; i < years.length; i++) {
             Event event = new Event();
@@ -112,9 +115,9 @@ public class SpotDetailActivity extends Activity {
     }
 
     // EventListにデータを登録
-    private void _setDataToEventList(Spot spot) {
+    private void _setDataToEventList(Spot spot, ArrayList<Integer> range) {
         ArrayList<Event> data = spot.getEventList();
-        EventListAdapter adapter = new EventListAdapter(this, data, R.layout.list_item_event);
+        EventListAdapter adapter = new EventListAdapter(this, data, R.layout.list_item_event, range);
         ListView eventList = (ListView) findViewById(R.id.lv_eventList);
         eventList.setAdapter(adapter);
     }

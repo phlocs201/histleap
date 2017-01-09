@@ -2,6 +2,7 @@ package tech.phlocs.histleap.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,12 +17,14 @@ public class EventListAdapter extends BaseAdapter {
     private Context context = null;
     private ArrayList<Event> data = null;
     private int resource = 0;
+    private ArrayList<Integer> range = null;
 
     // コンストラクタ
-    public EventListAdapter(Context context, ArrayList<Event> data, int resource) {
+    public EventListAdapter(Context context, ArrayList<Event> data, int resource, ArrayList<Integer> range) {
         this.context  = context;
         this.data     = data;
         this.resource = resource;
+        this.range = range;
     }
 
     @Override
@@ -49,6 +52,20 @@ public class EventListAdapter extends BaseAdapter {
         }
         ((TextView) convertView.findViewById(R.id.event_year)).setText(String.valueOf(item.getStartYear()));
         ((TextView) convertView.findViewById(R.id.event_description)).setText(item.getOverview());
+
+        if (_isInsideRange(item.getStartYear())) {
+            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+        }
         return convertView;
+    }
+
+    private boolean _isInsideRange(int eventStartYear) {
+        boolean isInside = false;
+        if (eventStartYear >= range.get(0)) {
+            if (eventStartYear <= range.get(1)) {
+                isInside = true;
+            }
+        }
+        return isInside;
     }
 }
