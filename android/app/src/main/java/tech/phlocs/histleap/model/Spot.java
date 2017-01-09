@@ -13,7 +13,7 @@ public class Spot {
     private float longitude;
     private String address;
     private String url;
-    private String image;
+    private String imageUrl;
     private String overview;
     private ArrayList<Event> eventList;
 
@@ -23,7 +23,7 @@ public class Spot {
                 float longitude,
                 String address,
                 String url,
-                String image,
+                String imageUrl,
                 String overview,
                 ArrayList<Event> eventList
     ) {
@@ -33,7 +33,7 @@ public class Spot {
         this.longitude = longitude;
         this.address = address;
         this.url = url;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.overview = overview;
         this.eventList = eventList;
     }
@@ -82,12 +82,12 @@ public class Spot {
         this.url = url;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getOverview() {
