@@ -1,9 +1,13 @@
 package tech.phlocs.histleap.model;
+
+import java.util.ArrayList;
+
 /**
  * Created by matsumura_kazuki on 2017/01/07.
  */
 
 public class Spot {
+    private String id;
     private String name;
     private float latitude;
     private float longitude;
@@ -11,8 +15,19 @@ public class Spot {
     private String url;
     private String image;
     private String overview;
+    private ArrayList<Event> eventList;
 
-    public Spot(String name, float latitude, float longitude, String address, String url, String image, String overview) {
+    public Spot(String id,
+                String name,
+                float latitude,
+                float longitude,
+                String address,
+                String url,
+                String image,
+                String overview,
+                ArrayList<Event> eventList
+    ) {
+        this.id = id;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -20,7 +35,12 @@ public class Spot {
         this.url = url;
         this.image = image;
         this.overview = overview;
+        this.eventList = eventList;
     }
+
+    public String getId() { return this.id; }
+
+    public void setId(String id) { this.id = id; }
 
     public String getName() {
         return name;
@@ -77,4 +97,8 @@ public class Spot {
     public void setOverview(String overview) {
         this.overview = overview;
     }
+
+    public ArrayList<Event> getEventList() { return eventList; }
+
+    public void setEventList(ArrayList<Event> eventList) { this.eventList = eventList; }
 }

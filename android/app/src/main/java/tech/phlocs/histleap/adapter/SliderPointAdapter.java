@@ -1,4 +1,4 @@
-package tech.phlocs.histleap;
+package tech.phlocs.histleap.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,15 +11,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import tech.phlocs.histleap.R;
 import tech.phlocs.histleap.model.Division;
+import tech.phlocs.histleap.model.Slider;
 
 /**
  * Created by matsumura_kazuki on 2017/01/08.
  */
 
 public class SliderPointAdapter extends BaseAdapter {
-    private Context mContext;
-    private ArrayList<Division> mDivisions;
+    private Context mContext = null;
+    private ArrayList<Division> mDivisions = null;
     private LayoutInflater mLayoutInfrater;
     private Integer[] mSliderPointArray;
     private int size;
@@ -29,16 +31,21 @@ public class SliderPointAdapter extends BaseAdapter {
         public TextView sliderLabel;
     }
 
-    public SliderPointAdapter(Context context, ArrayList<Division> divisions) {
+    public SliderPointAdapter(Context context, Slider slider) {
         mContext = context;
         mLayoutInfrater = LayoutInflater.from(context);
+        ArrayList<Division> divisions = slider.getDivisions();
         this.mSliderPointArray = new Integer[divisions.size()];
 
         this.size = divisions.size();
         this.mDivisions = divisions;
-
+        ArrayList<Integer> range = slider.getRange();
         for (int i = 0; i < this.size; i++) {
-            this.mSliderPointArray[i] = R.drawable.break_point_yellow;
+            if (i == range.get(0) || i == range.get(1)) {
+                this.mSliderPointArray[i] = R.drawable.slider_lever;
+            } else {
+                this.mSliderPointArray[i] = R.drawable.break_point_yellow;
+            }
         }
     }
 

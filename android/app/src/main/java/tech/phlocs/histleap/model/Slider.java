@@ -1,5 +1,8 @@
 package tech.phlocs.histleap.model;
 
+import android.content.Context;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 /**
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Slider {
-    private Range range;
+    private ArrayList<Integer> range;
     private ArrayList<Division> divisions;
 
     public Slider() {
@@ -24,15 +27,32 @@ public class Slider {
         initialSlider.add(new Division("昭和時代", 1926, 1989));
         initialSlider.add(new Division("平成時代", 1989, 2017));
 
+        ArrayList<Integer> initialRange = new ArrayList<>();
+        initialRange.add(0);
+        initialRange.add(initialSlider.size() - 4);
+
         this.divisions = initialSlider;
+        this.range = initialRange;
     }
 
-    public Range getRange() {
+    public ArrayList<Integer> getRange() {
         return range;
     }
 
-    public void setRange(Range range) {
-        this.range = range;
+    public void setRange(ArrayList<Integer> range) { this.range = range; }
+
+    public void setRangeByPosition(int position) {
+        if (position < range.get(0)) {
+            range.set(0, position);
+        } else if (position > range.get(1)) {
+            range.set(1, position);
+        } else {
+            if ((position - range.get(0)) <= (range.get(1) - position)) {
+                range.set(0, position);
+            } else {
+                range.set(1, position);
+            }
+        }
     }
 
     public ArrayList<Division> getDivisions() {
@@ -41,5 +61,19 @@ public class Slider {
 
     public void setDivisions(ArrayList<Division> divisions) {
         this.divisions = divisions;
+    }
+
+    public ArrayList<Spot> getFilteredSpots(ArrayList<Spot> spots) {
+        ArrayList<Spot> filteredSpots = new ArrayList<>();
+        for (Spot spot: spots) {
+            for (Event event: spot.getEventList()) {
+                if (event.getStartYear() >= getDivisions().get(getRange().get(0)).getStart()
+                        && event.getStartYear() <= getDivisions().get(getRange().get(1)).getEnd()) {
+                    filteredSpots.add(spot);
+                    break;
+                }
+            }
+        }
+        return filteredSpots;
     }
 }

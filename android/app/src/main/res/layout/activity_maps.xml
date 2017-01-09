@@ -44,7 +44,7 @@
     <RelativeLayout
         android:id="@+id/slider_area"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="170dp"
         android:background="#C09E9E9E"
         android:layout_above="@+id/footer_main"
         android:visibility="visible">
@@ -53,8 +53,8 @@
             android:id="@+id/slider_bar_white"
             android:layout_alignParentStart="true"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/slider_bar_white" />
@@ -64,6 +64,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:numColumns="auto_fit"
+            android:columnWidth="40dp"
             android:stretchMode="columnWidth"/>
 
     </RelativeLayout>
@@ -81,7 +82,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="鎌倉時代 〜 江戸時代"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="18sp"/>

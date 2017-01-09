@@ -27,10 +27,9 @@ public class Division {
     public String getVerticalName() {
         String[] splitChars = this.getName().split("", 0);
         String verticalName = "";
-        for (int i = 0; i < splitChars.length; i++) {
-            verticalName += splitChars[i] + System.getProperty("line.separator");
+        for (String splitChar: splitChars) {
+            verticalName += splitChar + System.getProperty("line.separator");
         }
-        Log.d("verticalName", verticalName);
         return verticalName;
     }
 
