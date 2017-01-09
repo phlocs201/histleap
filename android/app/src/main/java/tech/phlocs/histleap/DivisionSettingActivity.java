@@ -15,10 +15,13 @@ import java.util.List;
 import java.util.Map;
 
 import tech.phlocs.histleap.adapter.DivisionExpandableListAdapter;
+import tech.phlocs.histleap.list_item.DivisionSetItem;
+import tech.phlocs.histleap.model.Division;
 
 
 public class DivisionSettingActivity extends Activity {
     ExpandableListView ex_listView;
+    long selectedDivisionSetId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,15 @@ public class DivisionSettingActivity extends Activity {
 
         ex_listView = (ExpandableListView) findViewById(R.id.elv_divisionList);
 
-        //
-        String[] divisionSetTitles = {
+        String[] divisionSetNames = {
                 "日本史時代区分",
                 "1990年代以降"
         };
+        long[] divisionSetIds = {
+                42,
+                1990
+        };
+
         String[][] divisionNames = {
             {
                 "飛鳥以前",
@@ -88,12 +95,15 @@ public class DivisionSettingActivity extends Activity {
                 {"1990", "2000"}
             }
         };
+        selectedDivisionSetId = 1990;
+
+
         ArrayList<Map<String, String>> list_parent = new ArrayList<>();
         ArrayList<List<Map<String, String>>> list_child = new ArrayList<>();
 
-        for (int i = 0; i < divisionSetTitles.length; i++) {
+        for (int i = 0; i < divisionSetNames.length; i++) {
             HashMap<String, String> set = new HashMap<>();
-            set.put("divisionSet_title", divisionSetTitles[i]);
+            set.put("divisionSet_name", divisionSetNames[i]);
             list_parent.add(set);
             ArrayList<Map<String, String>> divisions = new ArrayList<>();
 
@@ -112,12 +122,13 @@ public class DivisionSettingActivity extends Activity {
                 this,
                 list_parent,
                 R.layout.division_list_parent,
-                new String[] {"divisionSet_title"},
+                new String[] {"divisionSet_name"},
                 new int[] {R.id.tv_divisionSetName},
                 list_child,
                 R.layout.division_list_sub_item,
                 new String[] {"division_name", "division_start", "division_end"},
-                new int[] {R.id.tv_divisionName, R.id.tv_divisionStart, R.id.tv_divisionEnd}
+                new int[] {R.id.tv_divisionName, R.id.tv_divisionStart, R.id.tv_divisionEnd},
+                selectedDivisionSetId
         );
         ex_listView.setAdapter(adapter);
         // 子項目クリック時のEventListener
@@ -134,13 +145,5 @@ public class DivisionSettingActivity extends Activity {
 
     public void onClickDivisionRadioButton(View view) {
         Log.d("@@@", "radioButton clicked");
-    }
-    public void onClickDivisionIndicator(View view) {
-        Log.d("@@@", "indicator clicked");
-        if (ex_listView.isGroupExpanded(0)) {
-            ex_listView.expandGroup(0);
-        } else {
-            ex_listView.expandGroup(0);
-        }
     }
 }

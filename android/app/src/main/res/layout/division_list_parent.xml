@@ -42,8 +42,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
-        android:src="@drawable/pull_down"
-        android:onClick="onClickDivisionIndicator"
+        android:src="@null"
         />
 
 </RelativeLayout>
