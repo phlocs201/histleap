@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 import tech.phlocs.histleap.model.Division;
 
-public class DivisionListParentItem {
+public class DivisionParentListItem {
 
     private String name;
     private long id;
     private boolean isSelected;
 
-    public DivisionListParentItem(String name, boolean isSelected) {
+    public DivisionParentListItem(String name, boolean isSelected) {
         this.name = name;
         this.isSelected = isSelected;
     }
 
-    public DivisionListParentItem() {}
+    public DivisionParentListItem() {}
 
     public String getName() {
         return name;

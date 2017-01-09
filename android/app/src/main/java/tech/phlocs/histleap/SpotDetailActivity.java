@@ -56,11 +56,12 @@ public class SpotDetailActivity extends Activity {
                 "元准勅祭社として東京十社のひとつでもある。 また東海七福神の一社として、大黒天を祀る。"};
         ArrayList<SpotInfoListItem> data = new ArrayList<>();
         for (int i = 0; i < titles.length; i++) {
-            SpotInfoListItem spotInfoListItem = new SpotInfoListItem();
-            spotInfoListItem.setId((new Random()).nextLong());
-            spotInfoListItem.setTitle(titles[i]);
-            spotInfoListItem.setContent(contents[i]);
-            data.add(spotInfoListItem);
+            SpotInfoListItem spotInfo = new SpotInfoListItem();
+            spotInfo.setId((new Random()).nextLong());
+            spotInfo.setTitle(titles[i]);
+            spotInfo.setContent(contents[i]);
+            spotInfo.setIconSrc(_getIconSrcByTitle(titles[i]));
+            data.add(spotInfo);
         }
         SpotInfoListAdapter adapter = new SpotInfoListAdapter(this, data, R.layout.list_item_spot_info);
         ListView spotInfoListView = (ListView) findViewById(R.id.lv_spotInfoList);
@@ -83,5 +84,15 @@ public class SpotDetailActivity extends Activity {
         EventListAdapter adapter = new EventListAdapter(this, data, R.layout.list_item_event);
         ListView eventList = (ListView) findViewById(R.id.lv_eventList);
         eventList.setAdapter(adapter);
+    }
+
+    private int _getIconSrcByTitle(String title) {
+        int src = 0;
+        if ("住所".equals(title)) {
+            src = R.drawable.pin;
+        } else if ("概要".equals(title)) {
+            src = R.drawable.description;
+        }
+        return src;
     }
 }
