@@ -75,11 +75,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    private void _startSpotDetailActivity() {
-        Intent i = new Intent(this, SpotDetailActivity.class);
-        startActivityForResult(i, 1);
-    }
-
     public void onClickToggleSlider(View view) {
         RelativeLayout inputArea = (RelativeLayout)findViewById(R.id.slider_area);
         if (inputArea.getVisibility() == View.VISIBLE) {
@@ -87,5 +82,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             inputArea.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void _startSpotDetailActivity() {
+        Intent i = new Intent(this, SpotDetailActivity.class);
+        startActivityForResult(i, 1);
+    }
+
+    public void temporaryOnClick(View view) {
+        Intent i = new Intent(this, DivisionSettingActivity.class);
+        startActivityForResult(i, 1);
     }
 }
