@@ -1,5 +1,10 @@
 package tech.phlocs.histleap.model;
 
+import android.util.Log;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by matsumura_kazuki on 2017/01/07.
  */
@@ -17,6 +22,16 @@ public class Division {
 
     public String getName() {
         return name;
+    }
+
+    public String getVerticalName() {
+        String[] splitChars = this.getName().split("", 0);
+        String verticalName = "";
+        for (int i = 0; i < splitChars.length; i++) {
+            verticalName += splitChars[i] + System.getProperty("line.separator");
+        }
+        Log.d("verticalName", verticalName);
+        return verticalName;
     }
 
     public int getStart() {
