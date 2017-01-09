@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -43,9 +44,17 @@ public class SpotDetailActivity extends Activity {
 
         // 画像を非同期に取得
         String urlStr = currentSpot.getImageUrl();
-        ImageView imageView = (ImageView)findViewById(R.id.iv_spotImage);
-        RelativeLayout progressView = (RelativeLayout)findViewById(R.id.progress);
-        _getImage(urlStr, imageView, progressView);
+        RelativeLayout progressContainer = (RelativeLayout) findViewById(R.id.progress);
+        ImageView imageView = (ImageView) findViewById(R.id.iv_spotImage);
+        RelativeLayout noImageContainer = (RelativeLayout)findViewById(R.id.noImageContainer);
+
+        if ("".equals(urlStr)) {
+            progressContainer.setVisibility(View.INVISIBLE);
+            noImageContainer.setVisibility(View.VISIBLE);
+        } else {
+            noImageContainer.setVisibility(View.INVISIBLE);
+            _getImage(urlStr, imageView, progressContainer);
+        }
 
         // スポット情報リストにデータを登録
         _setDataToSpotInfoList(currentSpot);

@@ -65,13 +65,6 @@ public class GetImageAsyncTask extends AsyncTask<Uri.Builder, Void, Bitmap> {
 
         progressView.setVisibility(View.INVISIBLE);
         imageView.setVisibility(View.VISIBLE);
-//        public void onClickToggleSlider(View view) {
-//            RelativeLayout inputArea = (RelativeLayout)findViewById(R.id.slider_area);
-//            if (inputArea.getVisibility() == View.VISIBLE) {
-//                inputArea.setVisibility(View.INVISIBLE);
-//            } else {
-//                inputArea.setVisibility(View.VISIBLE);
-//            }
-//        }
+
     }
 }
