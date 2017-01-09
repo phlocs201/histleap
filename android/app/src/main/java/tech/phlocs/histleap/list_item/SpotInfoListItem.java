@@ -1,6 +1,6 @@
 package tech.phlocs.histleap.list_item;
 
-public class SpotInfoItem {
+public class SpotInfoListItem {
     private long id = 0;
     private String title = null;
     private String content = null;

@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.SimpleExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import tech.phlocs.histleap.adapter.DivisionExpandableListAdapter;
-import tech.phlocs.histleap.list_item.DivisionSetItem;
-import tech.phlocs.histleap.model.Division;
+import tech.phlocs.histleap.list_item.DivisionListChildItem;
+import tech.phlocs.histleap.list_item.DivisionListParentItem;
 
 
 public class DivisionSettingActivity extends Activity {
@@ -68,66 +67,61 @@ public class DivisionSettingActivity extends Activity {
                 "1990s",
             }
             };
-        String[][][] years = {
+        int[][][] years = {
             {
-                {"0", "710"},
-                {"710", "719"},
-                {"719", "1185"},
-                {"1185", "1336"},
-                {"1336", "1392"},
-                {"1392", "1573"},
-                {"1573", "1603"},
-                {"1603", "1868"},
-                {"1868", "1926"},
-                {"1926", "1989"},
-                {"1989", "2017"}
+                {0, 710},
+                {710, 719},
+                {719, 1185},
+                {1185, 1336},
+                {1336, 1392},
+                {1392, 1573},
+                {1573, 1603},
+                {1603, 1868},
+                {1868, 1926},
+                {1926, 1989},
+                {1989, 2017}
             },
             {
-                {"1900", "1909"},
-                {"1910", "1919"},
-                {"1920", "1929"},
-                {"1930", "1939"},
-                {"1940", "1949"},
-                {"1950", "1959"},
-                {"1960", "1969"},
-                {"1970", "1979"},
-                {"1980", "1989"},
-                {"1990", "2000"}
+                {1900, 1909},
+                {1910, 1919},
+                {1920, 1929},
+                {1930, 1939},
+                {1940, 1949},
+                {1950, 1959},
+                {1960, 1969},
+                {1970, 1979},
+                {1980, 1989},
+                {1990, 2000}
             }
         };
         selectedDivisionSetId = 1990;
 
 
-        ArrayList<Map<String, String>> list_parent = new ArrayList<>();
-        ArrayList<List<Map<String, String>>> list_child = new ArrayList<>();
+        ArrayList<DivisionListParentItem> parentList = new ArrayList<>();
+        ArrayList<List<DivisionListChildItem>> childList = new ArrayList<>();
 
         for (int i = 0; i < divisionSetNames.length; i++) {
-            HashMap<String, String> set = new HashMap<>();
-            set.put("divisionSet_name", divisionSetNames[i]);
-            list_parent.add(set);
-            ArrayList<Map<String, String>> divisions = new ArrayList<>();
+            DivisionListParentItem parentItem = new DivisionListParentItem(divisionSetNames[i], false);
+            parentItem.setId((new Random()).nextLong());
+            parentList.add(parentItem);
+            ArrayList<DivisionListChildItem> childItems = new ArrayList<>();
 
             for (int j = 0; j < divisionNames[i].length; j++) {
-                HashMap<String, String> division = new HashMap<>();
-                division.put("division_name", divisionNames[i][j]);
-                division.put("division_start", years[i][j][0]);
-                division.put("division_end", years[i][j][1]);
-                divisions.add(division);
+                DivisionListChildItem childItem = new DivisionListChildItem();
+                childItem.setName(divisionNames[i][j]);
+                childItem.setStart(years[i][j][0]);
+                childItem.setEnd(years[i][j][1]);
+                childItem.setId((new Random()).nextLong());
+                childItems.add(childItem);
             }
-            list_child.add(divisions);
+            childList.add(childItems);
         }
 
         // Adapterを準備
         DivisionExpandableListAdapter adapter = new DivisionExpandableListAdapter(
                 this,
-                list_parent,
-                R.layout.division_list_parent,
-                new String[] {"divisionSet_name"},
-                new int[] {R.id.tv_divisionSetName},
-                list_child,
-                R.layout.division_list_sub_item,
-                new String[] {"division_name", "division_start", "division_end"},
-                new int[] {R.id.tv_divisionName, R.id.tv_divisionStart, R.id.tv_divisionEnd},
+                parentList,
+                childList,
                 selectedDivisionSetId
         );
         ex_listView.setAdapter(adapter);

@@ -10,15 +10,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import tech.phlocs.histleap.R;
-import tech.phlocs.histleap.list_item.SpotInfoItem;
+import tech.phlocs.histleap.list_item.SpotInfoListItem;
 
 public class SpotInfoListAdapter extends BaseAdapter {
     private Context context = null;
-    private ArrayList<SpotInfoItem> data = null;
+    private ArrayList<SpotInfoListItem> data = null;
     private int resource = 0;
 
     // コンストラクタ
-    public SpotInfoListAdapter(Context context, ArrayList<SpotInfoItem> data, int resource) {
+    public SpotInfoListAdapter(Context context, ArrayList<SpotInfoListItem> data, int resource) {
         this.context  = context;
         this.data     = data;
         this.resource = resource;
@@ -42,7 +42,7 @@ public class SpotInfoListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Activity activity = (Activity)context;
-        SpotInfoItem item = (SpotInfoItem)getItem(position);
+        SpotInfoListItem item = (SpotInfoListItem)getItem(position);
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(resource, null);
         }

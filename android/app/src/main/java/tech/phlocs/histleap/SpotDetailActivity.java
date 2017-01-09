@@ -15,7 +15,7 @@ import tech.phlocs.histleap.adapter.EventListAdapter;
 import tech.phlocs.histleap.adapter.SpotInfoListAdapter;
 import tech.phlocs.histleap.async_task.GetImageAsyncTask;
 import tech.phlocs.histleap.model.Event;
-import tech.phlocs.histleap.list_item.SpotInfoItem;
+import tech.phlocs.histleap.list_item.SpotInfoListItem;
 
 
 public class SpotDetailActivity extends Activity {
@@ -54,13 +54,13 @@ public class SpotDetailActivity extends Activity {
         String titles[] = {"住所", "概要"};
         String contents[] = {"〒140-0001 東京都品川区北品川3-7-15",
                 "元准勅祭社として東京十社のひとつでもある。 また東海七福神の一社として、大黒天を祀る。"};
-        ArrayList<SpotInfoItem> data = new ArrayList<>();
+        ArrayList<SpotInfoListItem> data = new ArrayList<>();
         for (int i = 0; i < titles.length; i++) {
-            SpotInfoItem spotInfoItem = new SpotInfoItem();
-            spotInfoItem.setId((new Random()).nextLong());
-            spotInfoItem.setTitle(titles[i]);
-            spotInfoItem.setContent(contents[i]);
-            data.add(spotInfoItem);
+            SpotInfoListItem spotInfoListItem = new SpotInfoListItem();
+            spotInfoListItem.setId((new Random()).nextLong());
+            spotInfoListItem.setTitle(titles[i]);
+            spotInfoListItem.setContent(contents[i]);
+            data.add(spotInfoListItem);
         }
         SpotInfoListAdapter adapter = new SpotInfoListAdapter(this, data, R.layout.spot_info);
         ListView spotInfoListView = (ListView) findViewById(R.id.lv_spotInfoList);

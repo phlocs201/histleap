@@ -1,14 +1,23 @@
-package tech.phlocs.histleap.model;
+package tech.phlocs.histleap.list_item;
 
-public class Division {
+import java.util.ArrayList;
+
+import tech.phlocs.histleap.model.Division;
+
+public class DivisionListChildItem {
+
+    private long id;
     private String name;
     private int start;
     private int end;
 
-    public Division(String name, int start, int end) {
+    public DivisionListChildItem(String name, int start, int end) {
         this.name = name;
         this.start = start;
         this.end = end;
+    }
+    public DivisionListChildItem() {
+
     }
 
     public String getName() {
@@ -33,5 +42,13 @@ public class Division {
 
     public void setEnd(int end) {
         this.end = end;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

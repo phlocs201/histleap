@@ -1,43 +1,102 @@
 package tech.phlocs.histleap.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
 
 import tech.phlocs.histleap.R;
+import tech.phlocs.histleap.list_item.DivisionListChildItem;
+import tech.phlocs.histleap.list_item.DivisionListParentItem;
+import tech.phlocs.histleap.list_item.SpotInfoListItem;
 
-public class DivisionExpandableListAdapter extends SimpleExpandableListAdapter {
+public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context = null;
+    private List<DivisionListParentItem> groupData;
+    private List<List<DivisionListChildItem>> childData;
     private long selectedDivisionSetId = 0;
 
-    public DivisionExpandableListAdapter(Context context,
-                                         List<? extends Map<String, ?>> groupData, int groupLayout,
-                                         String[] groupFrom, int[] groupTo,
-                                         List<? extends List<? extends Map<String, ?>>> childData,
-                                         int childLayout, String[] childFrom, int[] childTo, long selectedId) {
-        super(context, groupData, groupLayout, groupLayout, groupFrom, groupTo, childData,
-                childLayout, childLayout, childFrom, childTo);
+    public DivisionExpandableListAdapter(Context context, List<DivisionListParentItem> groupData,
+                                         List<List<DivisionListChildItem>> childData, long selectedId) {
         this.context = context;
+        this.groupData = groupData;
+        this.childData = childData;
         this.selectedDivisionSetId = selectedId;
     }
-    
 
     @Override
-    public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, ViewGroup parent) {
-        View groupView = super.getGroupView(groupPosition, isExpanded, convertView, parent);
+    public Object getChild(int groupPosition, int childPosition) {
+        return childData.get(groupPosition).get(childPosition);
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childData.get(groupPosition).get(childPosition).getId();
+    }
+
+    @Override
+    public int getChildrenCount(int groupPosition) {
+        return childData.get(groupPosition).size();
+    }
+
+    @Override
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        Activity activity = (Activity)context;
+        DivisionListChildItem item = childData.get(groupPosition).get(childPosition);
+
+        if (convertView == null) {
+            convertView = activity.getLayoutInflater().inflate(R.layout.division_list_child_item, null);
+        }
+        ((TextView) convertView.findViewById(R.id.tv_divisionName)).setText(item.getName());
+        ((TextView) convertView.findViewById(R.id.tv_divisionStart)).setText(String.valueOf(item.getStart()));
+        ((TextView) convertView.findViewById(R.id.tv_divisionEnd)).setText(String.valueOf(item.getEnd()));
+        return convertView;
+    }
+
+    @Override
+    public Object getGroup(int groupPosition) {
+        return groupData.get(groupPosition);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupData.get(groupPosition).getId();
+    }
+
+    @Override
+    public int getGroupCount() {
+        return groupData.size();
+    }
+
+    @Override
+    public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        Activity activity = (Activity)context;
+        DivisionListParentItem item = groupData.get(groupPosition);
+
+        if (convertView == null) {
+            convertView = activity.getLayoutInflater().inflate(R.layout.division_list_parent_item, null);
+        }
+
+        // 名前を設定
+        ((TextView) convertView.findViewById(R.id.tv_divisionSetName)).setText(item.getName());
+
+        // その他の部品を取得
+        final RadioButton radioButton = ((RadioButton) convertView.findViewById(R.id.rb_division));
+        final ImageView indicatorView = (ImageView)convertView.findViewById(R.id.iv_Indicator);
 
         final ExpandableListView ex_listView = (ExpandableListView)parent;
 
         // 矢印画像を設定
-        final ImageView indicatorView = (ImageView)groupView.findViewById(R.id.iv_Indicator);
         if (ex_listView.isGroupExpanded(groupPosition)) {
             indicatorView.setImageResource(R.drawable.indicator_up);
         } else {
@@ -60,6 +119,16 @@ public class DivisionExpandableListAdapter extends SimpleExpandableListAdapter {
             }
         });
 
-        return groupView;
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return false;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
 }
