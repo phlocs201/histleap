@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
+
+  <!-- ヘッダー -->
+  <RelativeLayout
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="63dp"
+    android:background="#6D4C41"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    >
+    <TextView
+      android:id="@+id/range"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:text="鎌倉時代 〜 江戸時代"
+      android:textColor="#ffffff"
+      android:textStyle="bold"
+      android:textSize="18sp"
+      />
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/logo_white"
+      android:scaleX="0.4"
+      android:scaleY="0.4"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      />
+
+    <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/settings_white"
+      android:layout_centerVertical="true"
+      android:layout_toEndOf="@id/range"
+      android:layout_toRightOf="@id/range"
+      android:layout_marginStart="30dp"
+      android:layout_marginLeft="30dp"
+      android:background="#6D4C41"
+      android:scaleX="0.35"
+      android:scaleY="0.35"
+      />
+  </RelativeLayout>
+
+  <!-- コンテンツ -->
+    <ExpandableListView
+      android:id="@+id/elv_divisionList"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/header"
+      >
+
+    </ExpandableListView>
+
+  <!-- フッター -->
+  <RelativeLayout
+    android:id="@+id/footerhoge"
+    android:layout_width="match_parent"
+    android:layout_height="63dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:background="#6D4C41"
+    >
+    <ImageView
+      android:id="@+id/logo_type"
+      android:layout_centerInParent="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/logotype_white"
+      android:scaleX="0.55"
+      android:scaleY="0.55"
+      />
+    <ImageButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/slider_white"
+      android:layout_centerVertical="true"
+      android:layout_toEndOf="@id/logo_type"
+      android:layout_toRightOf="@id/logo_type"
+      android:layout_marginEnd="8dp"
+      android:layout_marginRight="8dp"
+      android:background="#6D4C41"
+      android:scaleX="0.4"
+      android:scaleY="0.4"
+      />
+  </RelativeLayout>
+</RelativeLayout>
