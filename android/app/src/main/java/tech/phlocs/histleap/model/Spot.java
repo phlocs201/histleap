@@ -37,6 +37,7 @@ public class Spot {
         this.overview = overview;
         this.eventList = eventList;
     }
+    public Spot() { }
 
     public String getId() { return this.id; }
 

@@ -4,12 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -19,10 +31,10 @@ import tech.phlocs.histleap.async_task.GetImageAsyncTask;
 import tech.phlocs.histleap.model.Event;
 import tech.phlocs.histleap.list_item.SpotInfoListItem;
 import tech.phlocs.histleap.model.Spot;
+import tech.phlocs.histleap.util.JsonHandler;
 
 
 public class SpotDetailActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,37 +76,23 @@ public class SpotDetailActivity extends Activity {
     }
 
     private Spot _getDummySpot() {
-        // EventListを用意
-        int[] years = {1193, 1300, 1735, 1946};
-        ArrayList<Event> eventList = new ArrayList<>();
-        for (int i = 0; i < years.length; i++) {
-            Event event = new Event();
-            event.setId((new Random()).nextLong());
-            event.setStartYear(years[i]);
-            event.setOverview("ダミーテキストです。この文字は全角８０文字ですよ。" +
-                    "ダミーテキストです。この文字は全角８０文字ですよ。" +
-                    "ダミーテキストです。この文字は全角８０文字ですよ。");
-            eventList.add(event);
-        }
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        ArrayList<Spot> spots = new ArrayList<>();
 
-        Spot spot = new Spot(
-                String.valueOf((new Random()).nextLong()),
-                "品川神社",
-                0,
-                0,
-                "〒140-0001 東京都品川区北品川 3-7-15",
-                "http://google.com",
-                "https://upload.wikimedia.org/wikipedia/commons/4/40/ShinagawaJinja_Honden.jpg",
-                "元准勅祭社として東京十社のひとつでもある。 また東海七福神の一社として、大黒天を祀る。",
-                eventList);
-        return spot;
+        for (int i = 0; i < spotObjList.size(); i++) {
+            spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
+        }
+        int random = (int)(Math.random()*15);
+        return spots.get(random);
     }
 
     private void _setHeaderText(String txt) {
         TextView txtView = (TextView) findViewById(R.id.tv_spotName);
         txtView.setText(txt);
     }
-
 
     private void _getImage(String urlStr, ImageView imageView, RelativeLayout progressView) {
         Uri uri = Uri.parse(urlStr);

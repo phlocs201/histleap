@@ -7,6 +7,7 @@ package tech.phlocs.histleap.model;
 public class Event {
     private long id;
     private int startYear;
+    private int endYear;
     private String overview;
 
     public Event(int startYear, String overview) {
@@ -27,6 +28,14 @@ public class Event {
 
     public void setStartYear(int startYear) {
         this.startYear = startYear;
+    }
+
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
     }
 
     public String getOverview() {
