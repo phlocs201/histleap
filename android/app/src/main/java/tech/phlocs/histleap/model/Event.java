@@ -9,6 +9,7 @@ public class Event {
     private int startYear;
     private int endYear;
     private String overview;
+    private String url;
 
     public Event(int startYear, String overview) {
         this.startYear = startYear;
@@ -44,5 +45,13 @@ public class Event {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

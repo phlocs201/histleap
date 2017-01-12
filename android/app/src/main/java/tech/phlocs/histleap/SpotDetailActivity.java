@@ -86,6 +86,7 @@ public class SpotDetailActivity extends Activity {
             spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
         }
         int random = (int)(Math.random()*15);
+        //random = 1;
         return spots.get(random);
     }
 
@@ -106,6 +107,7 @@ public class SpotDetailActivity extends Activity {
         String titles[] = {"住所", "概要"};
         String contents[] = {spot.getAddress(), spot.getOverview()};
         int iconSrcs[] = {R.drawable.pin, R.drawable.description};
+        String urls[] = {null, spot.getUrl()};
 
         ArrayList<SpotInfoListItem> data = new ArrayList<>();
         for (int i = 0; i < titles.length; i++) {
@@ -114,6 +116,7 @@ public class SpotDetailActivity extends Activity {
             spotInfo.setTitle(titles[i]);
             spotInfo.setContent(contents[i]);
             spotInfo.setIconSrc(iconSrcs[i]);
+            spotInfo.setUrl(urls[i]);
             data.add(spotInfo);
         }
         SpotInfoListAdapter adapter = new SpotInfoListAdapter(this, data, R.layout.list_item_spot_info);

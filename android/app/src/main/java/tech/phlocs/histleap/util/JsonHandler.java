@@ -107,6 +107,9 @@ public class JsonHandler {
                     event.setEndYear(makeIntFromJson(eventObj, "eventEndYear"));
                 }
                 event.setOverview(eventObj.getString("eventOverview"));
+                if (eventObj.has("eventURL")) {
+                    event.setUrl(eventObj.getString("eventURL"));
+                }
                 eventList.add(event);
             }
             spot.setEventList(eventList);
