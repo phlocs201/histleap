@@ -7,7 +7,9 @@ package tech.phlocs.histleap.model;
 public class Event {
     private long id;
     private int startYear;
+    private int endYear;
     private String overview;
+    private String url;
 
     public Event(int startYear, String overview) {
         this.startYear = startYear;
@@ -29,11 +31,27 @@ public class Event {
         this.startYear = startYear;
     }
 
+    public int getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
+    }
+
     public String getOverview() {
         return overview;
     }
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

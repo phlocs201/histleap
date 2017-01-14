@@ -2,6 +2,10 @@ package tech.phlocs.histleap.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,12 +20,14 @@ public class EventListAdapter extends BaseAdapter {
     private Context context = null;
     private ArrayList<Event> data = null;
     private int resource = 0;
+    private ArrayList<Integer> range = null;
 
     // コンストラクタ
-    public EventListAdapter(Context context, ArrayList<Event> data, int resource) {
+    public EventListAdapter(Context context, ArrayList<Event> data, int resource, ArrayList<Integer> range) {
         this.context  = context;
         this.data     = data;
         this.resource = resource;
+        this.range = range;
     }
 
     @Override
@@ -47,8 +53,46 @@ public class EventListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(resource, null);
         }
-        ((TextView) convertView.findViewById(R.id.event_year)).setText(String.valueOf(item.getStartYear()));
-        ((TextView) convertView.findViewById(R.id.event_description)).setText(item.getOverview());
+        // 開始年とイベント概要を、設定
+        ((TextView) convertView.findViewById(R.id.event_start_year)).setText(String.valueOf(item.getStartYear()));
+        TextView overviewView = (TextView) convertView.findViewById(R.id.event_description);
+        overviewView.setText(item.getOverview());
+
+        // 終了年があれば、設定
+        String endYearStr = "";
+        int endYear = item.getEndYear();
+        if (endYear != 0) {
+            endYearStr = " 〜 " + endYear;
+        }
+        ((TextView) convertView.findViewById(R.id.event_end_year)).setText(endYearStr);
+
+        // スライダー範囲内であれば、強調表示
+        if (_isInsideRange(item.getStartYear())) {
+            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+        }
+        // spotURLがあれば、リンクを設定
+        final String eventUrl = item.getUrl();
+        if (eventUrl != null) {
+            overviewView.setPaintFlags(overviewView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+            overviewView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(eventUrl));
+                    context.startActivity(i);
+                }
+            });
+        }
         return convertView;
+    }
+
+    private boolean _isInsideRange(int eventStartYear) {
+        boolean isInside = false;
+        if (eventStartYear >= range.get(0)) {
+            if (eventStartYear <= range.get(1)) {
+                isInside = true;
+            }
+        }
+        return isInside;
     }
 }

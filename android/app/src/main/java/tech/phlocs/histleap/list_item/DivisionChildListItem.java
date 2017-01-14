@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 import tech.phlocs.histleap.model.Division;
 
-public class DivisionListChildItem {
+public class DivisionChildListItem {
 
     private long id;
     private String name;
     private int start;
     private int end;
 
-    public DivisionListChildItem(String name, int start, int end) {
+    public DivisionChildListItem(String name, int start, int end) {
         this.name = name;
         this.start = start;
         this.end = end;
     }
-    public DivisionListChildItem() {
+    public DivisionChildListItem() {
 
     }
 

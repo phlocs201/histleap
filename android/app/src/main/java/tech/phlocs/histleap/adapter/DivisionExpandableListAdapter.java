@@ -14,17 +14,17 @@ import android.widget.TextView;
 import java.util.List;
 
 import tech.phlocs.histleap.R;
-import tech.phlocs.histleap.list_item.DivisionListChildItem;
-import tech.phlocs.histleap.list_item.DivisionListParentItem;
+import tech.phlocs.histleap.list_item.DivisionChildListItem;
+import tech.phlocs.histleap.list_item.DivisionParentListItem;
 
 public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context = null;
-    private List<DivisionListParentItem> groupData;
-    private List<List<DivisionListChildItem>> childData;
+    private List<DivisionParentListItem> groupData;
+    private List<List<DivisionChildListItem>> childData;
     private long selectedDivisionSetId = 0;
 
-    public DivisionExpandableListAdapter(Context context, List<DivisionListParentItem> groupData,
-                                         List<List<DivisionListChildItem>> childData, long selectedId) {
+    public DivisionExpandableListAdapter(Context context, List<DivisionParentListItem> groupData,
+                                         List<List<DivisionChildListItem>> childData, long selectedId) {
         this.context = context;
         this.groupData = groupData;
         this.childData = childData;
@@ -49,7 +49,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Activity activity = (Activity)context;
-        DivisionListChildItem item = childData.get(groupPosition).get(childPosition);
+        DivisionChildListItem item = childData.get(groupPosition).get(childPosition);
 
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(R.layout.list_item_division_child, null);
@@ -91,7 +91,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         Activity activity = (Activity)context;
-        final DivisionListParentItem item = groupData.get(groupPosition);
+        final DivisionParentListItem item = groupData.get(groupPosition);
 
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(R.layout.list_item_division_parent, null);

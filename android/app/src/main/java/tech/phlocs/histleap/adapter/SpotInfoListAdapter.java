@@ -2,9 +2,14 @@ package tech.phlocs.histleap.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -41,13 +46,30 @@ public class SpotInfoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Activity activity = (Activity)context;
+        final Activity activity = (Activity)context;
         SpotInfoListItem item = (SpotInfoListItem)getItem(position);
         if (convertView == null) {
             convertView = activity.getLayoutInflater().inflate(resource, null);
         }
+        // コンテンツを設定
+        ((ImageView) convertView.findViewById(R.id.iv_spotInfo)).setImageResource(item.getIconSrc());
         ((TextView) convertView.findViewById(R.id.spot_info_title)).setText(item.getTitle());
-        ((TextView) convertView.findViewById(R.id.spot_info_content)).setText(item.getContent());
+        TextView contentView = ((TextView) convertView.findViewById(R.id.spot_info_content));
+        contentView.setText(item.getContent());
+
+        // spotURLがあれば、リンクを設定
+        final String spotUrl = item.getUrl();
+        if (spotUrl != null) {
+            contentView.setPaintFlags(contentView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+            contentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(spotUrl));
+                    context.startActivity(i);
+                }
+            });
+        }
         return convertView;
     }
 }

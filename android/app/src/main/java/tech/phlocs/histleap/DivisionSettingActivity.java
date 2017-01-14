@@ -3,19 +3,16 @@ package tech.phlocs.histleap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import tech.phlocs.histleap.adapter.DivisionExpandableListAdapter;
-import tech.phlocs.histleap.list_item.DivisionListChildItem;
-import tech.phlocs.histleap.list_item.DivisionListParentItem;
+import tech.phlocs.histleap.list_item.DivisionChildListItem;
+import tech.phlocs.histleap.list_item.DivisionParentListItem;
 
 
 public class DivisionSettingActivity extends Activity {
@@ -97,17 +94,17 @@ public class DivisionSettingActivity extends Activity {
         selectedDivisionSetId = 1990;
 
 
-        ArrayList<DivisionListParentItem> parentList = new ArrayList<>();
-        ArrayList<List<DivisionListChildItem>> childList = new ArrayList<>();
+        ArrayList<DivisionParentListItem> parentList = new ArrayList<>();
+        ArrayList<List<DivisionChildListItem>> childList = new ArrayList<>();
 
         for (int i = 0; i < divisionSetNames.length; i++) {
-            DivisionListParentItem parentItem = new DivisionListParentItem(divisionSetNames[i], false);
+            DivisionParentListItem parentItem = new DivisionParentListItem(divisionSetNames[i], false);
             parentItem.setId((new Random()).nextLong());
             parentList.add(parentItem);
-            ArrayList<DivisionListChildItem> childItems = new ArrayList<>();
+            ArrayList<DivisionChildListItem> childItems = new ArrayList<>();
 
             for (int j = 0; j < divisionNames[i].length; j++) {
-                DivisionListChildItem childItem = new DivisionListChildItem();
+                DivisionChildListItem childItem = new DivisionChildListItem();
                 childItem.setName(divisionNames[i][j]);
                 childItem.setStart(years[i][j][0]);
                 childItem.setEnd(years[i][j][1]);
