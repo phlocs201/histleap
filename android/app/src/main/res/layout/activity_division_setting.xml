@@ -58,6 +58,7 @@
         android:background="#D7CCCB"
         android:groupIndicator="@null"
         android:layout_marginBottom="54dp"
+        android:divider="@null"
         >
 
     </ExpandableListView>
