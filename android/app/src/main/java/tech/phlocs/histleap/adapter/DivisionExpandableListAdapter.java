@@ -2,6 +2,7 @@ package tech.phlocs.histleap.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,7 +119,6 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                 if (ex_listView.isGroupExpanded(groupPosition)) {
                     ex_listView.collapseGroup(groupPosition);
                     ((ImageView)view).setImageResource(R.drawable.indicator_down);
-                    Log.d("@@@", "set DOWN image");
                 } else {
                     ex_listView.expandGroup(groupPosition);
                     ((ImageView)view).setImageResource(R.drawable.indicator_up);
@@ -142,6 +142,12 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                 notifyDataSetChanged();
             }
         });
+
+        if (item.isSelected()) {
+            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+        } else {
+            convertView.setBackgroundColor(Color.parseColor("#D7CCC8"));
+        }
 
         return convertView;
     }
