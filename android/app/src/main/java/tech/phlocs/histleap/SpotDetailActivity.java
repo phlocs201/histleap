@@ -39,6 +39,9 @@ public class SpotDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spot_detail);
+
+        
+
         // インテントを取得
         Intent intent = this.getIntent();
         //String spot = intent.getStringExtra("spot");
@@ -48,8 +51,8 @@ public class SpotDetailActivity extends Activity {
         // ダミーデータを取得
         Spot currentSpot = _getDummySpot();
         ArrayList<Integer> range = new ArrayList<>();
-        range.add(1299);
-        range.add(1945);
+        range.add(1700);
+        range.add(1899);
 
         // ヘッダー文言を設定
         _setHeaderText(currentSpot.getName());

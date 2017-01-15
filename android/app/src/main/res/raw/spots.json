@@ -69,10 +69,10 @@
             "spotName": "戸越八幡神社",
             "spotLatitude": "35.613789",
             "spotLongitude": "139.720360",
-            "spotAddress": "",
+            "spotAddress": "東京都品川区戸越２丁目６−２３",
             "spotOverview": "旧戸越村の鎮守であった東京都品川区戸越にある神社。",
             "spotURL": "https://ja.wikipedia.org/wiki/%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE_(%E5%93%81%E5%B7%9D%E5%8C%BA)",
-            "spotImageURL": "https://ja.wikipedia.org/wiki/%E6%88%B8%E8%B6%8A%E5%85%AB%E5%B9%A1%E7%A5%9E%E7%A4%BE#/media/File:Togoshi_hachiman.JPG",
+            "spotImageURL": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Togoshi_hachiman.JPG",
             "events": [
                 {
                     "eventStartYear": 1526,
@@ -139,7 +139,7 @@
             "spotAddress": "東京都品川区北品川2丁目3-12",
             "spotOverview": "東京都で唯一、虚空藏菩薩を本尊とする天台宗の寺。東海七福神の１つで布袋尊が安置されている。",
             "spotURL": "https://ja.localwiki.org/shinagawa/%E9%A4%8A%E9%A1%98%E5%AF%BA%EF%BC%88%E3%82%88%E3%81%86%E3%81%8C%E3%82%93%E3%81%98%EF%BC%89",
-            "spotImageURL": "https://www.google.co.jp/maps/place/%E5%A4%A9%E5%8F%B0%E5%AE%97%E9%A4%8A%E9%A1%98%E5%AF%BA/@35.6193947,139.7421376,3a,75y,90t/data=!3m8!1e2!3m6!1s-GGw6SOge5rc%2FWCfDTpycUfI%2FAAAAAAAAmqo%2FT7CrqectLTsxUE9M01x0QqOw9wgYqYCbACLIB!2e4!3e12!6s%2F%2Flh6.googleusercontent.com%2F-GGw6SOge5rc%2FWCfDTpycUfI%2FAAAAAAAAmqo%2FT7CrqectLTsxUE9M01x0QqOw9wgYqYCbACLIB%2Fs114-k-no%2F!7i4160!8i3120!4m5!3m4!1s0x0:0x80138e838d9de36c!8m2!3d35.6189916!4d139.7424205!6m1!1e1?hl=ja",
+            "spotImageURL": "http://www.tesshow.jp/shinagawa/images/nshinagawa_yogan1s.jpg",
             "events": [
                 {
                     "eventStartYear": 1299,
@@ -163,7 +163,7 @@
             "spotAddress": "東京都品川区北品川2-30",
             "spotOverview": "北品川の鎮守・品川神社に対し、南品川の鎮守として古くから親しまれている神社。",
             "spotURL": "https://ja.wikipedia.org/wiki/%E8%8D%8F%E5%8E%9F%E7%A5%9E%E7%A4%BE",
-            "spotImageURL": "https://ja.wikipedia.org/wiki/%E8%8D%8F%E5%8E%9F%E7%A5%9E%E7%A4%BE#/media/File:Ebara_jinja.JPG",
+            "spotImageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ebara_jinja.JPG/1024px-Ebara_jinja.JPG",
             "events": [
                 {
                     "eventStartYear": 709,
@@ -240,7 +240,7 @@
             "spotAddress": "東京都品川区南大井１丁目４−１",
             "spotOverview": "天祖神社（南浜川鎮守）と諏訪神社（北浜川鎮守）が合祀してできた神社。東海七福神の福禄寿が安置されている。",
             "spotURL": "http://tensosuwa-jinja.jp/",
-            "spotImageURL": "https://ja.wikipedia.org/wiki/%E5%A4%A9%E7%A5%96%E3%83%BB%E8%AB%8F%E8%A8%AA%E7%A5%9E%E7%A4%BE#/media/File:Tenso_suwa_jinja_haiden.JPG",
+            "spotImageURL": "https://upload.wikimedia.org/wikipedia/commons/6/69/Tenso_suwa_jinja_haiden.JPG",
             "events": [
                 {
                     "eventStartYear": 1100,
@@ -268,7 +268,7 @@
             "spotAddress": "東京都大田区大森北2-20-8",
             "spotOverview": "平安時代後期に編纂された「延喜式」に記載されている古社。池の中に弁天島がありここに弁財天が祀られている。",
             "spotURL": "https://ja.wikipedia.org/wiki/%E7%A3%90%E4%BA%95%E7%A5%9E%E7%A4%BE",
-            "spotImageURL": "https://ja.wikipedia.org/wiki/%E7%A3%90%E4%BA%95%E7%A5%9E%E7%A4%BE#/media/File:Iwai_jinja.JPG",
+            "spotImageURL": "https://upload.wikimedia.org/wikipedia/commons/1/18/Iwai_jinja.JPG",
             "events": [
                 {
                     "eventStartYear": 572,

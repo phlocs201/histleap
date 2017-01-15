@@ -69,6 +69,8 @@ public class EventListAdapter extends BaseAdapter {
         // スライダー範囲内であれば、強調表示
         if (_isInsideRange(item.getStartYear())) {
             convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+        } else {
+            convertView.setBackgroundColor(Color.parseColor("#EFEBE9"));
         }
         // spotURLがあれば、リンクを設定
         final String eventUrl = item.getUrl();
@@ -83,6 +85,12 @@ public class EventListAdapter extends BaseAdapter {
                 }
             });
         }
+
+        // 最も下のitemであれば、bottomの境界線を消す
+        if (position == getCount() -1) {
+            convertView.findViewById(R.id.event_list_border).setVisibility(View.INVISIBLE);
+        }
+
         return convertView;
     }
 
