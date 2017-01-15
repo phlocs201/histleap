@@ -9,6 +9,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,7 +68,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                     int position1 = sa.getPosition((int)e1.getX(), (int)e1.getY());
                     int position2 = sa.getPosition((int)e2.getX(), (int)e2.getY());
-                    if ((position1 != -1 || position2 != -1) && (position1 != position2)) {
+                    if ((position1 != -1 || position2 != -1) &&
+                            (position1 != position2) &&
+                            position2 < slider.getDivisions().size() &&
+                            position1 >= 0) {
                         handleClickToChangeSliderRange(position2);
                         return true;
                     } else {
@@ -83,7 +87,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
-        if (position == -1) {
+        if (position == -1 || findViewById(R.id.slider_points).getVisibility() == View.INVISIBLE) {
             super.dispatchTouchEvent(event);
             return true;
         }
@@ -186,5 +190,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         + slider.getDivisions().get(slider.getRange().get(1)).getName()
         );
     }
-
 }

@@ -25,10 +25,12 @@ public class SliderPointAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInfrater;
     private Integer[] mSliderPointArray;
     private int size;
+    private ArrayList<Integer> range;
 
     private static class ViewHolder {
         public ImageView sliderPoint;
         public TextView sliderLabel;
+        public ImageView sliderBar;
     }
 
     public SliderPointAdapter(Context context, Slider slider) {
@@ -39,10 +41,10 @@ public class SliderPointAdapter extends BaseAdapter {
 
         this.size = divisions.size();
         this.mDivisions = divisions;
-        ArrayList<Integer> range = slider.getRange();
+        this.range = slider.getRange();
         for (int i = 0; i < this.size; i++) {
             if (i == range.get(0) || i == range.get(1)) {
-                this.mSliderPointArray[i] = R.drawable.slider_lever;
+                this.mSliderPointArray[i] = R.drawable.slider_lever2;
             } else {
                 this.mSliderPointArray[i] = R.drawable.break_point_yellow;
             }
@@ -70,9 +72,19 @@ public class SliderPointAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.sliderPoint = (ImageView)convertView.findViewById(R.id.slider_break_point);
             holder.sliderLabel = (TextView)convertView.findViewById(R.id.slider_label);
+            holder.sliderBar = (ImageView)convertView.findViewById(R.id.slider_bar_yellow);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder)convertView.getTag();
+        }
+
+        if (mSliderPointArray[position] == R.drawable.slider_lever2) {
+            holder.sliderPoint.setScaleX((float) 1.1);
+            holder.sliderPoint.setScaleY((float) 1.1);
+        }
+
+        if (position >= this.range.get(0) && position <= this.range.get(1)) {
+            holder.sliderBar.setVisibility(View.VISIBLE);
         }
 
         holder.sliderPoint.setImageResource(mSliderPointArray[position]);
