@@ -3,6 +3,7 @@ package tech.phlocs.histleap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -140,7 +141,10 @@ public class DivisionSettingActivity extends Activity {
                     }
                 }
         );
+    }
 
+    public void setSelectedDivisionSetId(long selectedId) {
+        selectedDivisionSetId = selectedId;
     }
 
 }
