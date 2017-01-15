@@ -21,15 +21,24 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import tech.phlocs.histleap.adapter.SliderPointAdapter;
 import tech.phlocs.histleap.model.Slider;
 import tech.phlocs.histleap.model.SliderArea;
+import tech.phlocs.histleap.model.Spot;
+import tech.phlocs.histleap.util.JsonHandler;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Slider slider;
     private GestureDetector gd;
     private SliderArea sa;
+    private ArrayList<Spot> spots;
+    private ArrayList<Marker> markers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +123,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 slider.getDivisions().size()
         );
 
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        this.spots = new ArrayList<>();
+        for (int i = 0; i < spotObjList.size(); i++) {
+            spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
+        }
+
         changeHeaderText();
     }
 
@@ -178,6 +196,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return true;
         }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
+
+        for (Marker m : this.markers) {
+            m.remove();
+        }
+        markers = new ArrayList<>();
+
+        ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
+        for (Spot s : filteredSpots) {
+            this.markers.add(mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
+                    .title(s.getName())
+            ));
+        }
+
         changeHeaderText();
         return false;
     }
