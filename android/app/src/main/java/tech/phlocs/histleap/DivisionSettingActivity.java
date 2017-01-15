@@ -25,6 +25,8 @@ public class DivisionSettingActivity extends Activity {
         setContentView(R.layout.activity_division_setting);
         // インテントを取得
         Intent intent = this.getIntent();
+        // 現在選択された時代区分を取得
+        selectedDivisionSetId = 42;
 
         ex_listView = (ExpandableListView) findViewById(R.id.elv_divisionList);
 
@@ -91,15 +93,22 @@ public class DivisionSettingActivity extends Activity {
                 {1990, 2000}
             }
         };
-        selectedDivisionSetId = 1990;
 
 
         ArrayList<DivisionParentListItem> parentList = new ArrayList<>();
         ArrayList<List<DivisionChildListItem>> childList = new ArrayList<>();
 
         for (int i = 0; i < divisionSetNames.length; i++) {
-            DivisionParentListItem parentItem = new DivisionParentListItem(divisionSetNames[i], false);
-            parentItem.setId((new Random()).nextLong());
+            DivisionParentListItem parentItem = new DivisionParentListItem();
+            parentItem.setId(divisionSetIds[i]);
+            parentItem.setName(divisionSetNames[i]);
+
+            // 現在の時代区分を選択状態にする
+            if (divisionSetIds[i] == selectedDivisionSetId) {
+                parentItem.setSelected(true);
+            } else {
+                parentItem.setSelected(false);
+            }
             parentList.add(parentItem);
             ArrayList<DivisionChildListItem> childItems = new ArrayList<>();
 
