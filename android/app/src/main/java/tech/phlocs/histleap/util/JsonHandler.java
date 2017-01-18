@@ -1,7 +1,6 @@
 package tech.phlocs.histleap.util;
 
 import android.app.Activity;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
