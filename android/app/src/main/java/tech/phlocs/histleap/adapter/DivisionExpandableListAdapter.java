@@ -2,6 +2,7 @@ package tech.phlocs.histleap.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import tech.phlocs.histleap.DivisionSettingActivity;
 import tech.phlocs.histleap.R;
 import tech.phlocs.histleap.list_item.DivisionChildListItem;
 import tech.phlocs.histleap.list_item.DivisionParentListItem;
@@ -90,7 +92,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        Activity activity = (Activity)context;
+        final DivisionSettingActivity activity = (DivisionSettingActivity)context;
         final DivisionParentListItem item = groupData.get(groupPosition);
 
         if (convertView == null) {
@@ -118,7 +120,6 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                 if (ex_listView.isGroupExpanded(groupPosition)) {
                     ex_listView.collapseGroup(groupPosition);
                     ((ImageView)view).setImageResource(R.drawable.indicator_down);
-                    Log.d("@@@", "set DOWN image");
                 } else {
                     ex_listView.expandGroup(groupPosition);
                     ((ImageView)view).setImageResource(R.drawable.indicator_up);
@@ -139,9 +140,17 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                     groupData.get(i).setSelected(false);
                 }
                 item.setSelected(true);
+                // 選択された時代区分を、Activity側に渡す
+                ((DivisionSettingActivity) context).setSelectedDivisionSetId(item.getId());
                 notifyDataSetChanged();
             }
         });
+
+        if (item.isSelected()) {
+            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+        } else {
+            convertView.setBackgroundColor(Color.parseColor("#D7CCC8"));
+        }
 
         return convertView;
     }

@@ -8,8 +8,8 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:padding="0dp"
         android:layout_height="54dp"
+        android:padding="0dp"
         android:background="#6D4C41"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
@@ -105,7 +105,9 @@
             <tech.phlocs.histleap.custom_view.MeasuredListView
                 android:id="@+id/lv_spotInfoList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:divider="@null"
+                />
 
             <!-- イベントリスト -->
             <LinearLayout
@@ -116,7 +118,9 @@
                 <tech.phlocs.histleap.custom_view.MeasuredListView
                     android:id="@+id/lv_eventList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

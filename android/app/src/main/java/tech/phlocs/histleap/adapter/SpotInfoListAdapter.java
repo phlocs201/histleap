@@ -70,6 +70,12 @@ public class SpotInfoListAdapter extends BaseAdapter {
                 }
             });
         }
+
+        // 最も下のitemであれば、bottomの境界線を消す
+        if (position == getCount() -1) {
+            convertView.findViewById(R.id.spot_info_list_border).setVisibility(View.INVISIBLE);
+        }
+
         return convertView;
     }
 }

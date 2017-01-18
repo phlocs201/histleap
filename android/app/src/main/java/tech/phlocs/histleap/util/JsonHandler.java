@@ -15,7 +15,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-import tech.phlocs.histleap.R;
+import tech.phlocs.histleap.model.Division;
+import tech.phlocs.histleap.model.DivisionSet;
 import tech.phlocs.histleap.model.Event;
 import tech.phlocs.histleap.model.Spot;
 
@@ -29,7 +30,7 @@ public class JsonHandler {
 
     public JSONObject makeJsonFromRawFile(int rawId) {
         JSONObject json = null;
-        InputStream spotsStream = activity.getResources().openRawResource(R.raw.spots);
+        InputStream spotsStream = activity.getResources().openRawResource(rawId);
         Writer writer = new StringWriter();
         char[] buffer = new char[1024];
         try {
@@ -77,7 +78,6 @@ public class JsonHandler {
         }
         return array;
     }
-
     public Spot makeSpotFromJson(JSONObject spotObj) {
         Spot spot = new Spot();
         try {
@@ -142,5 +142,49 @@ public class JsonHandler {
         }
         return num;
     }
+    public Division makeDivisionFromJson(JSONObject divisionObj) {
+        Division division = new Division();
+        try {
+            division.setName(divisionObj.getString("name"));
+            if (divisionObj.has("startYear")) {
+                division.setStart(makeIntFromJson(divisionObj, "startYear"));
+            }
+            if (divisionObj.has("endYear")) {
+                division.setEnd(makeIntFromJson(divisionObj, "endYear"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return division;
+    }
+    public DivisionSet makeDivisionSetFromJson(JSONObject divisionSetObj) {
+        DivisionSet divisionSet = new DivisionSet();
+        ArrayList<Division> divisions = new ArrayList<>();
 
+        try {
+            // 名前の取得
+            divisionSet.setName(divisionSetObj.getString("name"));
+
+            // 時代区分の取得
+            JSONArray divisionsArray = getJsonArrayInJson(divisionSetObj, "divisions");
+            ArrayList<JSONObject> divisionObjs = makeArrayListFromJsonArray(divisionsArray);
+            for (int i = 0; i < divisionObjs.size(); i++) {
+                Division division = makeDivisionFromJson(divisionObjs.get(i));
+                divisions.add(division);
+            }
+            divisionSet.setDivisions(divisions);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return divisionSet;
+    }
+    public ArrayList<DivisionSet> makeDivisionSetsFromJson(JSONObject divisionSetsObj) {
+        ArrayList<DivisionSet> divisionSets = new ArrayList<>();
+        JSONArray divisionSetsArray = getJsonArrayInJson(divisionSetsObj, "divisionSets");
+        ArrayList<JSONObject> divisionSetObjs = makeArrayListFromJsonArray(divisionSetsArray);
+        for (int i = 0; i < divisionSetObjs.size(); i++) {
+            divisionSets.add(makeDivisionSetFromJson(divisionSetObjs.get(i)));
+        }
+        return divisionSets;
+    }
 }
