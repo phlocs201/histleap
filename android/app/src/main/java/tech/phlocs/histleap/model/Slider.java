@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Slider {
+    private boolean isSamePoint;
     private ArrayList<Integer> range;
     private ArrayList<Division> divisions;
 
@@ -33,6 +34,7 @@ public class Slider {
 
         this.divisions = initialSlider;
         this.range = initialRange;
+        this.isSamePoint = this.range.get(0).equals(this.range.get(1));
     }
 
     public ArrayList<Integer> getRange() {

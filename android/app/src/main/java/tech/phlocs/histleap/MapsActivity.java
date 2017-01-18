@@ -9,6 +9,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,15 +21,24 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import tech.phlocs.histleap.adapter.SliderPointAdapter;
 import tech.phlocs.histleap.model.Slider;
 import tech.phlocs.histleap.model.SliderArea;
+import tech.phlocs.histleap.model.Spot;
+import tech.phlocs.histleap.util.JsonHandler;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private Slider slider;
     private GestureDetector gd;
     private SliderArea sa;
+    private ArrayList<Spot> spots;
+    private ArrayList<Marker> markers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +77,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                     int position1 = sa.getPosition((int)e1.getX(), (int)e1.getY());
                     int position2 = sa.getPosition((int)e2.getX(), (int)e2.getY());
-                    if ((position1 != -1 || position2 != -1) && (position1 != position2)) {
+                    if ((position1 != -1 || position2 != -1) &&
+                            (position1 != position2) &&
+                            position2 < slider.getDivisions().size() &&
+                            position1 >= 0) {
                         handleClickToChangeSliderRange(position2);
                         return true;
                     } else {
@@ -83,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
-        if (position == -1) {
+        if (position == -1 || findViewById(R.id.slider_points).getVisibility() == View.INVISIBLE) {
             super.dispatchTouchEvent(event);
             return true;
         }
@@ -109,6 +122,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 sliderAreaWidth,
                 slider.getDivisions().size()
         );
+
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        this.spots = new ArrayList<>();
+        for (int i = 0; i < spotObjList.size(); i++) {
+            spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
+        }
 
         changeHeaderText();
     }
@@ -174,6 +196,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return true;
         }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
+
+        for (Marker m : this.markers) {
+            m.remove();
+        }
+        markers = new ArrayList<>();
+
+        ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
+        for (Spot s : filteredSpots) {
+            this.markers.add(mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
+                    .title(s.getName())
+            ));
+        }
+
         changeHeaderText();
         return false;
     }
@@ -186,5 +222,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         + slider.getDivisions().get(slider.getRange().get(1)).getName()
         );
     }
-
 }
