@@ -14,6 +14,7 @@ public class Division {
         this.start = start;
         this.end = end;
     }
+    public Division() { }
 
     public String getName() {
         return name;
