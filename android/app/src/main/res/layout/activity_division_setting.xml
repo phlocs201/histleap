@@ -34,11 +34,11 @@
             android:scaleX="0.4"
             android:scaleY="0.4"
             android:src="@drawable/logo_white" />
-
+        <!--
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/settings_white"
+            android:src="@drawable/setting_white"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:background="#6D4C41"
@@ -47,6 +47,7 @@
             android:adjustViewBounds="true"
             android:scaleX="0.5"
             android:scaleY="0.5" />
+            -->
     </RelativeLayout>
 
     <!-- コンテンツ -->
