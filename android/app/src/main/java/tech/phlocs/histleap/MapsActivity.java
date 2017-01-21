@@ -39,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private SliderArea sa;
     private ArrayList<Spot> spots;
     private ArrayList<Marker> markers = new ArrayList<>();
+    private RelativeLayout saLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
-        if (position == -1 || findViewById(R.id.slider_points).getVisibility() == View.INVISIBLE) {
+        Log.d("hoge", ((Integer)saLayout.getVisibility()).toString());
+        if (position == -1 || saLayout.getVisibility() == View.INVISIBLE) {
             super.dispatchTouchEvent(event);
             return true;
         }
@@ -122,7 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 sliderAreaWidth,
                 slider.getDivisions().size()
         );
-
+        saLayout = (RelativeLayout)findViewById(R.id.slider_area);
         JsonHandler jh = new JsonHandler(this);
         JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
         JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
@@ -171,11 +173,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onClickToggleSlider(View view) {
-        RelativeLayout inputArea = (RelativeLayout)findViewById(R.id.slider_area);
-        if (inputArea.getVisibility() == View.VISIBLE) {
-            inputArea.setVisibility(View.INVISIBLE);
+        if (saLayout.getVisibility() == View.VISIBLE) {
+            saLayout.setVisibility(View.INVISIBLE);
         } else {
-            inputArea.setVisibility(View.VISIBLE);
+            saLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -192,7 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean handleClickToChangeSliderRange(int position) {
         slider.setRangeByPosition(position);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
-        if (findViewById(R.id.slider_area).getVisibility() == View.INVISIBLE) {
+        if (saLayout.getVisibility() == View.INVISIBLE) {
             return true;
         }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
