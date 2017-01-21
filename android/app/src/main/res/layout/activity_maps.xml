@@ -31,14 +31,15 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/slider_white"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/logo_type"
             android:layout_marginEnd="8dp"
             android:background="#6D4C41"
             android:scaleX="0.4"
             android:scaleY="0.4"
-            android:onClick="onClickToggleSlider" />
+            android:src="@drawable/btn_style_slider"
+            android:onClick="onClickToggleSlider"
+            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -99,7 +100,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/settings_white"
+            android:src="@drawable/btn_style_setting"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:background="#6D4C41"
