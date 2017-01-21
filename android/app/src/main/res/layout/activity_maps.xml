@@ -2,81 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="tech.phlocs.histleap.MapsActivity" />
-
     <RelativeLayout
-        android:id="@+id/footer_main"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:background="#6D4C41">
-        
-        <ImageView
-            android:id="@+id/logo_type"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logotype_white"
-            android:scaleX="0.55"
-            android:scaleY="0.55" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/logo_type"
-            android:layout_marginEnd="8dp"
-            android:background="#6D4C41"
-            android:scaleX="0.4"
-            android:scaleY="0.4"
-            android:src="@drawable/btn_style_slider"
-            android:onClick="onClickToggleSlider"
-            />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/slider_area"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="#C09E9E9E"
-        android:layout_above="@+id/footer_main"
-        android:visibility="visible">
-
-        <ImageView
-            android:id="@+id/slider_bar_white"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/slider_bar_white" />
-
-        <GridView
-            android:id="@+id/slider_points"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:numColumns="auto_fit"
-            android:columnWidth="40dp"
-            android:stretchMode="columnWidth"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
         android:padding="0dp"
-        android:layout_height="54dp"
-        android:background="#6D4C41"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:background="#6D4C41"
+        >
 
         <TextView
             android:id="@+id/range"
@@ -110,5 +44,81 @@
             android:scaleX="0.5"
             android:scaleY="0.5" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginBottom="54dp"
+        >
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="tech.phlocs.histleap.MapsActivity"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/slider_area"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="#C09E9E9E"
+        android:layout_above="@+id/footer_main"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/slider_bar_white"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/slider_bar_white" />
+
+        <GridView
+            android:id="@+id/slider_points"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:numColumns="auto_fit"
+            android:columnWidth="40dp"
+            android:stretchMode="columnWidth"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/footer_main"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="#6D4C41">
+
+        <ImageView
+            android:id="@+id/logo_type"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logotype_white"
+            android:scaleX="0.55"
+            android:scaleY="0.55" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/logo_type"
+            android:layout_marginEnd="8dp"
+            android:background="#6D4C41"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
+            android:src="@drawable/btn_style_slider"
+            android:onClick="onClickToggleSlider"
+            />
+    </RelativeLayout>
+
 
 </RelativeLayout>
