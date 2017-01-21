@@ -3,6 +3,7 @@ package tech.phlocs.histleap.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,9 +148,9 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
         });
 
         if (item.isSelected()) {
-            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
         } else {
-            convertView.setBackgroundColor(Color.parseColor("#D7CCC8"));
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorBasicBeige));
         }
 
         return convertView;

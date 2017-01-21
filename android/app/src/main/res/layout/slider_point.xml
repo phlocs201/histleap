@@ -31,7 +31,7 @@ android:id="@+id/slider_item"
         android:layout_height="150dp"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorWhite"
         android:layout_below="@id/slider_break_point"
         android:gravity="center_horizontal"/>
 

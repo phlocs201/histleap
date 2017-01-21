@@ -26,7 +26,7 @@
                 android:paddingRight="10dp"
                 android:paddingEnd="10dp"
                 android:focusable="false"
-                android:buttonTint="#6D4C41"
+                android:buttonTint="@color/colorPrimary"
                 />
             <TextView
                 android:id="@+id/tv_divisionSetName"
@@ -56,6 +56,6 @@
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#3E2723"
+        android:background="@color/colorAlmostBlack"
         />
 </LinearLayout>

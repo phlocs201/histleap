@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#4E342E</color>
     <color name="colorAccent">#FFB300</color>
     <color name="colorNavigationBar">#212121</color>
+    <color name="colorBasicBeige">#D7CCC8</color>
+    <color name="colorAlmostWhite">#EFEBE9</color>
+    <color name="colorAlmostBlack">#3E2723</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
