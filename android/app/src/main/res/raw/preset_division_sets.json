@@ -117,13 +117,8 @@
 			"name": "江戸時代将軍別",
 			"divisions": [
 				{
-					"name": "徳川家康",
+					"name": "徳川家康・秀忠",
 					"startYear": 1603,
-					"endYear": 1605
-				},
-				{
-					"name": "徳川秀忠",
-					"startYear": 1605,
 					"endYear": 1623
 				},
 				{
@@ -137,18 +132,13 @@
 					"endYear": 1680
 				},
 				{
-					"name": "徳川綱吉",
+					"name": "徳川綱吉・家宣",
 					"startYear": 1680,
-					"endYear": 1709
+					"endYear": 1713
 				},
 				{
-					"name": "徳川家宣",
-					"startYear": 1709,
-					"endYear": 1712
-				},
-				{
-					"name": "徳川吉宗",
-					"startYear": 1716,
+					"name": "徳川家継・吉宗",
+					"startYear": 1713,
 					"endYear": 1745
 				},
 				{
@@ -167,23 +157,13 @@
 					"endYear": 1837
 				},
 				{
-					"name": "徳川家慶",
+					"name": "徳川家慶・家定",
 					"startYear": 1837,
-					"endYear": 1853
-				},
-				{
-					"name": "徳川家定",
-					"startYear": 1853,
 					"endYear": 1858
 				},
 				{
-					"name": "徳川家茂",
+					"name": "徳川家茂・慶喜",
 					"startYear": 1858,
-					"endYear": 1866
-				},
-				{
-					"name": "徳川慶喜",
-					"startYear": 1867,
 					"endYear": 1868
 				}
 			]
