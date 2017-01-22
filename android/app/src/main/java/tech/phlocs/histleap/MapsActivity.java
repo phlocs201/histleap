@@ -175,18 +175,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
-
-//        mMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(35.6096764, 139.7439769))
-//                .title("品川寺")
-//        );
-//        mMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(35.608834, 139.730238))
-//                .title("品川区役所")
-//        );
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -276,11 +265,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void changeHeaderText() {
         TextView headerText = (TextView) findViewById(R.id.range);
-        headerText.setText(
-                slider.getDivisions().get(slider.getRange().get(0)).getName()
-                        + " 〜 "
-                        + slider.getDivisions().get(slider.getRange().get(1)).getName()
-        );
+        if (slider.isSamePoint()) {
+            headerText.setText(slider.getDivisions().get(slider.getRange().get(0)).getName());
+        } else {
+            headerText.setText(
+                    slider.getDivisions().get(slider.getRange().get(0)).getName()
+                            + " 〜 "
+                            + slider.getDivisions().get(slider.getRange().get(1)).getName()
+            );
+        }
     }
 
     @Override
