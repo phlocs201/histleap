@@ -220,20 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return true;
         }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
-
-        for (Marker m : this.markers) {
-            m.remove();
-        }
-        markers = new ArrayList<>();
-
-        ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
-        for (Spot s : filteredSpots) {
-            this.markers.add(mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
-                    .title(s.getName())
-            ));
-        }
-
+        resetMarkers();
         changeHeaderText();
         return false;
     }
@@ -241,11 +228,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean handleScrollToChangeSliderRange(int from , int to) {
         slider.setRangeByScroll(from, to);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
-//        if (saLayout.getVisibility() == View.INVISIBLE) {
-//            return true;
-//        }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
+        resetMarkers();
+        changeHeaderText();
+        return false;
+    }
 
+    private void resetMarkers() {
         for (Marker m : this.markers) {
             m.remove();
         }
@@ -258,9 +247,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title(s.getName())
             ));
         }
-
-        changeHeaderText();
-        return false;
     }
 
     public void changeHeaderText() {
@@ -297,7 +283,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 editor.putInt("currentRangeEnd", divisionsSize-1);
                 editor.commit();
             }
-            onWindowFocusChanged(true);
         }
     }
     @Override
@@ -312,7 +297,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             range.add(currentRangeEnd);
             slider.setRange(range);
         }
-        onWindowFocusChanged(true);
         super.onResume();
     }
 
