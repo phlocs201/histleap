@@ -40,8 +40,6 @@ public class SpotDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spot_detail);
 
-        
-
         // インテントを取得
         Intent intent = this.getIntent();
         //String spot = intent.getStringExtra("spot");
@@ -49,7 +47,9 @@ public class SpotDetailActivity extends Activity {
         //tv_spotName.setText(spot);
 
         // ダミーデータを取得
-        Spot currentSpot = _getDummySpot();
+        String currentSpotName = "戸越八幡神社";
+        Spot currentSpot = _getSpotByName(currentSpotName);
+        //Spot currentSpot = _getDummySpot();
         ArrayList<Integer> range = new ArrayList<>();
         range.add(1700);
         range.add(1899);
@@ -76,6 +76,23 @@ public class SpotDetailActivity extends Activity {
 
         // イベントリストにデータを登録
         _setDataToEventList(currentSpot, range);
+    }
+    private Spot _getSpotByName(String name) {
+        // TODO: スポット情報はDBから取得したい
+        Spot spot = new Spot();
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        ArrayList<Spot> spots = new ArrayList<>();
+
+        for (int i = 0; i < spotObjList.size(); i++) {
+            JSONObject obj = spotObjList.get(i);
+            if (name.equals(jh.getStringFromJson(obj, "spotName"))) {
+                spot = jh.makeSpotFromJson(obj);
+            }
+        }
+        return spot;
     }
 
     private Spot _getDummySpot() {
