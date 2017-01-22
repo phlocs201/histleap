@@ -195,8 +195,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = new Intent(this, SpotDetailActivity.class);
         i.putExtra("spotName", spotName);
 
-        int startYear = slider.getStartYear();
-        int endYear = slider.getEndYear();
+        int startYear = slider.getEdgeYear(0);
+        int endYear = slider.getEdgeYear(1);
         i.putExtra("startYear", startYear);
         i.putExtra("endYear", endYear);
         startActivityForResult(i, 1);
