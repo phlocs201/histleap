@@ -1,0 +1,174 @@
+{
+	"divisionSets": [
+		{
+			"name": "日本史時代区分",
+			"divisions": [
+				{
+					"name": "飛鳥以前",
+					"startYear": 0,
+					"endYear": 710
+				},
+				{
+					"name": "奈良",
+					"startYear": 710,
+					"endYear": 794
+				},
+				{
+					"name": "平安",
+					"startYear": 794,
+					"endYear": 1192
+				},
+				{
+					"name": "鎌倉",
+					"startYear": 1192,
+					"endYear": 1333
+				},
+				{
+					"name": "室町",
+					"startYear": 1336,
+					"endYear": 1573
+				},
+				{
+					"name": "安土桃山",
+					"startYear": 1573,
+					"endYear": 1603
+				},
+				{
+					"name": "江戸",
+					"startYear": 1603,
+					"endYear": 1868
+				},
+				{
+					"name": "明治",
+					"startYear": 1868,
+					"endYear": 1912
+				},
+				{
+					"name": "大正・昭和",
+					"startYear": 1912,
+					"endYear": 1989
+				},
+				{
+					"name": "平成",
+					"startYear": 1989,
+					"endYear": 9999
+				}
+			]
+		},
+		{
+			"name": "室町時代将軍別",
+			"divisions": [
+				{
+					"name": "足利尊氏・義詮",
+					"startYear": 1338,
+					"endYear": 1367
+				},
+				{
+					"name": "足利義満",
+					"startYear": 1368,
+					"endYear": 1394
+				},
+				{
+					"name": "足利義持・義量",
+					"startYear": 1394,
+					"endYear": 1428
+				},
+				{
+					"name": "足利義教・義勝",
+					"startYear": 1429,
+					"endYear": 1443
+				},
+				{
+					"name": "足利義政",
+					"startYear": 1449,
+					"endYear": 1473
+				},
+				{
+					"name": "足利義尚・義稙",
+					"startYear": 1473,
+					"endYear": 1493
+				},
+				{
+					"name": "足利義澄",
+					"startYear": 1494,
+					"endYear": 1508
+				},
+				{
+					"name": "足利義稙（再）",
+					"startYear": 1508,
+					"endYear": 1521
+				},
+				{
+					"name": "足利義晴",
+					"startYear": 1521,
+					"endYear": 1546
+				},
+				{
+					"name": "足利義輝",
+					"startYear": 1546,
+					"endYear": 1565
+				},
+				{
+					"name": "足利義栄・義昭",
+					"startYear": 1568,
+					"endYear": 1573
+				}
+			]
+		},
+		{
+			"name": "江戸時代将軍別",
+			"divisions": [
+				{
+					"name": "徳川家康・秀忠",
+					"startYear": 1603,
+					"endYear": 1623
+				},
+				{
+					"name": "徳川家光",
+					"startYear": 1623,
+					"endYear": 1651
+				},
+				{
+					"name": "徳川家綱",
+					"startYear": 1651,
+					"endYear": 1680
+				},
+				{
+					"name": "徳川綱吉・家宣",
+					"startYear": 1680,
+					"endYear": 1713
+				},
+				{
+					"name": "徳川家継・吉宗",
+					"startYear": 1713,
+					"endYear": 1745
+				},
+				{
+					"name": "徳川家重",
+					"startYear": 1745,
+					"endYear": 1760
+				},
+				{
+					"name": "徳川家治",
+					"startYear": 1760,
+					"endYear": 1786
+				},
+				{
+					"name": "徳川家斉",
+					"startYear": 1787,
+					"endYear": 1837
+				},
+				{
+					"name": "徳川家慶・家定",
+					"startYear": 1837,
+					"endYear": 1858
+				},
+				{
+					"name": "徳川家茂・慶喜",
+					"startYear": 1858,
+					"endYear": 1868
+				}
+			]
+		}
+	]
+}

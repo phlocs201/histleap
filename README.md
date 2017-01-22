@@ -1,4 +1,17 @@
 # histleap
+## api_keyの登録
+- 以下のファイルを登録する
+
+`/android/app/src/debug/res/values/google_maps_api.xml`
+`/android/app/src/release/res/values/google_maps_api.xml`
+
+- 内容は、下記の通り
+
+```xml
+<resources>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">MAPS_APIKEY</string>
+</resources>
+```
 
 ## inputデータ
 - サンプルは、`sampleInput.json`を参照

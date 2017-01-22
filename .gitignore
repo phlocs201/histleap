@@ -1,0 +1,3 @@
+.DS_Store
+/android/app/src/debug/res/values/google_maps_api.xml
+/android/app/src/release/res/values/google_maps_api.xml
