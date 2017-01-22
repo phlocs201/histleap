@@ -3,6 +3,7 @@ package tech.phlocs.histleap;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
 
@@ -21,7 +22,7 @@ import tech.phlocs.histleap.util.JsonHandler;
 
 public class DivisionSettingActivity extends Activity {
     ExpandableListView ex_listView;
-    long selectedDivisionSetId;
+    int currentDivisionSetIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,10 @@ public class DivisionSettingActivity extends Activity {
         // インテントを取得
         Intent intent = this.getIntent();
         // 現在選択された時代区分を取得
-        selectedDivisionSetId = 2;
+        currentDivisionSetIndex = intent.getIntExtra("currentDivisionSetIndex", 0);
 
         // 時代区分リストにデータを登録
         _setDataToDivisionList();
-
-
     }
     private void _setDataToDivisionList() {
         ex_listView = (ExpandableListView) findViewById(R.id.elv_divisionList);
@@ -53,7 +52,7 @@ public class DivisionSettingActivity extends Activity {
             parentItem.setName(divisionSet.getName());
 
             // 現在の時代区分を選択状態にする
-            if (parentItem.getId() == selectedDivisionSetId) {
+            if (parentItem.getId() == currentDivisionSetIndex) {
                 parentItem.setSelected(true);
             } else {
                 parentItem.setSelected(false);
@@ -79,7 +78,7 @@ public class DivisionSettingActivity extends Activity {
                 this,
                 parentList,
                 childList,
-                selectedDivisionSetId
+                currentDivisionSetIndex
         );
         ex_listView.setAdapter(adapter);
         // 子項目クリック時のEventListener
@@ -93,8 +92,17 @@ public class DivisionSettingActivity extends Activity {
         );
     }
 
-    public void setSelectedDivisionSetId(long selectedId) {
-        selectedDivisionSetId = selectedId;
+    public void setCurrentDivisionSetIndex(int currentIndex) {
+        currentDivisionSetIndex = currentIndex;
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 戻るボタン押下時の処理
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent i = new Intent();
+            i.putExtra("currentDivisionSetIndex", currentDivisionSetIndex);
+            setResult(RESULT_OK, i);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

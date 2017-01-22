@@ -23,14 +23,14 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
     private Context context = null;
     private List<DivisionParentListItem> groupData;
     private List<List<DivisionChildListItem>> childData;
-    private long selectedDivisionSetId = 0;
+    private long selectedDivisionSetIndex = 0;
 
     public DivisionExpandableListAdapter(Context context, List<DivisionParentListItem> groupData,
                                          List<List<DivisionChildListItem>> childData, long selectedId) {
         this.context = context;
         this.groupData = groupData;
         this.childData = childData;
-        this.selectedDivisionSetId = selectedId;
+        this.selectedDivisionSetIndex = selectedId;
     }
 
     @Override
@@ -141,7 +141,7 @@ public class DivisionExpandableListAdapter extends BaseExpandableListAdapter {
                 }
                 item.setSelected(true);
                 // 選択された時代区分を、Activity側に渡す
-                ((DivisionSettingActivity) context).setSelectedDivisionSetId(item.getId());
+                ((DivisionSettingActivity) context).setCurrentDivisionSetIndex((int)item.getId());
                 notifyDataSetChanged();
             }
         });
