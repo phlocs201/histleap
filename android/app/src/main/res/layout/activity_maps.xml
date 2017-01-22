@@ -28,9 +28,7 @@
             android:scaleX="0.4"
             android:scaleY="0.4"
             android:layout_alignParentStart="true"
-            android:onClick="temporaryOnClick"
             />
-
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,7 +40,9 @@
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
             android:scaleX="0.5"
-            android:scaleY="0.5" />
+            android:scaleY="0.5"
+            android:onClick="btn_settingOnClick"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

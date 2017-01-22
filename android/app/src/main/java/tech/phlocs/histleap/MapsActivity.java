@@ -119,8 +119,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         JSONObject json = jh.makeJsonFromRawFile(R.raw.preset_division_sets);
         divisionSets = jh.makeDivisionSetsFromJson(json);
         this.currentDivisionSetIndex = 0;
-
+        
         DivisionSet divisionSet = divisionSets.get(this.currentDivisionSetIndex);
+
         ArrayList<Division> divisions = divisionSet.getDivisions();
         this.slider = new Slider(divisions);
 
@@ -212,7 +213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivityForResult(i, 1);
     }
 
-    public void temporaryOnClick(View view) {
+    public void btn_settingOnClick(View view) {
         Intent i = new Intent(this, DivisionSettingActivity.class);
         i.putExtra("currentDivisionSetIndex", currentDivisionSetIndex);
         startActivityForResult(i, 1);
