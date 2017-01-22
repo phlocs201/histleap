@@ -78,4 +78,16 @@ public class Slider {
         }
         return filteredSpots;
     }
+    public int getStartYear() {
+        int startIndex = getRange().get(0);
+        Division startDivision = getDivisions().get(startIndex);
+        int startYear = startDivision.getStart();
+        return startYear;
+    }
+    public int getEndYear() {
+        int endIndex = getRange().get(1);
+        Division endDivision = getDivisions().get(endIndex);
+        int endYear = endDivision.getEnd();
+        return endYear;
+    }
 }
