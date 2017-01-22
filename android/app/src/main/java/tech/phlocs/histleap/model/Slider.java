@@ -1,6 +1,7 @@
 package tech.phlocs.histleap.model;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -10,17 +11,23 @@ import java.util.ArrayList;
  */
 
 public class Slider {
-    private boolean isSamePoint;
     private ArrayList<Integer> range;
     private ArrayList<Division> divisions;
 
     public Slider(ArrayList<Division> divisions) {
         ArrayList<Integer> iRange = new ArrayList<>();
         iRange.add(0);
-        iRange.add(divisions.size());
+        iRange.add(divisions.size() - 1);
         this.divisions = divisions;
         this.range = iRange;
-        this.isSamePoint = this.range.get(0).equals(this.range.get(1));
+    }
+
+    public boolean isSamePoint() {
+        return range.get(0).equals(range.get(1));
+    }
+
+    private boolean isReversePoint() {
+        return (range.get(0) > range.get(1));
     }
 
     public ArrayList<Integer> getRange() {
@@ -29,17 +36,26 @@ public class Slider {
 
     public void setRange(ArrayList<Integer> range) { this.range = range; }
 
-    public void setRangeByPosition(int position) {
-        if (position < range.get(0)) {
-            range.set(0, position);
-        } else if (position > range.get(1)) {
-            range.set(1, position);
+    public void setRangeByPushPoint(int point) {
+        if (point < range.get(0)) {
+            range.set(0, point);
+        } else if (point > range.get(1)) {
+            range.set(1, point);
         } else {
-            if ((position - range.get(0)) <= (range.get(1) - position)) {
-                range.set(0, position);
+            if ((point - range.get(0)) <= (range.get(1) - point)) {
+                range.set(0, point);
             } else {
-                range.set(1, position);
+                range.set(1, point);
             }
+        }
+    }
+
+    public void setRangeByScroll(int from, int to) {
+        range.set(range.lastIndexOf(from), to);
+        if (isReversePoint()) {
+            int t = range.get(0);
+            range.set(0, range.get(1));
+            range.set(1, t);
         }
     }
 
