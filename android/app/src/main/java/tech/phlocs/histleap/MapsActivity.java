@@ -116,6 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         divisionSets = jh.makeDivisionSetsFromJson(json);
         int defaultDivisionSetIndex = 0;
 
+
         DivisionSet divisionSet = divisionSets.get(defaultDivisionSetIndex);
         ArrayList<Division> divisions = divisionSet.getDivisions();
         this.slider = new Slider(divisions);
@@ -207,7 +208,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivityForResult(i, 1);
     }
 
-    public void temporaryOnClick(View view) {
+    public void btn_settingOnClick(View view) {
         Intent i = new Intent(this, DivisionSettingActivity.class);
         i.putExtra("currentDivisionSetIndex", currentDivisionSetIndex);
         startActivityForResult(i, 1);
