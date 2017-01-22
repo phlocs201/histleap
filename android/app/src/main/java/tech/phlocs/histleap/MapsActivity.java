@@ -10,7 +10,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -46,6 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<DivisionSet> divisionSets;
     private int currentDivisionSetIndex;
     public static final String PREFS_NAME = "SliderPreference";
+    private int scrollFrom = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +60,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             new GestureDetector.SimpleOnGestureListener() {
                 @Override
                 public boolean onSingleTapUp(MotionEvent e) {
-                    int position = sa.getPosition((int)e.getX(), (int)e.getY());
-                    if (position != -1) {
-                        handleClickToChangeSliderRange(position);
+                    int point = sa.getPosition((int)e.getX(), (int)e.getY());
+                    if (point != -1) {
+                        handleClickToChangeSliderRange(point);
                         return true;
                     } else {
                         return false;
@@ -71,9 +71,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 @Override
                 public boolean onDown(MotionEvent e) {
-                    int position = sa.getPosition((int)e.getX(), (int)e.getY());
-                    if (position != -1) {
-                        handleClickToChangeSliderRange(position);
+                    int point = sa.getPosition((int)e.getX(), (int)e.getY());
+                    scrollFrom = -1;
+                    if (point != -1) {
+                        handleClickToChangeSliderRange(point);
                         return true;
                     } else {
                         return false;
@@ -82,13 +83,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 @Override
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                    int position1 = sa.getPosition((int)e1.getX(), (int)e1.getY());
-                    int position2 = sa.getPosition((int)e2.getX(), (int)e2.getY());
-                    if ((position1 != -1 || position2 != -1) &&
-                            (position1 != position2) &&
-                            position2 < slider.getDivisions().size() &&
-                            position1 >= 0) {
-                        handleClickToChangeSliderRange(position2);
+                    int from = sa.getPosition((int) e1.getX(), (int) e1.getY());
+                    int to = sa.getPosition((int) e2.getX(), (int) e2.getY());
+                    if (scrollFrom != -1) {
+                        if ((from != -1 || to != -1) &&
+                                (scrollFrom != to) &&
+                                to < slider.getDivisions().size() &&
+                                scrollFrom >= 0) {
+                            handleScrollToChangeSliderRange(scrollFrom, to);
+                            scrollFrom = to;
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    scrollFrom = to;
+                    if ((from != -1 || to != -1) &&
+                            (from != to) &&
+                            to < slider.getDivisions().size() &&
+                            from >= 0) {
+                        handleScrollToChangeSliderRange(from, to);
                         return true;
                     } else {
                         return false;
@@ -197,8 +211,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = new Intent(this, SpotDetailActivity.class);
         i.putExtra("spotName", spotName);
 
-        int startYear = slider.getStartYear();
-        int endYear = slider.getEndYear();
+        int startYear = slider.getEdgeYear(0);
+        int endYear = slider.getEdgeYear(1);
         i.putExtra("startYear", startYear);
         i.putExtra("endYear", endYear);
         startActivityForResult(i, 1);
@@ -211,7 +225,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public boolean handleClickToChangeSliderRange(int position) {
-        slider.setRangeByPosition(position);
+        slider.setRangeByPushPoint(position);
+        GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
+        if (saLayout.getVisibility() == View.INVISIBLE) {
+            return true;
+        }
+        sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
+
+        for (Marker m : this.markers) {
+            m.remove();
+        }
+        markers = new ArrayList<>();
+
+        ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
+        for (Spot s : filteredSpots) {
+            this.markers.add(mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
+                    .title(s.getName())
+            ));
+        }
+
+        changeHeaderText();
+        return false;
+    }
+
+    public boolean handleScrollToChangeSliderRange(int from , int to) {
+        slider.setRangeByScroll(from, to);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
 //        if (saLayout.getVisibility() == View.INVISIBLE) {
 //            return true;

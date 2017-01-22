@@ -26,6 +26,7 @@ public class SliderPointAdapter extends BaseAdapter {
     private Integer[] mSliderPointArray;
     private int size;
     private ArrayList<Integer> range;
+    private Slider slider;
 
     private static class ViewHolder {
         public ImageView sliderPoint;
@@ -34,6 +35,7 @@ public class SliderPointAdapter extends BaseAdapter {
     }
 
     public SliderPointAdapter(Context context, Slider slider) {
+        this.slider = slider;
         mContext = context;
         mLayoutInfrater = LayoutInflater.from(context);
         ArrayList<Division> divisions = slider.getDivisions();
@@ -82,9 +84,16 @@ public class SliderPointAdapter extends BaseAdapter {
             holder.sliderPoint.setScaleX((float) 1.1);
             holder.sliderPoint.setScaleY((float) 1.1);
         }
-
-        if (position >= this.range.get(0) && position <= this.range.get(1)) {
-            holder.sliderBar.setVisibility(View.VISIBLE);
+        if (!slider.isSamePoint()) {
+            if (position > this.range.get(0) && position < this.range.get(1)) {
+                holder.sliderBar.setVisibility(View.VISIBLE);
+            } else if (position == this.range.get(0)) {
+                holder.sliderBar.setImageResource(R.drawable.slider_bar_yellow_start);
+                holder.sliderBar.setVisibility(View.VISIBLE);
+            } else if (position == this.range.get(1)) {
+                holder.sliderBar.setImageResource(R.drawable.slider_bar_yellow_end);
+                holder.sliderBar.setVisibility(View.VISIBLE);
+            }
         }
 
         holder.sliderPoint.setImageResource(mSliderPointArray[position]);
