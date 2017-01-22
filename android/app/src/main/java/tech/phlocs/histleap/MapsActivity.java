@@ -110,7 +110,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
-        Log.d("hoge", ((Integer)saLayout.getVisibility()).toString());
         if (position == -1 || saLayout.getVisibility() == View.INVISIBLE) {
             super.dispatchTouchEvent(event);
             return true;
