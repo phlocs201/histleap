@@ -46,12 +46,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int currentDivisionSetIndex;
     public static final String PREFS_NAME = "SliderPreference";
     private int scrollFrom = -1;
+    private boolean firstOnDown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -71,6 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 @Override
                 public boolean onDown(MotionEvent e) {
+                    firstOnDown = true;
                     int point = sa.getPosition((int)e.getX(), (int)e.getY());
                     scrollFrom = -1;
                     if (point != -1) {
@@ -83,6 +84,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 @Override
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    if (!firstOnDown) {
+                        return false;
+                    }
                     int from = sa.getPosition((int) e1.getX(), (int) e1.getY());
                     int to = sa.getPosition((int) e2.getX(), (int) e2.getY());
                     if (scrollFrom != -1) {
@@ -114,12 +118,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         JsonHandler jh = new JsonHandler(this);
         JSONObject json = jh.makeJsonFromRawFile(R.raw.preset_division_sets);
         divisionSets = jh.makeDivisionSetsFromJson(json);
-        int defaultDivisionSetIndex = 0;
+        this.currentDivisionSetIndex = 0;
+        
+        DivisionSet divisionSet = divisionSets.get(this.currentDivisionSetIndex);
 
-
-        DivisionSet divisionSet = divisionSets.get(defaultDivisionSetIndex);
         ArrayList<Division> divisions = divisionSet.getDivisions();
         this.slider = new Slider(divisions);
+
+        // spotsをセットから取得
+        JSONObject jsonSpots = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(jsonSpots, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        this.spots = new ArrayList<>();
+        for (int i = 0; i < spotObjList.size(); i++) {
+            spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
+        }
     }
 
     @Override
@@ -152,15 +165,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 slider.getDivisions().size()
         );
         saLayout = (RelativeLayout)findViewById(R.id.slider_area);
-        JsonHandler jh = new JsonHandler(this);
-        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
-        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
-        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
-        this.spots = new ArrayList<>();
-        for (int i = 0; i < spotObjList.size(); i++) {
-            spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
-        }
-
+        resetMarkers();
         changeHeaderText();
     }
 
@@ -221,20 +226,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return true;
         }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
-
-        for (Marker m : this.markers) {
-            m.remove();
-        }
-        markers = new ArrayList<>();
-
-        ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
-        for (Spot s : filteredSpots) {
-            this.markers.add(mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
-                    .title(s.getName())
-            ));
-        }
-
+        resetMarkers();
         changeHeaderText();
         return false;
     }
@@ -242,11 +234,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean handleScrollToChangeSliderRange(int from , int to) {
         slider.setRangeByScroll(from, to);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
-//        if (saLayout.getVisibility() == View.INVISIBLE) {
-//            return true;
-//        }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
+        resetMarkers();
+        changeHeaderText();
+        return false;
+    }
 
+    private void resetMarkers() {
         for (Marker m : this.markers) {
             m.remove();
         }
@@ -259,9 +253,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title(s.getName())
             ));
         }
-
-        changeHeaderText();
-        return false;
     }
 
     public void changeHeaderText() {
@@ -290,15 +281,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             boolean isChanged = data.getBooleanExtra("isChanged", true);
             // もしDivisionSetが変更された場合は、Rangeをデフォルト(最初から最後まで)に戻す
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
             if (isChanged) {
                 int divisionsSize = divisions.size();
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                SharedPreferences.Editor editor = settings.edit();
                 editor.putInt("currentRangeStart", 0);
                 editor.putInt("currentRangeEnd", divisionsSize-1);
-                editor.commit();
             }
-            onWindowFocusChanged(true);
+            editor.putInt("currentDivisionSetIndex", this.currentDivisionSetIndex);
+            editor.commit();
         }
     }
     @Override
@@ -307,13 +298,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         Integer currentRangeStart = settings.getInt("currentRangeStart", -1);
         Integer currentRangeEnd = settings.getInt("currentRangeEnd", -1);
+        if (settings.getInt("currentDivisionSetIndex", -1) != -1) {
+            this.currentDivisionSetIndex = settings.getInt("currentDivisionSetIndex", -1);
+        }
+        this.slider = new Slider(divisionSets.get(this.currentDivisionSetIndex).getDivisions());
         ArrayList<Integer> range = new ArrayList<>();
         if (currentRangeStart != -1 && currentRangeEnd != -1) {
             range.add(currentRangeStart);
             range.add(currentRangeEnd);
             slider.setRange(range);
         }
-        onWindowFocusChanged(true);
+        scrollFrom = -1;
+        firstOnDown = false;
         super.onResume();
     }
 
@@ -324,6 +320,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("currentRangeStart", slider.getRange().get(0));
         editor.putInt("currentRangeEnd", slider.getRange().get(1));
+        editor.putInt("currentDivisionSetIndex", this.currentDivisionSetIndex);
         editor.commit();
         super.onPause();
     }
