@@ -2,6 +2,7 @@ package tech.phlocs.histleap;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private RelativeLayout saLayout;
     private ArrayList<DivisionSet> divisionSets;
     private int currentDivisionSetIndex;
+    public static final String PREFS_NAME = "SliderPreference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -253,5 +255,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DivisionSet divisionSet = divisionSets.get(currentDivisionSetIndex);
         ArrayList<Division> divisions = divisionSet.getDivisions();
         this.slider = new Slider(divisions);
+
+        boolean isChanged = data.getBooleanExtra("isChanged", true);
+        // もしDivisionSetが変更された場合は、Rangeをデフォルト(最初から最後まで)に戻す
+        if (isChanged) {
+            int divisionsSize = divisions.size();
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("currentRangeStart", 0);
+            editor.putInt("currentRangeEnd", divisionsSize-1);
+            editor.commit();
+        }
+    }
+    @Override
+    protected void onResume() {
+        // 保存したRangeがあれば、設定する
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        Integer currentRangeStart = settings.getInt("currentRangeStart", -1);
+        Integer currentRangeEnd = settings.getInt("currentRangeEnd", -1);
+        ArrayList<Integer> range = new ArrayList<>();
+        if (currentRangeStart != -1 && currentRangeEnd != -1) {
+            range.add(currentRangeStart);
+            range.add(currentRangeEnd);
+            slider.setRange(range);
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        // 現在のスライダー位置を保存
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("currentRangeStart", slider.getRange().get(0));
+        editor.putInt("currentRangeEnd", slider.getRange().get(1));
+        editor.commit();
+        super.onPause();
     }
 }
