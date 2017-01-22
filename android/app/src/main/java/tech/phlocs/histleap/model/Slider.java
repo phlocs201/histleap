@@ -17,7 +17,7 @@ public class Slider {
     public Slider(ArrayList<Division> divisions) {
         ArrayList<Integer> iRange = new ArrayList<>();
         iRange.add(0);
-        iRange.add(divisions.size());
+        iRange.add(divisions.size() - 1);
         this.divisions = divisions;
         this.range = iRange;
         this.isSamePoint = this.range.get(0).equals(this.range.get(1));
