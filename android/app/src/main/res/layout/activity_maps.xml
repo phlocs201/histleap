@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -10,40 +10,101 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
+        android:orientation="horizontal"
         >
-
-        <TextView
-            android:id="@+id/range"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
-
         <ImageView
+            android:id="@+id/logo_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/logo_white"
             android:scaleX="0.4"
             android:scaleY="0.4"
-            android:layout_alignParentStart="true"
             />
+        <TableLayout
+            android:layout_marginStart="15dp"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:id="@+id/header_text_table1"
+            >
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/header_text_table_cell1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="13sp"/>
+                </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/header_text_table_cell4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="13sp"/>
+            </TableRow>
+        </TableLayout>
+        <TextView
+            android:id="@+id/header_text_table_cell2"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+        <TableLayout
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:id="@+id/header_text_table2">
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/header_text_table_cell3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="13sp"/>
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/header_text_table_cell6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="13sp"/>
+            </TableRow>
+        </TableLayout>
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_width="34dp"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_style_setting"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
             android:background="@color/colorPrimary"
             android:elevation="0dp"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
             android:onClick="btn_settingOnClick"
+            android:layout_marginTop="10dp"
             />
-    </RelativeLayout>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

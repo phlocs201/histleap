@@ -3,6 +3,7 @@ package tech.phlocs.histleap;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
+import android.support.annotation.IntegerRes;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -266,15 +267,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void changeHeaderText() {
-        TextView headerText = (TextView) findViewById(R.id.range);
+        TextView headerText1 = (TextView) findViewById(R.id.header_text_table_cell1);
+        TextView headerText2 = (TextView) findViewById(R.id.header_text_table_cell2);
+        TextView headerText3 = (TextView) findViewById(R.id.header_text_table_cell3);
+        TextView headerText4 = (TextView) findViewById(R.id.header_text_table_cell4);
+        TextView headerText6 = (TextView) findViewById(R.id.header_text_table_cell6);
+        headerText1.setText("    ");
+        headerText2.setText("    ");
+        headerText3.setText("    ");
+        headerText4.setText("    ");
+        headerText6.setText("    ");
+
+        ArrayList<Integer> edgeYear = slider.getEdgeYear();
+        if (edgeYear.get(0) != 0) {
+            headerText4.setText(edgeYear.get(0).toString());
+        }
+        if (edgeYear.get(1) != 0) {
+            headerText6.setText(edgeYear.get(1).toString());
+        }
+        headerText2.setText("〜    ");
         if (slider.isSamePoint()) {
-            headerText.setText(slider.getDivisions().get(slider.getRange().get(0)).getName());
+            headerText1.setText(slider.getDivisions().get(slider.getRange().get(0)).getName());
         } else {
-            headerText.setText(
-                    slider.getDivisions().get(slider.getRange().get(0)).getName()
-                            + " 〜 "
-                            + slider.getDivisions().get(slider.getRange().get(1)).getName()
-            );
+            headerText1.setText(slider.getDivisions().get(slider.getRange().get(0)).getName());
+            headerText3.setText(slider.getDivisions().get(slider.getRange().get(1)).getName());
         }
     }
 
