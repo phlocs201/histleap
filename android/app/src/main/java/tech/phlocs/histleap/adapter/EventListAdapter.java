@@ -3,9 +3,9 @@ package tech.phlocs.histleap.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -68,9 +68,9 @@ public class EventListAdapter extends BaseAdapter {
 
         // スライダー範囲内であれば、強調表示
         if (_isInsideRange(item.getStartYear())) {
-            convertView.setBackgroundColor(Color.parseColor("#FFB300"));
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
         } else {
-            convertView.setBackgroundColor(Color.parseColor("#EFEBE9"));
+            convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAlmostWhite));
         }
         // spotURLがあれば、リンクを設定
         final String eventUrl = item.getUrl();
