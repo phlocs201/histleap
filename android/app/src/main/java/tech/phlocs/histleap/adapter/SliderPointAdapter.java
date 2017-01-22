@@ -87,6 +87,12 @@ public class SliderPointAdapter extends BaseAdapter {
         if (!slider.isSamePoint()) {
             if (position > this.range.get(0) && position < this.range.get(1)) {
                 holder.sliderBar.setVisibility(View.VISIBLE);
+            } else if (position == this.range.get(0)) {
+                holder.sliderBar.setImageResource(R.drawable.slider_bar_yellow_start);
+                holder.sliderBar.setVisibility(View.VISIBLE);
+            } else if (position == this.range.get(1)) {
+                holder.sliderBar.setImageResource(R.drawable.slider_bar_yellow_end);
+                holder.sliderBar.setVisibility(View.VISIBLE);
             }
         }
 
