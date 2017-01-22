@@ -1,8 +1,6 @@
 package tech.phlocs.histleap.model;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,27 +71,19 @@ public class Slider {
         ArrayList<Integer> edgeYear = getEdgeYear();
         for (Spot spot: spots) {
             for (Event event: spot.getEventList()) {
-                if (!((event.getStartYear() > edgeYear.get(1)) ||
-                        (event.getEndYear() < edgeYear.get(0)))) {
+                int eventStartYear = event.getStartYear();
+                int eventEndYear = event.getEndYear();
+                if (eventEndYear == 0) {
+                    eventEndYear = eventStartYear;
+                }
+                if ((eventStartYear <= (edgeYear.get(1) == 0 ? 9999 : edgeYear.get(1))) &&
+                        (eventEndYear >= edgeYear.get(0))) {
                     filteredSpots.add(spot);
                     break;
                 }
             }
         }
         return filteredSpots;
-    }
-
-    public ArrayList<Spot> getExistSpots(ArrayList<Spot> spots) {
-        ArrayList<Spot> existSpots = new ArrayList<>();
-        ArrayList<Integer> edgeYear = getEdgeYear();
-        for (Spot spot: spots) {
-            int startYear = spot.getEventList().get(0).getStartYear();
-            int endYear = spot.getEventList().get(spot.getEventList().size() - 1).getEndYear();
-            if (!((startYear > edgeYear.get(1)) || (endYear < edgeYear.get(0)))) {
-                existSpots.add(spot);
-            }
-        }
-        return existSpots;
     }
 
     public ArrayList<Integer> getEdgeYear() {
