@@ -22,8 +22,6 @@ import tech.phlocs.histleap.model.Spot;
 
 public class JsonHandler {
     private Activity activity = null;
-
-
     public JsonHandler(Activity activity) {
         this.activity = activity;
     }
@@ -117,6 +115,15 @@ public class JsonHandler {
             e.printStackTrace();
         }
         return spot;
+    }
+    public String getStringFromJson(JSONObject json, String key) {
+        String str = null;
+        try {
+            str = json.getString(key);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
     public int makeIntFromJson(JSONObject json, String key) {
         int num = -1;

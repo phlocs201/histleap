@@ -5,6 +5,7 @@
 			"divisions": [
 				{
 					"name": "飛鳥以前",
+					"startYear": 0,
 					"endYear": 710
 				},
 				{
@@ -49,7 +50,8 @@
 				},
 				{
 					"name": "平成",
-					"startYear": 1989
+					"startYear": 1989,
+					"endYear": 9999
 				}
 			]
 		},

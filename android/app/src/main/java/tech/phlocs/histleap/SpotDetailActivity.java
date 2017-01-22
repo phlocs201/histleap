@@ -12,16 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,19 +32,23 @@ public class SpotDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spot_detail);
 
-        
-
         // インテントを取得
         Intent intent = this.getIntent();
-        //String spot = intent.getStringExtra("spot");
+        String spotName = intent.getStringExtra("spotName");
+        int startYear = intent.getIntExtra("startYear", 0);
+        int endYear = intent.getIntExtra("endYear", 0);
+        Log.d("@@@", "startYear: " + startYear);
+        Log.d("@@@", "endYear: " + endYear);
+        ArrayList<Integer> range = new ArrayList<>();
+        range.add(startYear);
+        range.add(endYear);
+
         //TextView tv_spotName = (TextView)findViewById(R.id.tv_spotName);
         //tv_spotName.setText(spot);
 
         // ダミーデータを取得
-        Spot currentSpot = _getDummySpot();
-        ArrayList<Integer> range = new ArrayList<>();
-        range.add(1700);
-        range.add(1899);
+        Spot currentSpot = _getSpotByName(spotName);
+        //Spot currentSpot = _getDummySpot();
 
         // ヘッダー文言を設定
         _setHeaderText(currentSpot.getName());
@@ -76,6 +72,23 @@ public class SpotDetailActivity extends Activity {
 
         // イベントリストにデータを登録
         _setDataToEventList(currentSpot, range);
+    }
+    private Spot _getSpotByName(String name) {
+        // TODO: スポット情報はDBから取得したい
+        Spot spot = new Spot();
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.spots);
+        JSONArray spotObjArray = jh.getJsonArrayInJson(json, "spots");
+        ArrayList<JSONObject> spotObjList = jh.makeArrayListFromJsonArray(spotObjArray);
+        ArrayList<Spot> spots = new ArrayList<>();
+
+        for (int i = 0; i < spotObjList.size(); i++) {
+            JSONObject obj = spotObjList.get(i);
+            if (name.equals(jh.getStringFromJson(obj, "spotName"))) {
+                spot = jh.makeSpotFromJson(obj);
+            }
+        }
+        return spot;
     }
 
     private Spot _getDummySpot() {

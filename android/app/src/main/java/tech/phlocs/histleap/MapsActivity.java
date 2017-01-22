@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import tech.phlocs.histleap.adapter.SliderPointAdapter;
+import tech.phlocs.histleap.model.Division;
+import tech.phlocs.histleap.model.DivisionSet;
 import tech.phlocs.histleap.model.Slider;
 import tech.phlocs.histleap.model.SliderArea;
 import tech.phlocs.histleap.model.Spot;
@@ -40,6 +42,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Spot> spots;
     private ArrayList<Marker> markers = new ArrayList<>();
     private RelativeLayout saLayout;
+    private ArrayList<DivisionSet> divisionSets;
+    private int currentDivisionSetIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +94,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         );
+        // 時代区分セットをjsonから取得
+        JsonHandler jh = new JsonHandler(this);
+        JSONObject json = jh.makeJsonFromRawFile(R.raw.preset_division_sets);
+        divisionSets = jh.makeDivisionSetsFromJson(json);
+        int defaultDivisionSetIndex = 0;
 
-        this.slider = new Slider();
+        DivisionSet divisionSet = divisionSets.get(defaultDivisionSetIndex);
+        ArrayList<Division> divisions = divisionSet.getDivisions();
+        this.slider = new Slider(divisions);
     }
 
     @Override
@@ -153,20 +164,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
 
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(35.6096764, 139.7439769))
-                .title("品川寺")
-        );
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(35.608834, 139.730238))
-                .title("品川区役所")
-        );
+//        mMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(35.6096764, 139.7439769))
+//                .title("品川寺")
+//        );
+//        mMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(35.608834, 139.730238))
+//                .title("品川区役所")
+//        );
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                _startSpotDetailActivity();
+                String spotName = marker.getTitle();
+                _startSpotDetailActivity(spotName);
                 return false;
             }
         });
@@ -180,13 +192,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void _startSpotDetailActivity() {
+    private void _startSpotDetailActivity(String spotName) {
         Intent i = new Intent(this, SpotDetailActivity.class);
+        i.putExtra("spotName", spotName);
+
+        int startYear = slider.getStartYear();
+        int endYear = slider.getEndYear();
+        i.putExtra("startYear", startYear);
+        i.putExtra("endYear", endYear);
         startActivityForResult(i, 1);
     }
 
     public void temporaryOnClick(View view) {
         Intent i = new Intent(this, DivisionSettingActivity.class);
+        i.putExtra("currentDivisionSetIndex", currentDivisionSetIndex);
         startActivityForResult(i, 1);
     }
 
@@ -222,5 +241,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         + " 〜 "
                         + slider.getDivisions().get(slider.getRange().get(1)).getName()
         );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // スライダー設定画面で選択したDivisionSetを、スライダーにセット
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            currentDivisionSetIndex = data.getIntExtra("currentDivisionSetIndex", 0);
+        }
+        DivisionSet divisionSet = divisionSets.get(currentDivisionSetIndex);
+        ArrayList<Division> divisions = divisionSet.getDivisions();
+        this.slider = new Slider(divisions);
     }
 }
