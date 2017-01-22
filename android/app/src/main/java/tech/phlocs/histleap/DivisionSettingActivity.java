@@ -22,6 +22,7 @@ import tech.phlocs.histleap.util.JsonHandler;
 
 public class DivisionSettingActivity extends Activity {
     ExpandableListView ex_listView;
+    int previoutDivisionSetIndex;
     int currentDivisionSetIndex;
 
     @Override
@@ -31,7 +32,8 @@ public class DivisionSettingActivity extends Activity {
         // インテントを取得
         Intent intent = this.getIntent();
         // 現在選択された時代区分を取得
-        currentDivisionSetIndex = intent.getIntExtra("currentDivisionSetIndex", 0);
+        previoutDivisionSetIndex = intent.getIntExtra("currentDivisionSetIndex", 0);
+        currentDivisionSetIndex = previoutDivisionSetIndex;
 
         // 時代区分リストにデータを登録
         _setDataToDivisionList();
@@ -101,6 +103,12 @@ public class DivisionSettingActivity extends Activity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent i = new Intent();
             i.putExtra("currentDivisionSetIndex", currentDivisionSetIndex);
+            // 変更有無を設定
+            boolean isChanged = true;
+            if (previoutDivisionSetIndex == currentDivisionSetIndex) {
+                isChanged = false;
+            }
+            i.putExtra("isChanged", isChanged);
             setResult(RESULT_OK, i);
         }
         return super.onKeyDown(keyCode, event);
