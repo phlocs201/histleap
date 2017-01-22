@@ -153,20 +153,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
 
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(35.6096764, 139.7439769))
-                .title("品川寺")
-        );
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(35.608834, 139.730238))
-                .title("品川区役所")
-        );
+//        mMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(35.6096764, 139.7439769))
+//                .title("品川寺")
+//        );
+//        mMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(35.608834, 139.730238))
+//                .title("品川区役所")
+//        );
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                _startSpotDetailActivity();
+                String spotName = marker.getTitle();
+                _startSpotDetailActivity(spotName);
                 return false;
             }
         });
@@ -180,8 +181,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void _startSpotDetailActivity() {
+    private void _startSpotDetailActivity(String spotName) {
         Intent i = new Intent(this, SpotDetailActivity.class);
+        i.putExtra("spotName", spotName);
         startActivityForResult(i, 1);
     }
 

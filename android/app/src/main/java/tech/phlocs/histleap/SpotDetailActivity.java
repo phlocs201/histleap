@@ -42,13 +42,12 @@ public class SpotDetailActivity extends Activity {
 
         // インテントを取得
         Intent intent = this.getIntent();
-        //String spot = intent.getStringExtra("spot");
+        String spotName = intent.getStringExtra("spotName");
         //TextView tv_spotName = (TextView)findViewById(R.id.tv_spotName);
         //tv_spotName.setText(spot);
 
         // ダミーデータを取得
-        String currentSpotName = "戸越八幡神社";
-        Spot currentSpot = _getSpotByName(currentSpotName);
+        Spot currentSpot = _getSpotByName(spotName);
         //Spot currentSpot = _getDummySpot();
         ArrayList<Integer> range = new ArrayList<>();
         range.add(1700);
