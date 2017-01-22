@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by matsumura_kazuki on 2017/01/07.
@@ -69,10 +70,11 @@ public class Slider {
 
     public ArrayList<Spot> getFilteredSpots(ArrayList<Spot> spots) {
         ArrayList<Spot> filteredSpots = new ArrayList<>();
+        ArrayList<Integer> edgeYear = getEdgeYear();
         for (Spot spot: spots) {
             for (Event event: spot.getEventList()) {
-                if (event.getStartYear() >= getDivisions().get(getRange().get(0)).getStart()
-                        && event.getStartYear() <= getDivisions().get(getRange().get(1)).getEnd()) {
+                if (!((event.getStartYear() > edgeYear.get(1)) ||
+                        (event.getEndYear() < edgeYear.get(0)))) {
                     filteredSpots.add(spot);
                     break;
                 }
@@ -81,9 +83,25 @@ public class Slider {
         return filteredSpots;
     }
 
-    public int getEdgeYear(int $edge) {
-        int index = getRange().get($edge);
-        Division division = getDivisions().get(index);
-        return ($edge == 0 ? division.getStart() : division.getEnd());
+    public ArrayList<Spot> getExistSpots(ArrayList<Spot> spots) {
+        ArrayList<Spot> existSpots = new ArrayList<>();
+        ArrayList<Integer> edgeYear = getEdgeYear();
+        for (Spot spot: spots) {
+            int startYear = spot.getEventList().get(0).getStartYear();
+            int endYear = spot.getEventList().get(spot.getEventList().size() - 1).getEndYear();
+            if (!((startYear > edgeYear.get(1)) || (endYear < edgeYear.get(0)))) {
+                existSpots.add(spot);
+            }
+        }
+        return existSpots;
+    }
+
+    public ArrayList<Integer> getEdgeYear() {
+        return new ArrayList<>(
+            Arrays.asList(
+                getDivisions().get(getRange().get(0)).getStart(),
+                getDivisions().get(getRange().get(1)).getEnd()
+            )
+        );
     }
 }

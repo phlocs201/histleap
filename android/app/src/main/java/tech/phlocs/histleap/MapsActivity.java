@@ -17,6 +17,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -206,10 +208,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = new Intent(this, SpotDetailActivity.class);
         i.putExtra("spotName", spotName);
 
-        int startYear = slider.getEdgeYear(0);
-        int endYear = slider.getEdgeYear(1);
-        i.putExtra("startYear", startYear);
-        i.putExtra("endYear", endYear);
+        ArrayList<Integer> edgeYear = slider.getEdgeYear();
+        i.putExtra("startYear", (int)edgeYear.get(0));
+        i.putExtra("endYear", (int)edgeYear.get(1));
         startActivityForResult(i, 1);
     }
 
@@ -246,6 +247,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         markers = new ArrayList<>();
 
+        BitmapDescriptor icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
+        ArrayList<Spot> existSpots = this.slider.getExistSpots(this.spots);
+        for (Spot s: existSpots) {
+            this.markers.add(mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
+                    .title(s.getName())
+                    .icon(icon)
+            ));
+        }
         ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
         for (Spot s : filteredSpots) {
             this.markers.add(mMap.addMarker(new MarkerOptions()
