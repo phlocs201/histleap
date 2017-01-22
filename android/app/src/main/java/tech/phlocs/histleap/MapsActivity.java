@@ -213,9 +213,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public boolean handleClickToChangeSliderRange(int position) {
         slider.setRangeByPosition(position);
         GridView sliderPoints = (GridView) findViewById(R.id.slider_points);
-        if (saLayout.getVisibility() == View.INVISIBLE) {
-            return true;
-        }
+//        if (saLayout.getVisibility() == View.INVISIBLE) {
+//            return true;
+//        }
         sliderPoints.setAdapter(new SliderPointAdapter(MapsActivity.this, slider));
 
         for (Marker m : this.markers) {
@@ -251,20 +251,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // スライダー設定画面で選択したDivisionSetを、スライダーにセット
         if (requestCode == 1 && resultCode == RESULT_OK) {
             currentDivisionSetIndex = data.getIntExtra("currentDivisionSetIndex", 0);
-        }
-        DivisionSet divisionSet = divisionSets.get(currentDivisionSetIndex);
-        ArrayList<Division> divisions = divisionSet.getDivisions();
-        this.slider = new Slider(divisions);
+            DivisionSet divisionSet = divisionSets.get(currentDivisionSetIndex);
+            ArrayList<Division> divisions = divisionSet.getDivisions();
+            this.slider = new Slider(divisions);
 
-        boolean isChanged = data.getBooleanExtra("isChanged", true);
-        // もしDivisionSetが変更された場合は、Rangeをデフォルト(最初から最後まで)に戻す
-        if (isChanged) {
-            int divisionsSize = divisions.size();
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("currentRangeStart", 0);
-            editor.putInt("currentRangeEnd", divisionsSize-1);
-            editor.commit();
+            boolean isChanged = data.getBooleanExtra("isChanged", true);
+            // もしDivisionSetが変更された場合は、Rangeをデフォルト(最初から最後まで)に戻す
+            if (isChanged) {
+                int divisionsSize = divisions.size();
+                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putInt("currentRangeStart", 0);
+                editor.putInt("currentRangeEnd", divisionsSize-1);
+                editor.commit();
+            }
+            onWindowFocusChanged(true);
         }
     }
     @Override
@@ -279,6 +280,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             range.add(currentRangeEnd);
             slider.setRange(range);
         }
+        onWindowFocusChanged(true);
         super.onResume();
     }
 
