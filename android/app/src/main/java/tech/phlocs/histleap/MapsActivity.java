@@ -246,16 +246,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             m.remove();
         }
         markers = new ArrayList<>();
-
-        BitmapDescriptor icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
-        ArrayList<Spot> existSpots = this.slider.getExistSpots(this.spots);
-        for (Spot s: existSpots) {
-            this.markers.add(mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(s.getLatitude(), s.getLongitude()))
-                    .title(s.getName())
-                    .icon(icon)
-            ));
-        }
         ArrayList<Spot> filteredSpots = this.slider.getFilteredSpots(this.spots);
         for (Spot s : filteredSpots) {
             this.markers.add(mMap.addMarker(new MarkerOptions()
