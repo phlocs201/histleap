@@ -11,7 +11,6 @@
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
         >
-
         <TextView
             android:id="@+id/range"
             android:layout_width="wrap_content"
@@ -20,7 +19,6 @@
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:textSize="18sp"/>
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,20 +27,28 @@
             android:scaleY="0.4"
             android:layout_alignParentStart="true"
             />
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/btn_style_setting"
+        <LinearLayout
+            android:id="@+id/btn_setting"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:background="@color/colorPrimary"
-            android:elevation="0dp"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
             android:onClick="btn_settingOnClick"
-            />
+            android:adjustViewBounds="true"
+            >
+            <ImageView
+                android:id="@+id/img_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/setting_white"
+                android:background="@color/colorPrimary"
+                android:elevation="0dp"
+                android:scaleType="centerInside"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:onClick="btn_settingOnClick"
+                />
+        </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,7 +65,6 @@
         tools:context="tech.phlocs.histleap.MapsActivity"
         />
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/slider_area"
         android:layout_width="match_parent"
@@ -67,7 +72,6 @@
         android:background="#C09E9E9E"
         android:layout_above="@+id/footer_main"
         android:visibility="visible">
-
         <ImageView
             android:id="@+id/slider_bar_white"
             android:layout_alignParentStart="true"
@@ -77,7 +81,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/slider_bar_white" />
-
         <GridView
             android:id="@+id/slider_points"
             android:layout_height="match_parent"
@@ -85,10 +88,7 @@
             android:numColumns="auto_fit"
             android:columnWidth="40dp"
             android:stretchMode="columnWidth"/>
-
     </RelativeLayout>
-
-
     <RelativeLayout
         android:id="@+id/footer_main"
         android:layout_width="match_parent"
@@ -96,7 +96,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:background="@color/colorPrimary">
-
         <ImageView
             android:id="@+id/logo_type"
             android:layout_centerInParent="true"
@@ -105,20 +104,26 @@
             android:src="@drawable/logotype_white"
             android:scaleX="0.55"
             android:scaleY="0.55" />
-
-        <ImageButton
+        <LinearLayout
+            android:id="@+id/btn_slider"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:onClick="onClickToggleSlider"
+            >
+        <ImageView
+            android:id="@+id/img_slider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/logo_type"
-            android:layout_marginEnd="8dp"
             android:background="@color/colorPrimary"
             android:scaleX="0.4"
             android:scaleY="0.4"
-            android:src="@drawable/btn_style_slider"
+            android:src="@drawable/slider_white"
             android:onClick="onClickToggleSlider"
             />
+        </LinearLayout>
     </RelativeLayout>
-
-
 </RelativeLayout>

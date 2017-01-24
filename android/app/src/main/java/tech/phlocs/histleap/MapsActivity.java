@@ -15,6 +15,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -140,6 +141,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (int i = 0; i < spotObjList.size(); i++) {
             spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
         }
+        // ボタンの設定
+        _setTouchListeners();
     }
 
     @Override
@@ -291,6 +294,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             + " 〜 "
                             + slider.getDivisions().get(slider.getRange().get(1)).getName()
             );
+        }
+    }
+    public void _setTouchListeners() {
+        // 設定ボタン
+        View btn_settingView = findViewById(R.id.btn_setting);
+        btn_settingView.setOnTouchListener(new SettingTouchListener());
+        View img_settingView = findViewById(R.id.img_setting);
+        img_settingView.setOnTouchListener(new SettingTouchListener());
+        // スライダーボタン
+        View btn_sliderView = findViewById(R.id.btn_slider);
+        btn_sliderView.setOnTouchListener(new SliderButtonTouchListener());
+        View img_sliderView = findViewById(R.id.img_slider);
+        img_sliderView.setOnTouchListener(new SliderButtonTouchListener());
+
+    }
+    private class SettingTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+            ImageView img_settingView = (ImageView) findViewById(R.id.img_setting);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    img_settingView.setImageResource(R.drawable.setting_pushed);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    img_settingView.setImageResource(R.drawable.setting_white);
+                    break;
+            }
+            return false;
+        }
+    }
+    private class SliderButtonTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+            ImageView img_sliderView = (ImageView) findViewById(R.id.img_slider);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    img_sliderView.setImageResource(R.drawable.slider_pushed);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    img_sliderView.setImageResource(R.drawable.slider_white);
+                    break;
+            }
+            return false;
         }
     }
 
