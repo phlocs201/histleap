@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">Histleap</string>
-    <string name="title_activity_maps">histleap</string>
+    <string name="app_name">histleap</string>
 </resources>
