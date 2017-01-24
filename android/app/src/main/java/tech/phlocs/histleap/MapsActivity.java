@@ -236,10 +236,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void _startSpotDetailActivity(String spotName) {
         Intent i = new Intent(this, SpotDetailActivity.class);
         i.putExtra("spotName", spotName);
-
         ArrayList<Integer> edgeYear = slider.getEdgeYear();
-        i.putExtra("startYear", (int)edgeYear.get(0));
-        i.putExtra("endYear", (int)edgeYear.get(1));
+        int startYear = (int)edgeYear.get(0);
+        int endYear = (int)edgeYear.get(1);
+
+        // 最後のdivisionにendYearが無い場合
+        if (endYear == 0) {
+            endYear = 9999;
+        }
+        i.putExtra("startYear", startYear);
+        i.putExtra("endYear", endYear);
         startActivityForResult(i, 1);
     }
 
