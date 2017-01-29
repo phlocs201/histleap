@@ -292,15 +292,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void changeHeaderText() {
         TextView headerText = (TextView) findViewById(R.id.range);
+        String t;
         if (slider.isSamePoint()) {
-            headerText.setText(slider.getDivisions().get(slider.getRange().get(0)).getName());
+            t = slider.getDivisions().get(slider.getRange().get(0)).getName();
         } else {
-            headerText.setText(
-                    slider.getDivisions().get(slider.getRange().get(0)).getName()
-                            + " 〜 "
-                            + slider.getDivisions().get(slider.getRange().get(1)).getName()
-            );
+            t = slider.getDivisions().get(slider.getRange().get(0)).getName()
+                + " 〜 "
+                + slider.getDivisions().get(slider.getRange().get(1)).getName();
         }
+
+        if (t.length() > 15) {
+            headerText.setTextSize(View.resolveSize(15, View.SYSTEM_UI_FLAG_LOW_PROFILE));
+        } else {
+            headerText.setTextSize(View.resolveSize(18, View.SYSTEM_UI_FLAG_LOW_PROFILE));
+        }
+
+        headerText.setText(t);
     }
     public void _setTouchListeners() {
         // 設定ボタン
