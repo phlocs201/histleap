@@ -1,6 +1,7 @@
 package tech.phlocs.histleap.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,8 @@ public class SliderPointAdapter extends BaseAdapter {
         for (int i = 0; i < this.size; i++) {
             if (i == range.get(0) || i == range.get(1)) {
                 this.mSliderPointArray[i] = R.drawable.slider_lever2;
+            } else if (i > this.range.get(0) && i < this.range.get(1)) {
+                this.mSliderPointArray[i] = R.drawable.break_point_white;
             } else {
                 this.mSliderPointArray[i] = R.drawable.break_point_yellow;
             }
@@ -83,6 +86,7 @@ public class SliderPointAdapter extends BaseAdapter {
             holder.sliderPoint.setScaleX((float) 1.1);
             holder.sliderPoint.setScaleY((float) 1.1);
         }
+
         if (!slider.isSamePoint()) {
             if (position > this.range.get(0) && position < this.range.get(1)) {
                 holder.sliderBar.setVisibility(View.VISIBLE);

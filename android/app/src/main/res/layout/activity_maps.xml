@@ -76,8 +76,8 @@
             android:id="@+id/slider_bar_white"
             android:layout_alignParentStart="true"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/slider_bar_white" />
