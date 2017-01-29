@@ -1,15 +1,21 @@
 package tech.phlocs.histleap;
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -135,6 +141,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (int i = 0; i < spotObjList.size(); i++) {
             spots.add(jh.makeSpotFromJson(spotObjList.get(i)));
         }
+        // ボタンの設定
+        _setTouchListeners();
     }
 
     @Override
@@ -183,6 +191,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
         LatLng initialLocation = new LatLng(35.608834, 139.730238);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
@@ -194,6 +208,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return false;
             }
         });
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch(requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        mMap.setMyLocationEnabled(true);
+                    }
+                } else {
+                    Log.d("@@@", "ACCESS_FINE_LOCATION = false");
+                }
+            }
+        }
     }
 
     public void onClickToggleSlider(View view) {
@@ -207,10 +236,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void _startSpotDetailActivity(String spotName) {
         Intent i = new Intent(this, SpotDetailActivity.class);
         i.putExtra("spotName", spotName);
-
         ArrayList<Integer> edgeYear = slider.getEdgeYear();
-        i.putExtra("startYear", (int)edgeYear.get(0));
-        i.putExtra("endYear", (int)edgeYear.get(1));
+        int startYear = (int)edgeYear.get(0);
+        int endYear = (int)edgeYear.get(1);
+
+        // 最後のdivisionにendYearが無い場合
+        if (endYear == 0) {
+            endYear = 9999;
+        }
+        i.putExtra("startYear", startYear);
+        i.putExtra("endYear", endYear);
         startActivityForResult(i, 1);
     }
 
@@ -265,6 +300,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             + " 〜 "
                             + slider.getDivisions().get(slider.getRange().get(1)).getName()
             );
+        }
+    }
+    public void _setTouchListeners() {
+        // 設定ボタン
+        View btn_settingView = findViewById(R.id.btn_setting);
+        btn_settingView.setOnTouchListener(new SettingTouchListener());
+        View img_settingView = findViewById(R.id.img_setting);
+        img_settingView.setOnTouchListener(new SettingTouchListener());
+        // スライダーボタン
+        View btn_sliderView = findViewById(R.id.btn_slider);
+        btn_sliderView.setOnTouchListener(new SliderButtonTouchListener());
+        View img_sliderView = findViewById(R.id.img_slider);
+        img_sliderView.setOnTouchListener(new SliderButtonTouchListener());
+
+    }
+    private class SettingTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+            ImageView img_settingView = (ImageView) findViewById(R.id.img_setting);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    img_settingView.setImageResource(R.drawable.setting_pushed);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    img_settingView.setImageResource(R.drawable.setting_white);
+                    break;
+            }
+            return false;
+        }
+    }
+    private class SliderButtonTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View v, MotionEvent event) {
+            ImageView img_sliderView = (ImageView) findViewById(R.id.img_slider);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    img_sliderView.setImageResource(R.drawable.slider_pushed);
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    img_sliderView.setImageResource(R.drawable.slider_white);
+                    break;
+            }
+            return false;
         }
     }
 
