@@ -1,6 +1,5 @@
 package tech.phlocs.histleap;
 
-import android.*;
 import android.Manifest;
 import android.content.Intent;
 
@@ -23,7 +22,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -208,6 +206,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return false;
             }
         });
+        mMap.getUiSettings().setMapToolbarEnabled(false);
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -226,10 +225,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onClickToggleSlider(View view) {
+        View sliderAreaShadow = findViewById(R.id.slider_area_shadow);
         if (saLayout.getVisibility() == View.VISIBLE) {
             saLayout.setVisibility(View.INVISIBLE);
+            sliderAreaShadow.setVisibility(View.INVISIBLE);
         } else {
             saLayout.setVisibility(View.VISIBLE);
+            sliderAreaShadow.setVisibility(View.VISIBLE);
         }
     }
 
@@ -286,6 +288,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             this.markers.add(mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(s.getLatitude(), s.getLongitude()))
                     .title(s.getName())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_red))
             ));
         }
     }
