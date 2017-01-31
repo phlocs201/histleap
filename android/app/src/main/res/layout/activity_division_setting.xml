@@ -52,7 +52,7 @@
 
     <!-- フッター -->
     <RelativeLayout
-        android:id="@+id/footerhoge"
+        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
@@ -69,4 +69,16 @@
             android:scaleY="0.55"
             android:src="@drawable/logotype_white" />
     </RelativeLayout>
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@drawable/shadow_down"
+        android:layout_below="@id/header"
+        />
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/shadow_up"
+        android:layout_above="@id/footer"
+        />
 </RelativeLayout>
