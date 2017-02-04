@@ -65,6 +65,24 @@
         tools:context="tech.phlocs.histleap.MapsActivity"
         />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@drawable/shadow_down"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="54dp"
+        />
+    <View
+        android:id="@+id/slider_area_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_slider_area_up"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="224dp"
+        android:visibility="visible"
+        />
     <RelativeLayout
         android:id="@+id/slider_area"
         android:layout_width="match_parent"
@@ -72,6 +90,15 @@
         android:background="#C09E9E9E"
         android:layout_above="@+id/footer_main"
         android:visibility="visible">
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="7dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/shadow_slider_down"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="27dp"
+            />
         <ImageView
             android:id="@+id/slider_bar_white"
             android:layout_alignParentStart="true"
@@ -83,12 +110,21 @@
             android:src="@drawable/slider_bar_white" />
         <GridView
             android:id="@+id/slider_points"
-            android:layout_height="match_parent"
+            android:layout_height="170dp"
             android:layout_width="match_parent"
             android:numColumns="auto_fit"
             android:columnWidth="40dp"
-            android:stretchMode="columnWidth"/>
+            android:stretchMode="columnWidth"
+            />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/shadow_up"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="54dp"
+        />
     <RelativeLayout
         android:id="@+id/footer_main"
         android:layout_width="match_parent"
