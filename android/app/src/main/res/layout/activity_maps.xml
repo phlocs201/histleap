@@ -89,7 +89,8 @@
         android:layout_height="170dp"
         android:background="#C09E9E9E"
         android:layout_above="@+id/footer_main"
-        android:visibility="visible">
+        android:visibility="visible"
+        >
         <View
             android:layout_width="wrap_content"
             android:layout_height="7dp"
@@ -115,6 +116,7 @@
             android:numColumns="auto_fit"
             android:columnWidth="40dp"
             android:stretchMode="columnWidth"
+            android:scrollbars="none"
             />
     </RelativeLayout>
     <View
