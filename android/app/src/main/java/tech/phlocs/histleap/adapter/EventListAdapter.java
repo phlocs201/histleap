@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -67,7 +68,7 @@ public class EventListAdapter extends BaseAdapter {
         ((TextView) convertView.findViewById(R.id.event_end_year)).setText(endYearStr);
 
         // スライダー範囲内であれば、強調表示
-        if (_isInsideRange(item.getStartYear())) {
+        if (_isInsideRange(item.getStartYear(), item.getEndYear())) {
             convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
         } else {
             convertView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAlmostWhite));
@@ -94,12 +95,16 @@ public class EventListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private boolean _isInsideRange(int eventStartYear) {
-        boolean isInside = false;
-        if (eventStartYear >= range.get(0)) {
-            if (eventStartYear <= range.get(1)) {
-                isInside = true;
-            }
+    private boolean _isInsideRange(int eventStartYear, int eventEndYear) {
+        if (eventEndYear == 0) {
+            eventEndYear = eventStartYear;
+        }
+
+        boolean isInside = true;
+        if (eventStartYear < range.get(0) && eventEndYear < range.get(0)) {
+            isInside = false;
+        } else if (eventStartYear > range.get(1) && eventEndYear > range.get(1)) {
+            isInside = false;
         }
         return isInside;
     }
