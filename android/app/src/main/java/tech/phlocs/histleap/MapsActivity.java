@@ -195,7 +195,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
-        LatLng initialLocation = new LatLng(35.608834, 139.730238);
+        // FIXME: 一時的に、スポットの多い北品川駅に設定
+        LatLng initialLocation = new LatLng(35.622551,139.7371093);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLocation, (float)15));
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -203,7 +204,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
                 String spotName = marker.getTitle();
                 _startSpotDetailActivity(spotName);
-                return false;
+                // info windowを表示する場合は、falseにする
+                return true;
             }
         });
         mMap.getUiSettings().setMapToolbarEnabled(false);
@@ -287,6 +289,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (Spot s : filteredSpots) {
             this.markers.add(mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(s.getLatitude(), s.getLongitude()))
+// マーカータップ時の吹き出しを仮削除
                     .title(s.getName())
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_red))
             ));
