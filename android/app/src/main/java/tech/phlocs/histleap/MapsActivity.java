@@ -147,15 +147,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
-        View spotTitle = findViewById(R.id.spot_title);
-        if (spotTitle.getVisibility() == View.VISIBLE) {
-            Log.d("hogetop", ((Integer) spotTitle.getTop()).toString());
-            Log.d("hogebottom", ((Integer) spotTitle.getBottom()).toString());
-            if (spotTitle.getTop() < event.getY() && spotTitle.getBottom() > event.getY()) {
+        View spotTitle1 = findViewById(R.id.spot_title1);
+        View spotTitle2 = findViewById(R.id.spot_title2);
+        if (spotTitle1.getVisibility() == View.VISIBLE) {
+            if (spotTitle1.getTop() < (int)event.getY() && spotTitle1.getBottom() > (int)event.getY()) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    return false;
+                }
                 _startSpotDetailActivity(this.selectedSpotTitle);
                 return true;
             } else {
-                spotTitle.setVisibility(View.INVISIBLE);
+                spotTitle1.setVisibility(View.INVISIBLE);
+                selectedSpotTitle = "";
+                return true;
+            }
+        }
+        if (spotTitle2.getVisibility() == View.VISIBLE) {
+            if (spotTitle2.getTop() < (int)event.getY() && spotTitle2.getBottom() > (int)event.getY()) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    return false;
+                }
+                _startSpotDetailActivity(this.selectedSpotTitle);
+                return true;
+            } else {
+                spotTitle2.setVisibility(View.INVISIBLE);
+                selectedSpotTitle = "";
                 return true;
             }
         }
@@ -251,12 +267,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void showSpotTitle(final String spotName) {
-        View spotTitle = findViewById(R.id.spot_title);
-        TextView spotTitleName = (TextView) findViewById(R.id.spot_title_name);
-        spotTitleName.setText(spotName);
-        spotTitle.setVisibility(View.VISIBLE);
+    private void showSpotTitle(String spotName) {
         this.selectedSpotTitle = spotName;
+        RelativeLayout spotTitle1 = (RelativeLayout) findViewById(R.id.spot_title1);
+        RelativeLayout spotTitle2 = (RelativeLayout) findViewById(R.id.spot_title2);
+        if (saLayout.getVisibility() == View.INVISIBLE) {
+            TextView spotTitleName2 = (TextView) findViewById(R.id.spot_title_name2);
+            spotTitleName2.setText(spotName);
+            spotTitle2.setVisibility(View.VISIBLE);
+        } else {
+            TextView spotTitleName1 = (TextView) findViewById(R.id.spot_title_name1);
+            spotTitleName1.setText(spotName);
+            spotTitle1.setVisibility(View.VISIBLE);
+        }
     }
 
     private void _startSpotDetailActivity(String spotName) {
