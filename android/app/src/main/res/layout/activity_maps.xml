@@ -73,6 +73,43 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="54dp"
         />
+    <RelativeLayout
+        android:id="@+id/spot_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="224dp"
+        android:background="#FFEFEBE9"
+        android:visibility="invisible"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/shadow_up"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="42dp"
+            />
+        <ImageView
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pin"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:layout_alignParentStart="true"
+            />
+        <TextView
+            android:id="@+id/spot_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </RelativeLayout>
     <View
         android:id="@+id/slider_area_shadow"
         android:layout_width="match_parent"
@@ -133,7 +170,8 @@
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        >
         <ImageView
             android:id="@+id/logo_type"
             android:layout_centerInParent="true"

@@ -53,6 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String PREFS_NAME = "SliderPreference";
     private int scrollFrom = -1;
     private boolean firstOnDown = false;
+    private String selectedSpotTitle = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +147,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         int position = sa.getPosition((int)event.getX(), (int)event.getY());
+        View spotTitle = findViewById(R.id.spot_title);
+        if (spotTitle.getVisibility() == View.VISIBLE) {
+            Log.d("hogetop", ((Integer) spotTitle.getTop()).toString());
+            Log.d("hogebottom", ((Integer) spotTitle.getBottom()).toString());
+            if (spotTitle.getTop() < event.getY() && spotTitle.getBottom() > event.getY()) {
+                _startSpotDetailActivity(this.selectedSpotTitle);
+                return true;
+            } else {
+                spotTitle.setVisibility(View.INVISIBLE);
+                return true;
+            }
+        }
+
         if (position == -1 || saLayout.getVisibility() == View.INVISIBLE) {
             super.dispatchTouchEvent(event);
             return true;
@@ -203,8 +217,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 String spotName = marker.getTitle();
-                _startSpotDetailActivity(spotName);
-                // info windowを表示する場合は、falseにする
+                //_startSpotDetailActivity(spotName);
+                showSpotTitle(spotName);
                 return true;
             }
         });
@@ -235,6 +249,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             saLayout.setVisibility(View.VISIBLE);
             sliderAreaShadow.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void showSpotTitle(final String spotName) {
+        View spotTitle = findViewById(R.id.spot_title);
+        TextView spotTitleName = (TextView) findViewById(R.id.spot_title_name);
+        spotTitleName.setText(spotName);
+        spotTitle.setVisibility(View.VISIBLE);
+        this.selectedSpotTitle = spotName;
     }
 
     private void _startSpotDetailActivity(String spotName) {
